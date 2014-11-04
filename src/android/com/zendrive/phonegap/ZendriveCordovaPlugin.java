@@ -29,8 +29,10 @@ public class ZendriveCordovaPlugin extends CordovaPlugin {
             return true;
         } else if (action.equals("startSession")) {
             startSession(args, callbackContext);
+            return true;
         } else if (action.equals("stopSession")) {
             stopSession(args, callbackContext);
+            return true;
         }
         return false;
     }
