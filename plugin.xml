@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    id="com.zendrive.phonegap"
+    id="com.zendrive.phonegap.sdk"
     version="1.0.2">
 
-    <name>ZendrivePlugin</name>
+    <name>Zendrive</name>
     <description>Phonegap plugin for the Zendrive SDK.</description>
     <platform name="android">
       <config-file target="res/xml/config.xml" parent="/*">
@@ -19,5 +19,14 @@
 
       <source-file src="src/android/com/zendrive/phonegap/ZendriveCordovaPlugin.java" target-dir="src/com/zendrive/phonegap" />
 
+    </platform>
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Zendrive">
+                <param name="ios-package" value="ZendriveCordovaPlugin" />
+            </feature>
+        </config-file>
+        <header-file src="src/ios/ZendriveCordovaPlugin.h" />
+        <source-file src="src/ios/ZendriveCordovaPlugin.m" />
     </platform>
 </plugin>
