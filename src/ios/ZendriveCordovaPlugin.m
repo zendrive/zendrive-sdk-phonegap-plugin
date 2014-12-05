@@ -10,12 +10,16 @@
 - (void)setup:(CDVInvokedUrlCommand*)command
 {
     [self.commandDelegate runInBackground:^{
-        NSString *applicationId = [command argumentAtIndex:0];
-        NSString *userId = [command argumentAtIndex:1];
+        NSString *applicationKey = [command argumentAtIndex:0];
+        NSString *driverId = [command argumentAtIndex:1];
+
+        ZendriveConfiguration *configuration = [[ZendriveConfiguration alloc] init];
+        configuration.applicationKey = applicationKey;
+        configuration.driverId = driverId;
+        configuration.operationMode = ZendriveOperationModeDriverAnalytics;
 
         NSError *error = nil;
-        [Zendrive setupWithApplicationId:applicationId userId:userId
-                                delegate:nil driverAttributes:nil error:&error];
+        [Zendrive setupWithConfiguration:configuration delegate:nil error:&error];
 
         CDVPluginResult* pluginResult = nil;
         if(error == nil){
@@ -36,7 +40,8 @@
 }
 
 - (void)startDrive:(CDVInvokedUrlCommand*)command{
-    [Zendrive startDrive:[command argumentAtIndex:0]];
+    NSString *trackingId = [command argumentAtIndex:0];
+    [Zendrive startDrive:trackingId];
     CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }

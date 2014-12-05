@@ -6,7 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import com.zendrive.sdk.Zendrive;
-import com.zendrive.sdk.ZendriveDriverAttributes;
+import com.zendrive.sdk.ZendriveConfiguration;
 
 /**
  * Created by chandan on 11/3/14.
@@ -40,10 +40,16 @@ public class ZendriveCordovaPlugin extends CordovaPlugin {
     private void setup(JSONArray args, final CallbackContext callbackContext)
             throws JSONException {
         String applicationKey = args.getString(0);
-        String userId = args.getString(1);
+        String driverId = args.getString(1);
+
+        // Zendrive configuration
+        ZendriveConfiguration configuration = 
+        		new ZendriveConfiguration(applicationKey, driverId);
+
+        // setup zendrive sdk
         Zendrive.setup(
                 this.cordova.getActivity().getApplicationContext(),
-                applicationKey, userId, null, null,
+                configuration, null,
                 new Zendrive.SetupCallback() {
                     @Override
                     public void onSetup(boolean success) {
