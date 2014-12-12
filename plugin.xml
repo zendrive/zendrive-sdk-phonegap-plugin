@@ -46,5 +46,12 @@
         </config-file>
         <header-file src="src/ios/ZendriveCordovaPlugin.h" />
         <source-file src="src/ios/ZendriveCordovaPlugin.m" />
+
+        <!-- System frameworks -->
+        <framework src="CoreLocation.framework" weak="true" />
+        <framework src="CoreMotion.framework" weak="true" />
+        <framework src="SystemConfiguration.framework" weak="true" />
+        <framework src="libsqlite3.0.dylib" />
+        <framework src="libz.1.1.3.dylib" />
     </platform>
 </plugin>
