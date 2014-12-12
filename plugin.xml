@@ -7,17 +7,35 @@
     <name>Zendrive</name>
     <description>Phonegap plugin for the Zendrive SDK.</description>
     <platform name="android">
-      <config-file target="res/xml/config.xml" parent="/*">
-          <feature name="Zendrive">
-              <param name="android-package" value="com.zendrive.phonegap.ZendriveCordovaPlugin" />
-              <param name="onload" value="true" />
-          </feature>
-      </config-file>
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="Zendrive">
+                <param name="android-package" value="com.zendrive.phonegap.ZendriveCordovaPlugin" />
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
 
-      <dependency id="com.google.playservices" />
-      <dependency id="android.support.v4" />
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+            <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+            <uses-permission android:name="android.permission.INTERNET" />
 
-      <source-file src="src/android/com/zendrive/phonegap/ZendriveCordovaPlugin.java" target-dir="src/com/zendrive/phonegap" />
+            <!-- This permission is needed for automatic drive detection by Zendrive. -->
+            <uses-permission android:name= "com.google.android.gms.permission.ACTIVITY_RECOGNITION" />
+
+            <!-- This permission is needed so that Zendrive can track drives completely. This prevents Android from shutting down phone CPU in the middle of a drive. -->
+            <uses-permission android:name="android.permission.WAKE_LOCK" />
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <service android:name="com.zendrive.sdk.services.UserActivityService" />
+            <service android:name="com.zendrive.sdk.services.ZendriveService" />
+        </config-file>
+
+        <dependency id="com.google.playservices" />
+        <dependency id="android.support.v4" />
+
+        <source-file src="src/android/com/zendrive/phonegap/ZendriveCordovaPlugin.java" target-dir="src/com/zendrive/phonegap" />
 
     </platform>
     <platform name="ios">
