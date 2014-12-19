@@ -49,35 +49,4 @@
         <source-file src="src/android/libs/ZendriveSDK-1.0.1.jar" target-dir="libs" framework="true" />
 
     </platform>
-    <platform name="ios">
-        <config-file target="config.xml" parent="/*">
-            <feature name="Zendrive">
-                <param name="ios-package" value="ZendriveCordovaPlugin" />
-            </feature>
-        </config-file>
-        <header-file src="src/ios/ZendriveCordovaPlugin.h" />
-        <source-file src="src/ios/ZendriveCordovaPlugin.m" />
-
-        <!-- System frameworks -->
-        <framework src="CoreLocation.framework" />
-        <framework src="CoreMotion.framework" />
-        <framework src="SystemConfiguration.framework" />
-        <framework src="libsqlite3.0.dylib" />
-        <framework src="libz.1.1.3.dylib" />
-
-        <!-- External Frameworks -->
-        <framework src="src/ios/Frameworks/AWSiOSSDKv2.framework" custom="true" />
-        <framework src="src/ios/Frameworks/Bolts.framework" custom="true" />
-        <framework src="src/ios/Frameworks/FMDB.framework" custom="true" />
-        <framework src="src/ios/Frameworks/GZIP.framework" custom="true" />
-        <framework src="src/ios/Frameworks/LumberjackSDK.framework" custom="true" />
-        <framework src="src/ios/Frameworks/Mantle.framework" custom="true" />
-        <framework src="src/ios/Frameworks/OCMock.framework" custom="true" />
-        <framework src="src/ios/Frameworks/Reachability.framework" custom="true" />
-        <framework src="src/ios/Frameworks/TMCache.framework" custom="true" />
-        <framework src="src/ios/Frameworks/UICKeyChainStore.framework" custom="true" />
-        <framework src="src/ios/Frameworks/XMLDictionary.framework" custom="true" />
-        <framework src="src/ios/Frameworks/ZendriveSDK.framework" custom="true" />
-
-    </platform>
 </plugin>
