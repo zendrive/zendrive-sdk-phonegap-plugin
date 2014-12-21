@@ -2,7 +2,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="com.zendrive.phonegap.sdk"
-    version="1.2.0">
+    version="1.2.1">
 
     <name>Zendrive</name>
     <description>Phonegap plugin for the Zendrive SDK.</description>
@@ -46,7 +46,7 @@
         <source-file src="src/android/libs/libthrift-0.9.1.jar" target-dir="libs" framework="true" />
         <source-file src="src/android/libs/slf4j-api-1.5.8.jar" target-dir="libs" framework="true" />
         <source-file src="src/android/libs/slf4j-log4j12-1.5.8.jar" target-dir="libs" framework="true" />
-        <source-file src="src/android/libs/ZendriveSDK-1.0.1.jar" target-dir="libs" framework="true" />
+        <source-file src="src/android/libs/ZendriveSDK-1.0.2.jar" target-dir="libs" framework="true" />
 
     </platform>
     <platform name="ios">
