@@ -2,7 +2,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="com.zendrive.phonegap.sdk"
-    version="1.2.2">
+    version="1.2.3">
 
     <name>Zendrive</name>
     <description>Phonegap plugin for the Zendrive SDK.</description>
@@ -55,8 +55,22 @@
                 <param name="ios-package" value="ZendriveCordovaPlugin" />
             </feature>
         </config-file>
+        <config-file target="*-Info.plist" parent="UIBackgroundModes">
+            <array>
+                <string>fetch</string>
+                <string>location</string>
+            </array>
+        </config-file>
+        <config-file target="*-Info.plist" parent="NSLocationAlwaysUsageDescription">
+            <string>This app requires background location tracking</string>
+        </config-file>
+
         <header-file src="src/ios/ZendriveCordovaPlugin.h" />
         <source-file src="src/ios/ZendriveCordovaPlugin.m" />
+
+        <!-- Resource files required by AWS framework -->
+        <resource-file src="src/ios/resources/s3-2006-03-01.json" />
+        <resource-file src="src/ios/resources/sqs-2012-11-05.json" />
 
         <!-- System frameworks -->
         <framework src="CoreLocation.framework" />
