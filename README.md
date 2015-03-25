@@ -14,7 +14,7 @@ You can integrate zendrive-sdk-phonegap-plugin in your application to get Zendri
 </ul>
 
 <p class="center">
-<img src="http://developers.zendrive.com/static/img/dev_intro_1.png" /> 
+<img src="http://developers.zendrive.com/static/img/dev_intro_1.png" />
 
 <h3>How to integrate</h3>
 
@@ -54,6 +54,18 @@ After this call, Zendrive SDK will start automatic trip detection and collect dr
 Sessions can be used in the Zendrive SDK by making the following calls.</p>
 ```cordova.exec(callback, function(err){alert(err)},"Zendrive","startSession", [<SESSION_ID>]);```
 <p>All trips within a session are tagged with the <strong>&lt;SESSION_ID&gt;</strong>. The session id can then be used to lookup Zendrive trips belonging to this session using the Zendrive REST API.</p>
+
+<h4>Controlling Automatic Drive Detection</h4>
+<p>The Zendrive SDK works in the background and automatically detects trips and tracks driving behaviour. If needed, an application can change this behaviour. For example, a rideshare app may want to automatically track all drives made by a driver only when the driver is on-duty and not collect any data for off-duty drives.</p>
+<p>The application can specify the required behaviour via an additional argument during setup of the Zendrive SDK. "AUTO_OFF" disables automatic drive detection in the SDK.</p>
+```cordova.exec(callback, function(err){alert(err)}, "Zendrive", "setup", [ "ZD_DEVELOPER_PORTAL_APPLICATION_KEY", &<DRIVER_ID>, "AUTO_OFF"]);```
+
+</p>The application can also temporarily enable Zendrive's auto drive-detection.
+<p> To Turn on automatic drive detection in the SDK.</p>
+```cordova.exec(callback, function(err){alert(err)}, "Zendrive", "setDriveDetectionMode", ["AUTO_ON"]);```
+<p> To Turn off automatic drive detection in the SDK.</p>
+```cordova.exec(callback, function(err){alert(err)}, "Zendrive", "setDriveDetectionMode", ["AUTO_OFF"]);```
+
 
 <h4>Disable the SDK</h4>
 <p>To disable the SDK at any point in the application, you can invoke this method. The Zendrive SDK goes completely silent after this call and does not track any driving behaviour again.</p>
