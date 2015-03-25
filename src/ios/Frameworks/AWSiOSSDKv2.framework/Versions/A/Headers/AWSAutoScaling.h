@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -24,10 +24,31 @@
  */
 @interface AWSAutoScaling : AWSService
 
+/**
+ *  The service configuration used to instantiate this service client.
+ *
+ *  @warning Once the client is instantiated, do not modify the configuration object. It may cause unspecified behaviors.
+ */
 @property (nonatomic, strong, readonly) AWSServiceConfiguration *configuration;
 
+/**
+ *  Returns the singleton service client. If the singleton object does not exist, the SDK instantiates the default service client with `defaultServiceConfiguration` from `[AWSServiceManager defaultServiceManager]`. The reference to this object is maintained by the SDK, and you do not need to retain it manually.
+ *
+ *  @return The default service client.
+ */
 + (instancetype)defaultAutoScaling;
 
+/**
+ *  Instantiates the service client with the given service configuration.
+ *
+ *  @warning Once the client is instantiated, do not modify the configuration object. It may cause unspecified behaviors.
+ *
+ *  @warning Unlike the singleton method, you are responsible for maintaining a strong reference to this object. If the service client is released before completing a service request, the request may fail with unspecified errors.
+ *
+ *  @param configuration The service configuration object.
+ *
+ *  @return An instance of the service client.
+ */
 - (instancetype)initWithConfiguration:(AWSServiceConfiguration *)configuration;
 
 /**
@@ -35,7 +56,7 @@
  *
  * @param request A container for the necessary parameters to execute the AttachInstances service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSAutoScalingAttachInstancesQuery
  */
@@ -46,7 +67,7 @@
  *
  * @param request A container for the necessary parameters to execute the CompleteLifecycleAction service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSAutoScalingCompleteLifecycleActionAnswer.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSAutoScalingCompleteLifecycleActionAnswer`.
  *
  * @see AWSAutoScalingCompleteLifecycleActionType
  * @see AWSAutoScalingCompleteLifecycleActionAnswer
@@ -54,11 +75,11 @@
 - (BFTask *)completeLifecycleAction:(AWSAutoScalingCompleteLifecycleActionType *)request;
 
 /**
- * <p> Creates a new Auto Scaling group with the specified name and other attributes. When the creation request is completed, the Auto Scaling group is ready to be used in other calls. </p>
+ * <p> Creates a new Auto Scaling group with the specified name and other attributes. When the creation request is completed, the Auto Scaling group is ready to be used in other calls. </p><note> The Auto Scaling group name must be unique within the scope of your AWS account. </note>
  *
  * @param request A container for the necessary parameters to execute the CreateAutoScalingGroup service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil. On failed execution, task.error may contain an NSError with AWSAutoScalingErrorDomain domian and the following error code: AWSAutoScalingErrorAlreadyExists, AWSAutoScalingErrorLimitExceeded.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`. On failed execution, `task.error` may contain an `NSError` with `AWSAutoScalingErrorDomain` domian and the following error code: `AWSAutoScalingErrorAlreadyExists`, `AWSAutoScalingErrorLimitExceeded`.
  *
  * @see AWSAutoScalingCreateAutoScalingGroupType
  */
@@ -69,29 +90,29 @@
  *
  * @param request A container for the necessary parameters to execute the CreateLaunchConfiguration service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil. On failed execution, task.error may contain an NSError with AWSAutoScalingErrorDomain domian and the following error code: AWSAutoScalingErrorAlreadyExists, AWSAutoScalingErrorLimitExceeded.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`. On failed execution, `task.error` may contain an `NSError` with `AWSAutoScalingErrorDomain` domian and the following error code: `AWSAutoScalingErrorAlreadyExists`, `AWSAutoScalingErrorLimitExceeded`.
  *
  * @see AWSAutoScalingCreateLaunchConfigurationType
  */
 - (BFTask *)createLaunchConfiguration:(AWSAutoScalingCreateLaunchConfigurationType *)request;
 
 /**
- * <p> Creates new tags or updates existing tags for an Auto Scaling group. </p><p>For information on creating tags for your Auto Scaling group, see <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/ASTagging.html">Tag Your Auto Scaling Groups and Amazon EC2 Instances</a>.</p>
+ * <p> Creates new tags or updates existing tags for an Auto Scaling group. </p><note> A tag's definition is composed of a resource ID, resource type, key and value, and the propagate flag. Value and the propagate flag are optional parameters. See the Request Parameters for more information. </note><p>For information on creating tags for your Auto Scaling group, see <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/ASTagging.html">Tag Your Auto Scaling Groups and Amazon EC2 Instances</a>.</p>
  *
  * @param request A container for the necessary parameters to execute the CreateOrUpdateTags service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil. On failed execution, task.error may contain an NSError with AWSAutoScalingErrorDomain domian and the following error code: AWSAutoScalingErrorLimitExceeded, AWSAutoScalingErrorAlreadyExists.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`. On failed execution, `task.error` may contain an `NSError` with `AWSAutoScalingErrorDomain` domian and the following error code: `AWSAutoScalingErrorLimitExceeded`, `AWSAutoScalingErrorAlreadyExists`.
  *
  * @see AWSAutoScalingCreateOrUpdateTagsType
  */
 - (BFTask *)createOrUpdateTags:(AWSAutoScalingCreateOrUpdateTagsType *)request;
 
 /**
- * <p> Deletes the specified Auto Scaling group if the group has no instances and no scaling activities in progress. </p>
+ * <p> Deletes the specified Auto Scaling group if the group has no instances and no scaling activities in progress. </p><note> To remove all instances before calling <a>DeleteAutoScalingGroup</a>, you can call <a>UpdateAutoScalingGroup</a> to set the minimum and maximum size of the AutoScalingGroup to zero. </note>
  *
  * @param request A container for the necessary parameters to execute the DeleteAutoScalingGroup service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil. On failed execution, task.error may contain an NSError with AWSAutoScalingErrorDomain domian and the following error code: AWSAutoScalingErrorScalingActivityInProgress, AWSAutoScalingErrorResourceInUse.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`. On failed execution, `task.error` may contain an `NSError` with `AWSAutoScalingErrorDomain` domian and the following error code: `AWSAutoScalingErrorScalingActivityInProgress`, `AWSAutoScalingErrorResourceInUse`.
  *
  * @see AWSAutoScalingDeleteAutoScalingGroupType
  */
@@ -102,7 +123,7 @@
  *
  * @param request A container for the necessary parameters to execute the DeleteLaunchConfiguration service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil. On failed execution, task.error may contain an NSError with AWSAutoScalingErrorDomain domian and the following error code: AWSAutoScalingErrorResourceInUse.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`. On failed execution, `task.error` may contain an `NSError` with `AWSAutoScalingErrorDomain` domian and the following error code: `AWSAutoScalingErrorResourceInUse`.
  *
  * @see AWSAutoScalingLaunchConfigurationNameType
  */
@@ -113,7 +134,7 @@
  *
  * @param request A container for the necessary parameters to execute the DeleteLifecycleHook service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSAutoScalingDeleteLifecycleHookAnswer.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSAutoScalingDeleteLifecycleHookAnswer`.
  *
  * @see AWSAutoScalingDeleteLifecycleHookType
  * @see AWSAutoScalingDeleteLifecycleHookAnswer
@@ -125,7 +146,7 @@
  *
  * @param request A container for the necessary parameters to execute the DeleteNotificationConfiguration service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSAutoScalingDeleteNotificationConfigurationType
  */
@@ -136,7 +157,7 @@
  *
  * @param request A container for the necessary parameters to execute the DeletePolicy service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSAutoScalingDeletePolicyType
  */
@@ -147,7 +168,7 @@
  *
  * @param request A container for the necessary parameters to execute the DeleteScheduledAction service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSAutoScalingDeleteScheduledActionType
  */
@@ -158,7 +179,7 @@
  *
  * @param request A container for the necessary parameters to execute the DeleteTags service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSAutoScalingDeleteTagsType
  */
@@ -169,7 +190,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribeAccountLimits service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSAutoScalingDescribeAccountLimitsAnswer.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSAutoScalingDescribeAccountLimitsAnswer`.
  *
  * @see AWSRequest
  * @see AWSAutoScalingDescribeAccountLimitsAnswer
@@ -181,7 +202,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribeAdjustmentTypes service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSAutoScalingDescribeAdjustmentTypesAnswer.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSAutoScalingDescribeAdjustmentTypesAnswer`.
  *
  * @see AWSRequest
  * @see AWSAutoScalingDescribeAdjustmentTypesAnswer
@@ -193,7 +214,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribeAutoScalingGroups service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSAutoScalingAutoScalingGroupsType. On failed execution, task.error may contain an NSError with AWSAutoScalingErrorDomain domian and the following error code: AWSAutoScalingErrorInvalidNextToken.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSAutoScalingAutoScalingGroupsType`. On failed execution, `task.error` may contain an `NSError` with `AWSAutoScalingErrorDomain` domian and the following error code: `AWSAutoScalingErrorInvalidNextToken`.
  *
  * @see AWSAutoScalingAutoScalingGroupNamesType
  * @see AWSAutoScalingAutoScalingGroupsType
@@ -205,7 +226,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribeAutoScalingInstances service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSAutoScalingAutoScalingInstancesType. On failed execution, task.error may contain an NSError with AWSAutoScalingErrorDomain domian and the following error code: AWSAutoScalingErrorInvalidNextToken.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSAutoScalingAutoScalingInstancesType`. On failed execution, `task.error` may contain an `NSError` with `AWSAutoScalingErrorDomain` domian and the following error code: `AWSAutoScalingErrorInvalidNextToken`.
  *
  * @see AWSAutoScalingDescribeAutoScalingInstancesType
  * @see AWSAutoScalingAutoScalingInstancesType
@@ -217,7 +238,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribeAutoScalingNotificationTypes service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSAutoScalingDescribeAutoScalingNotificationTypesAnswer.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSAutoScalingDescribeAutoScalingNotificationTypesAnswer`.
  *
  * @see AWSRequest
  * @see AWSAutoScalingDescribeAutoScalingNotificationTypesAnswer
@@ -229,7 +250,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribeLaunchConfigurations service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSAutoScalingLaunchConfigurationsType. On failed execution, task.error may contain an NSError with AWSAutoScalingErrorDomain domian and the following error code: AWSAutoScalingErrorInvalidNextToken.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSAutoScalingLaunchConfigurationsType`. On failed execution, `task.error` may contain an `NSError` with `AWSAutoScalingErrorDomain` domian and the following error code: `AWSAutoScalingErrorInvalidNextToken`.
  *
  * @see AWSAutoScalingLaunchConfigurationNamesType
  * @see AWSAutoScalingLaunchConfigurationsType
@@ -241,7 +262,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribeLifecycleHookTypes service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSAutoScalingDescribeLifecycleHookTypesAnswer.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSAutoScalingDescribeLifecycleHookTypesAnswer`.
  *
  * @see AWSRequest
  * @see AWSAutoScalingDescribeLifecycleHookTypesAnswer
@@ -253,7 +274,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribeLifecycleHooks service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSAutoScalingDescribeLifecycleHooksAnswer.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSAutoScalingDescribeLifecycleHooksAnswer`.
  *
  * @see AWSAutoScalingDescribeLifecycleHooksType
  * @see AWSAutoScalingDescribeLifecycleHooksAnswer
@@ -261,11 +282,11 @@
 - (BFTask *)describeLifecycleHooks:(AWSAutoScalingDescribeLifecycleHooksType *)request;
 
 /**
- * <p> Returns a list of metrics and a corresponding list of granularities for each metric. </p>
+ * <p> Returns a list of metrics and a corresponding list of granularities for each metric. </p><note><p>The <code>GroupStandbyInstances</code> metric is not returned by default. You must explicitly request it when calling <a>EnableMetricsCollection</a>.</p></note>
  *
  * @param request A container for the necessary parameters to execute the DescribeMetricCollectionTypes service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSAutoScalingDescribeMetricCollectionTypesAnswer.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSAutoScalingDescribeMetricCollectionTypesAnswer`.
  *
  * @see AWSRequest
  * @see AWSAutoScalingDescribeMetricCollectionTypesAnswer
@@ -277,7 +298,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribeNotificationConfigurations service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSAutoScalingDescribeNotificationConfigurationsAnswer. On failed execution, task.error may contain an NSError with AWSAutoScalingErrorDomain domian and the following error code: AWSAutoScalingErrorInvalidNextToken.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSAutoScalingDescribeNotificationConfigurationsAnswer`. On failed execution, `task.error` may contain an `NSError` with `AWSAutoScalingErrorDomain` domian and the following error code: `AWSAutoScalingErrorInvalidNextToken`.
  *
  * @see AWSAutoScalingDescribeNotificationConfigurationsType
  * @see AWSAutoScalingDescribeNotificationConfigurationsAnswer
@@ -289,7 +310,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribePolicies service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSAutoScalingPoliciesType. On failed execution, task.error may contain an NSError with AWSAutoScalingErrorDomain domian and the following error code: AWSAutoScalingErrorInvalidNextToken.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSAutoScalingPoliciesType`. On failed execution, `task.error` may contain an `NSError` with `AWSAutoScalingErrorDomain` domian and the following error code: `AWSAutoScalingErrorInvalidNextToken`.
  *
  * @see AWSAutoScalingDescribePoliciesType
  * @see AWSAutoScalingPoliciesType
@@ -301,7 +322,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribeScalingActivities service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSAutoScalingActivitiesType. On failed execution, task.error may contain an NSError with AWSAutoScalingErrorDomain domian and the following error code: AWSAutoScalingErrorInvalidNextToken.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSAutoScalingActivitiesType`. On failed execution, `task.error` may contain an `NSError` with `AWSAutoScalingErrorDomain` domian and the following error code: `AWSAutoScalingErrorInvalidNextToken`.
  *
  * @see AWSAutoScalingDescribeScalingActivitiesType
  * @see AWSAutoScalingActivitiesType
@@ -313,7 +334,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribeScalingProcessTypes service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSAutoScalingProcessesType.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSAutoScalingProcessesType`.
  *
  * @see AWSRequest
  * @see AWSAutoScalingProcessesType
@@ -325,7 +346,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribeScheduledActions service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSAutoScalingScheduledActionsType. On failed execution, task.error may contain an NSError with AWSAutoScalingErrorDomain domian and the following error code: AWSAutoScalingErrorInvalidNextToken.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSAutoScalingScheduledActionsType`. On failed execution, `task.error` may contain an `NSError` with `AWSAutoScalingErrorDomain` domian and the following error code: `AWSAutoScalingErrorInvalidNextToken`.
  *
  * @see AWSAutoScalingDescribeScheduledActionsType
  * @see AWSAutoScalingScheduledActionsType
@@ -337,7 +358,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribeTags service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSAutoScalingTagsType. On failed execution, task.error may contain an NSError with AWSAutoScalingErrorDomain domian and the following error code: AWSAutoScalingErrorInvalidNextToken.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSAutoScalingTagsType`. On failed execution, `task.error` may contain an `NSError` with `AWSAutoScalingErrorDomain` domian and the following error code: `AWSAutoScalingErrorInvalidNextToken`.
  *
  * @see AWSAutoScalingDescribeTagsType
  * @see AWSAutoScalingTagsType
@@ -349,7 +370,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribeTerminationPolicyTypes service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSAutoScalingDescribeTerminationPolicyTypesAnswer.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSAutoScalingDescribeTerminationPolicyTypesAnswer`.
  *
  * @see AWSRequest
  * @see AWSAutoScalingDescribeTerminationPolicyTypesAnswer
@@ -361,7 +382,7 @@
  *
  * @param request A container for the necessary parameters to execute the DetachInstances service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSAutoScalingDetachInstancesAnswer.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSAutoScalingDetachInstancesAnswer`.
  *
  * @see AWSAutoScalingDetachInstancesQuery
  * @see AWSAutoScalingDetachInstancesAnswer
@@ -373,7 +394,7 @@
  *
  * @param request A container for the necessary parameters to execute the DisableMetricsCollection service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSAutoScalingDisableMetricsCollectionQuery
  */
@@ -384,7 +405,7 @@
  *
  * @param request A container for the necessary parameters to execute the EnableMetricsCollection service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSAutoScalingEnableMetricsCollectionQuery
  */
@@ -395,7 +416,7 @@
  *
  * @param request A container for the necessary parameters to execute the EnterStandby service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSAutoScalingEnterStandbyAnswer.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSAutoScalingEnterStandbyAnswer`.
  *
  * @see AWSAutoScalingEnterStandbyQuery
  * @see AWSAutoScalingEnterStandbyAnswer
@@ -407,7 +428,7 @@
  *
  * @param request A container for the necessary parameters to execute the ExecutePolicy service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil. On failed execution, task.error may contain an NSError with AWSAutoScalingErrorDomain domian and the following error code: AWSAutoScalingErrorScalingActivityInProgress.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`. On failed execution, `task.error` may contain an `NSError` with `AWSAutoScalingErrorDomain` domian and the following error code: `AWSAutoScalingErrorScalingActivityInProgress`.
  *
  * @see AWSAutoScalingExecutePolicyType
  */
@@ -418,7 +439,7 @@
  *
  * @param request A container for the necessary parameters to execute the ExitStandby service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSAutoScalingExitStandbyAnswer.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSAutoScalingExitStandbyAnswer`.
  *
  * @see AWSAutoScalingExitStandbyQuery
  * @see AWSAutoScalingExitStandbyAnswer
@@ -430,7 +451,7 @@
  *
  * @param request A container for the necessary parameters to execute the PutLifecycleHook service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSAutoScalingPutLifecycleHookAnswer. On failed execution, task.error may contain an NSError with AWSAutoScalingErrorDomain domian and the following error code: AWSAutoScalingErrorLimitExceeded.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSAutoScalingPutLifecycleHookAnswer`. On failed execution, `task.error` may contain an `NSError` with `AWSAutoScalingErrorDomain` domian and the following error code: `AWSAutoScalingErrorLimitExceeded`.
  *
  * @see AWSAutoScalingPutLifecycleHookType
  * @see AWSAutoScalingPutLifecycleHookAnswer
@@ -442,7 +463,7 @@
  *
  * @param request A container for the necessary parameters to execute the PutNotificationConfiguration service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil. On failed execution, task.error may contain an NSError with AWSAutoScalingErrorDomain domian and the following error code: AWSAutoScalingErrorLimitExceeded.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`. On failed execution, `task.error` may contain an `NSError` with `AWSAutoScalingErrorDomain` domian and the following error code: `AWSAutoScalingErrorLimitExceeded`.
  *
  * @see AWSAutoScalingPutNotificationConfigurationType
  */
@@ -453,7 +474,7 @@
  *
  * @param request A container for the necessary parameters to execute the PutScalingPolicy service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSAutoScalingPolicyARNType. On failed execution, task.error may contain an NSError with AWSAutoScalingErrorDomain domian and the following error code: AWSAutoScalingErrorLimitExceeded.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSAutoScalingPolicyARNType`. On failed execution, `task.error` may contain an `NSError` with `AWSAutoScalingErrorDomain` domian and the following error code: `AWSAutoScalingErrorLimitExceeded`.
  *
  * @see AWSAutoScalingPutScalingPolicyType
  * @see AWSAutoScalingPolicyARNType
@@ -461,11 +482,11 @@
 - (BFTask *)putScalingPolicy:(AWSAutoScalingPutScalingPolicyType *)request;
 
 /**
- * <p> Creates or updates a scheduled scaling action for an Auto Scaling group. When updating a scheduled scaling action, if you leave a parameter unspecified, the corresponding value remains unchanged in the affected Auto Scaling group. </p><p>For information on creating or updating a scheduled action for your Auto Scaling group, see <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/schedule_time.html">Scale Based on a Schedule</a>.</p>
+ * <p> Creates or updates a scheduled scaling action for an Auto Scaling group. When updating a scheduled scaling action, if you leave a parameter unspecified, the corresponding value remains unchanged in the affected Auto Scaling group. </p><p>For information on creating or updating a scheduled action for your Auto Scaling group, see <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/schedule_time.html">Scale Based on a Schedule</a>.</p><note><p>Auto Scaling supports the date and time expressed in "YYYY-MM-DDThh:mm:ssZ" format in UTC/GMT only.</p></note>
  *
  * @param request A container for the necessary parameters to execute the PutScheduledUpdateGroupAction service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil. On failed execution, task.error may contain an NSError with AWSAutoScalingErrorDomain domian and the following error code: AWSAutoScalingErrorAlreadyExists, AWSAutoScalingErrorLimitExceeded.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`. On failed execution, `task.error` may contain an `NSError` with `AWSAutoScalingErrorDomain` domian and the following error code: `AWSAutoScalingErrorAlreadyExists`, `AWSAutoScalingErrorLimitExceeded`.
  *
  * @see AWSAutoScalingPutScheduledUpdateGroupActionType
  */
@@ -476,7 +497,7 @@
  *
  * @param request A container for the necessary parameters to execute the RecordLifecycleActionHeartbeat service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSAutoScalingRecordLifecycleActionHeartbeatAnswer.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSAutoScalingRecordLifecycleActionHeartbeatAnswer`.
  *
  * @see AWSAutoScalingRecordLifecycleActionHeartbeatType
  * @see AWSAutoScalingRecordLifecycleActionHeartbeatAnswer
@@ -488,7 +509,7 @@
  *
  * @param request A container for the necessary parameters to execute the ResumeProcesses service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSAutoScalingScalingProcessQuery
  */
@@ -499,7 +520,7 @@
  *
  * @param request A container for the necessary parameters to execute the SetDesiredCapacity service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil. On failed execution, task.error may contain an NSError with AWSAutoScalingErrorDomain domian and the following error code: AWSAutoScalingErrorScalingActivityInProgress.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`. On failed execution, `task.error` may contain an `NSError` with `AWSAutoScalingErrorDomain` domian and the following error code: `AWSAutoScalingErrorScalingActivityInProgress`.
  *
  * @see AWSAutoScalingSetDesiredCapacityType
  */
@@ -510,7 +531,7 @@
  *
  * @param request A container for the necessary parameters to execute the SetInstanceHealth service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSAutoScalingSetInstanceHealthQuery
  */
@@ -521,18 +542,18 @@
  *
  * @param request A container for the necessary parameters to execute the SuspendProcesses service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSAutoScalingScalingProcessQuery
  */
 - (BFTask *)suspendProcesses:(AWSAutoScalingScalingProcessQuery *)request;
 
 /**
- * <p> Terminates the specified instance. Optionally, the desired group size can be adjusted. </p>
+ * <p> Terminates the specified instance. Optionally, the desired group size can be adjusted. </p><note> This call simply registers a termination request. The termination of the instance cannot happen immediately. </note>
  *
  * @param request A container for the necessary parameters to execute the TerminateInstanceInAutoScalingGroup service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSAutoScalingActivityType. On failed execution, task.error may contain an NSError with AWSAutoScalingErrorDomain domian and the following error code: AWSAutoScalingErrorScalingActivityInProgress.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSAutoScalingActivityType`. On failed execution, `task.error` may contain an `NSError` with `AWSAutoScalingErrorDomain` domian and the following error code: `AWSAutoScalingErrorScalingActivityInProgress`.
  *
  * @see AWSAutoScalingTerminateInstanceInAutoScalingGroupType
  * @see AWSAutoScalingActivityType
@@ -540,11 +561,11 @@
 - (BFTask *)terminateInstanceInAutoScalingGroup:(AWSAutoScalingTerminateInstanceInAutoScalingGroupType *)request;
 
 /**
- * <p> Updates the configuration for the specified <a>AutoScalingGroup</a>. </p><p> The new settings are registered upon the completion of this call. Any launch configuration settings take effect on any triggers after this call returns. Scaling activities that are currently in progress aren't affected. </p>
+ * <p> Updates the configuration for the specified <a>AutoScalingGroup</a>. </p><note><p> To update an Auto Scaling group with a launch configuration that has the <code>InstanceMonitoring</code> flag set to <code>False</code>, you must first ensure that collection of group metrics is disabled. Otherwise, calls to <a>UpdateAutoScalingGroup</a> will fail. If you have previously enabled group metrics collection, you can disable collection of all group metrics by calling <a>DisableMetricsCollection</a>. </p></note><p> The new settings are registered upon the completion of this call. Any launch configuration settings take effect on any triggers after this call returns. Scaling activities that are currently in progress aren't affected. </p><note><ul><li><p>If a new value is specified for <i>MinSize</i> without specifying the value for <i>DesiredCapacity</i>, and if the new <i>MinSize</i> is larger than the current size of the Auto Scaling Group, there will be an implicit call to <a>SetDesiredCapacity</a> to set the group to the new <i>MinSize</i>. </p></li><li><p>If a new value is specified for <i>MaxSize</i> without specifying the value for <i>DesiredCapacity</i>, and the new <i>MaxSize</i> is smaller than the current size of the Auto Scaling Group, there will be an implicit call to <a>SetDesiredCapacity</a> to set the group to the new <i>MaxSize</i>. </p></li><li><p>All other optional parameters are left unchanged if not passed in the request.</p></li></ul></note>
  *
  * @param request A container for the necessary parameters to execute the UpdateAutoScalingGroup service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil. On failed execution, task.error may contain an NSError with AWSAutoScalingErrorDomain domian and the following error code: AWSAutoScalingErrorScalingActivityInProgress.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`. On failed execution, `task.error` may contain an `NSError` with `AWSAutoScalingErrorDomain` domian and the following error code: `AWSAutoScalingErrorScalingActivityInProgress`.
  *
  * @see AWSAutoScalingUpdateAutoScalingGroupType
  */

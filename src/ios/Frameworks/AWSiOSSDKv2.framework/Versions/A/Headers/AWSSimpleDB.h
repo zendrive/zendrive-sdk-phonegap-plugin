@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -24,62 +24,83 @@
  */
 @interface AWSSimpleDB : AWSService
 
+/**
+ *  The service configuration used to instantiate this service client.
+ *
+ *  @warning Once the client is instantiated, do not modify the configuration object. It may cause unspecified behaviors.
+ */
 @property (nonatomic, strong, readonly) AWSServiceConfiguration *configuration;
 
+/**
+ *  Returns the singleton service client. If the singleton object does not exist, the SDK instantiates the default service client with `defaultServiceConfiguration` from `[AWSServiceManager defaultServiceManager]`. The reference to this object is maintained by the SDK, and you do not need to retain it manually.
+ *
+ *  @return The default service client.
+ */
 + (instancetype)defaultSimpleDB;
 
+/**
+ *  Instantiates the service client with the given service configuration.
+ *
+ *  @warning Once the client is instantiated, do not modify the configuration object. It may cause unspecified behaviors.
+ *
+ *  @warning Unlike the singleton method, you are responsible for maintaining a strong reference to this object. If the service client is released before completing a service request, the request may fail with unspecified errors.
+ *
+ *  @param configuration The service configuration object.
+ *
+ *  @return An instance of the service client.
+ */
 - (instancetype)initWithConfiguration:(AWSServiceConfiguration *)configuration;
 
 /**
- * <p> Performs multiple DeleteAttributes operations in a single call, which reduces round trips and latencies. This enables Amazon SimpleDB to optimize requests, which generally yields better throughput. </p><p> The following limitations are enforced for this operation: <ul><li>1 MB request size</li><li>25 item limit per BatchDeleteAttributes operation</li></ul></p>
+ * <p> Performs multiple DeleteAttributes operations in a single call, which reduces round trips and latencies. This enables Amazon SimpleDB to optimize requests, which generally yields better throughput. </p><note><p> If you specify BatchDeleteAttributes without attributes or values, all the attributes for the item are deleted. </p><p> BatchDeleteAttributes is an idempotent operation; running it multiple times on the same item or attribute doesn't result in an error. </p><p> The BatchDeleteAttributes operation succeeds or fails in its entirety. There are no partial deletes. You can execute multiple BatchDeleteAttributes operations and other operations in parallel. However, large numbers of concurrent BatchDeleteAttributes calls can result in Service Unavailable (503) responses. </p><p> This operation is vulnerable to exceeding the maximum URL size when making a REST request using the HTTP GET method. </p><p> This operation does not support conditions using Expected.X.Name, Expected.X.Value, or Expected.X.Exists. </p></note><p> The following limitations are enforced for this operation: <ul><li>1 MB request size</li><li>25 item limit per BatchDeleteAttributes operation</li></ul></p>
  *
  * @param request A container for the necessary parameters to execute the BatchDeleteAttributes service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSSimpleDBBatchDeleteAttributesRequest
  */
 - (BFTask *)batchDeleteAttributes:(AWSSimpleDBBatchDeleteAttributesRequest *)request;
 
 /**
- * <p> The <code>BatchPutAttributes</code> operation creates or replaces attributes within one or more items. By using this operation, the client can perform multiple <a>PutAttribute</a> operation with a single call. This helps yield savings in round trips and latencies, enabling Amazon SimpleDB to optimize requests and generally produce better throughput. </p><p> The client may specify the item name with the <code>Item.X.ItemName</code> parameter. The client may specify new attributes using a combination of the <code>Item.X.Attribute.Y.Name</code> and <code>Item.X.Attribute.Y.Value</code> parameters. The client may specify the first attribute for the first item using the parameters <code>Item.0.Attribute.0.Name</code> and <code>Item.0.Attribute.0.Value</code>, and for the second attribute for the first item by the parameters <code>Item.0.Attribute.1.Name</code> and <code>Item.0.Attribute.1.Value</code>, and so on. </p><p> Attributes are uniquely identified within an item by their name/value combination. For example, a single item can have the attributes <code>{ "first_name", "first_value" }</code> and <code>{ "first_name", "second_value" }</code>. However, it cannot have two attribute instances where both the <code>Item.X.Attribute.Y.Name</code> and <code>Item.X.Attribute.Y.Value</code> are the same. </p><p> Optionally, the requester can supply the <code>Replace</code> parameter for each individual value. Setting this value to <code>true</code> will cause the new attribute values to replace the existing attribute values. For example, if an item <code>I</code> has the attributes <code>{ 'a', '1' }, { 'b', '2'}</code> and <code>{ 'b', '3' }</code> and the requester does a BatchPutAttributes of <code>{'I', 'b', '4' }</code> with the Replace parameter set to true, the final attributes of the item will be <code>{ 'a', '1' }</code> and <code>{ 'b', '4' }</code>, replacing the previous values of the 'b' attribute with the new value. </p><important> This operation is vulnerable to exceeding the maximum URL size when making a REST request using the HTTP GET method. This operation does not support conditions using <code>Expected.X.Name</code>, <code>Expected.X.Value</code>, or <code>Expected.X.Exists</code>. </important><p> You can execute multiple <code>BatchPutAttributes</code> operations and other operations in parallel. However, large numbers of concurrent <code>BatchPutAttributes</code> calls can result in Service Unavailable (503) responses. </p><p> The following limitations are enforced for this operation: <ul><li>256 attribute name-value pairs per item</li><li>1 MB request size</li><li>1 billion attributes per domain</li><li>10 GB of total user data storage per domain</li><li>25 item limit per <code>BatchPutAttributes</code> operation</li></ul></p>
+ * <p> The <code>BatchPutAttributes</code> operation creates or replaces attributes within one or more items. By using this operation, the client can perform multiple <a>PutAttribute</a> operation with a single call. This helps yield savings in round trips and latencies, enabling Amazon SimpleDB to optimize requests and generally produce better throughput. </p><p> The client may specify the item name with the <code>Item.X.ItemName</code> parameter. The client may specify new attributes using a combination of the <code>Item.X.Attribute.Y.Name</code> and <code>Item.X.Attribute.Y.Value</code> parameters. The client may specify the first attribute for the first item using the parameters <code>Item.0.Attribute.0.Name</code> and <code>Item.0.Attribute.0.Value</code>, and for the second attribute for the first item by the parameters <code>Item.0.Attribute.1.Name</code> and <code>Item.0.Attribute.1.Value</code>, and so on. </p><p> Attributes are uniquely identified within an item by their name/value combination. For example, a single item can have the attributes <code>{ "first_name", "first_value" }</code> and <code>{ "first_name", "second_value" }</code>. However, it cannot have two attribute instances where both the <code>Item.X.Attribute.Y.Name</code> and <code>Item.X.Attribute.Y.Value</code> are the same. </p><p> Optionally, the requester can supply the <code>Replace</code> parameter for each individual value. Setting this value to <code>true</code> will cause the new attribute values to replace the existing attribute values. For example, if an item <code>I</code> has the attributes <code>{ 'a', '1' }, { 'b', '2'}</code> and <code>{ 'b', '3' }</code> and the requester does a BatchPutAttributes of <code>{'I', 'b', '4' }</code> with the Replace parameter set to true, the final attributes of the item will be <code>{ 'a', '1' }</code> and <code>{ 'b', '4' }</code>, replacing the previous values of the 'b' attribute with the new value. </p><note> You cannot specify an empty string as an item or as an attribute name. The <code>BatchPutAttributes</code> operation succeeds or fails in its entirety. There are no partial puts. </note><important> This operation is vulnerable to exceeding the maximum URL size when making a REST request using the HTTP GET method. This operation does not support conditions using <code>Expected.X.Name</code>, <code>Expected.X.Value</code>, or <code>Expected.X.Exists</code>. </important><p> You can execute multiple <code>BatchPutAttributes</code> operations and other operations in parallel. However, large numbers of concurrent <code>BatchPutAttributes</code> calls can result in Service Unavailable (503) responses. </p><p> The following limitations are enforced for this operation: <ul><li>256 attribute name-value pairs per item</li><li>1 MB request size</li><li>1 billion attributes per domain</li><li>10 GB of total user data storage per domain</li><li>25 item limit per <code>BatchPutAttributes</code> operation</li></ul></p>
  *
  * @param request A container for the necessary parameters to execute the BatchPutAttributes service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil. On failed execution, task.error may contain an NSError with AWSSimpleDBErrorDomain domian and the following error code: AWSSimpleDBErrorDuplicateItemName, AWSSimpleDBErrorInvalidParameterValue, AWSSimpleDBErrorMissingParameter, AWSSimpleDBErrorNoSuchDomain, AWSSimpleDBErrorNumberItemAttributesExceeded, AWSSimpleDBErrorNumberDomainAttributesExceeded, AWSSimpleDBErrorNumberDomainBytesExceeded, AWSSimpleDBErrorNumberSubmittedItemsExceeded, AWSSimpleDBErrorNumberSubmittedAttributesExceeded.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`. On failed execution, `task.error` may contain an `NSError` with `AWSSimpleDBErrorDomain` domian and the following error code: `AWSSimpleDBErrorDuplicateItemName`, `AWSSimpleDBErrorInvalidParameterValue`, `AWSSimpleDBErrorMissingParameter`, `AWSSimpleDBErrorNoSuchDomain`, `AWSSimpleDBErrorNumberItemAttributesExceeded`, `AWSSimpleDBErrorNumberDomainAttributesExceeded`, `AWSSimpleDBErrorNumberDomainBytesExceeded`, `AWSSimpleDBErrorNumberSubmittedItemsExceeded`, `AWSSimpleDBErrorNumberSubmittedAttributesExceeded`.
  *
  * @see AWSSimpleDBBatchPutAttributesRequest
  */
 - (BFTask *)batchPutAttributes:(AWSSimpleDBBatchPutAttributesRequest *)request;
 
 /**
- * <p> The <code>CreateDomain</code> operation creates a new domain. The domain name should be unique among the domains associated with the Access Key ID provided in the request. The <code>CreateDomain</code> operation may take 10 or more seconds to complete. </p><p> The client can create up to 100 domains per account. </p><p> If the client requires additional domains, go to <a href="http://aws.amazon.com/contact-us/simpledb-limit-request/"> http://aws.amazon.com/contact-us/simpledb-limit-request/</a>. </p>
+ * <p> The <code>CreateDomain</code> operation creates a new domain. The domain name should be unique among the domains associated with the Access Key ID provided in the request. The <code>CreateDomain</code> operation may take 10 or more seconds to complete. </p><note> CreateDomain is an idempotent operation; running it multiple times using the same domain name will not result in an error response. </note><p> The client can create up to 100 domains per account. </p><p> If the client requires additional domains, go to <a href="http://aws.amazon.com/contact-us/simpledb-limit-request/"> http://aws.amazon.com/contact-us/simpledb-limit-request/</a>. </p>
  *
  * @param request A container for the necessary parameters to execute the CreateDomain service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil. On failed execution, task.error may contain an NSError with AWSSimpleDBErrorDomain domian and the following error code: AWSSimpleDBErrorInvalidParameterValue, AWSSimpleDBErrorMissingParameter, AWSSimpleDBErrorNumberDomainsExceeded.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`. On failed execution, `task.error` may contain an `NSError` with `AWSSimpleDBErrorDomain` domian and the following error code: `AWSSimpleDBErrorInvalidParameterValue`, `AWSSimpleDBErrorMissingParameter`, `AWSSimpleDBErrorNumberDomainsExceeded`.
  *
  * @see AWSSimpleDBCreateDomainRequest
  */
 - (BFTask *)createDomain:(AWSSimpleDBCreateDomainRequest *)request;
 
 /**
- * <p> Deletes one or more attributes associated with an item. If all attributes of the item are deleted, the item is deleted. </p><p><code>DeleteAttributes</code> is an idempotent operation; running it multiple times on the same item or attribute does not result in an error response. </p><p> Because Amazon SimpleDB makes multiple copies of item data and uses an eventual consistency update model, performing a <a>GetAttributes</a> or <a>Select</a> operation (read) immediately after a <code>DeleteAttributes</code> or <a>PutAttributes</a> operation (write) might not return updated item data. </p>
+ * <p> Deletes one or more attributes associated with an item. If all attributes of the item are deleted, the item is deleted. </p><note> If <code>DeleteAttributes</code> is called without being passed any attributes or values specified, all the attributes for the item are deleted. </note><p><code>DeleteAttributes</code> is an idempotent operation; running it multiple times on the same item or attribute does not result in an error response. </p><p> Because Amazon SimpleDB makes multiple copies of item data and uses an eventual consistency update model, performing a <a>GetAttributes</a> or <a>Select</a> operation (read) immediately after a <code>DeleteAttributes</code> or <a>PutAttributes</a> operation (write) might not return updated item data. </p>
  *
  * @param request A container for the necessary parameters to execute the DeleteAttributes service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil. On failed execution, task.error may contain an NSError with AWSSimpleDBErrorDomain domian and the following error code: AWSSimpleDBErrorInvalidParameterValue, AWSSimpleDBErrorMissingParameter, AWSSimpleDBErrorNoSuchDomain, AWSSimpleDBErrorAttributeDoesNotExist.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`. On failed execution, `task.error` may contain an `NSError` with `AWSSimpleDBErrorDomain` domian and the following error code: `AWSSimpleDBErrorInvalidParameterValue`, `AWSSimpleDBErrorMissingParameter`, `AWSSimpleDBErrorNoSuchDomain`, `AWSSimpleDBErrorAttributeDoesNotExist`.
  *
  * @see AWSSimpleDBDeleteAttributesRequest
  */
 - (BFTask *)deleteAttributes:(AWSSimpleDBDeleteAttributesRequest *)request;
 
 /**
- * <p> The <code>DeleteDomain</code> operation deletes a domain. Any items (and their attributes) in the domain are deleted as well. The <code>DeleteDomain</code> operation might take 10 or more seconds to complete. </p>
+ * <p> The <code>DeleteDomain</code> operation deletes a domain. Any items (and their attributes) in the domain are deleted as well. The <code>DeleteDomain</code> operation might take 10 or more seconds to complete. </p><note> Running <code>DeleteDomain</code> on a domain that does not exist or running the function multiple times using the same domain name will not result in an error response. </note>
  *
  * @param request A container for the necessary parameters to execute the DeleteDomain service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil. On failed execution, task.error may contain an NSError with AWSSimpleDBErrorDomain domian and the following error code: AWSSimpleDBErrorMissingParameter.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`. On failed execution, `task.error` may contain an `NSError` with `AWSSimpleDBErrorDomain` domian and the following error code: `AWSSimpleDBErrorMissingParameter`.
  *
  * @see AWSSimpleDBDeleteDomainRequest
  */
@@ -90,7 +111,7 @@
  *
  * @param request A container for the necessary parameters to execute the DomainMetadata service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSSimpleDBDomainMetadataResult. On failed execution, task.error may contain an NSError with AWSSimpleDBErrorDomain domian and the following error code: AWSSimpleDBErrorMissingParameter, AWSSimpleDBErrorNoSuchDomain.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSSimpleDBDomainMetadataResult`. On failed execution, `task.error` may contain an `NSError` with `AWSSimpleDBErrorDomain` domian and the following error code: `AWSSimpleDBErrorMissingParameter`, `AWSSimpleDBErrorNoSuchDomain`.
  *
  * @see AWSSimpleDBDomainMetadataRequest
  * @see AWSSimpleDBDomainMetadataResult
@@ -98,11 +119,11 @@
 - (BFTask *)domainMetadata:(AWSSimpleDBDomainMetadataRequest *)request;
 
 /**
- * <p> Returns all of the attributes associated with the specified item. Optionally, the attributes returned can be limited to one or more attributes by specifying an attribute name parameter. </p><p> If the item does not exist on the replica that was accessed for this operation, an empty set is returned. The system does not return an error as it cannot guarantee the item does not exist on other replicas. </p>
+ * <p> Returns all of the attributes associated with the specified item. Optionally, the attributes returned can be limited to one or more attributes by specifying an attribute name parameter. </p><p> If the item does not exist on the replica that was accessed for this operation, an empty set is returned. The system does not return an error as it cannot guarantee the item does not exist on other replicas. </p><note> If GetAttributes is called without being passed any attribute names, all the attributes for the item are returned. </note>
  *
  * @param request A container for the necessary parameters to execute the GetAttributes service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSSimpleDBGetAttributesResult. On failed execution, task.error may contain an NSError with AWSSimpleDBErrorDomain domian and the following error code: AWSSimpleDBErrorInvalidParameterValue, AWSSimpleDBErrorMissingParameter, AWSSimpleDBErrorNoSuchDomain.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSSimpleDBGetAttributesResult`. On failed execution, `task.error` may contain an `NSError` with `AWSSimpleDBErrorDomain` domian and the following error code: `AWSSimpleDBErrorInvalidParameterValue`, `AWSSimpleDBErrorMissingParameter`, `AWSSimpleDBErrorNoSuchDomain`.
  *
  * @see AWSSimpleDBGetAttributesRequest
  * @see AWSSimpleDBGetAttributesResult
@@ -114,7 +135,7 @@
  *
  * @param request A container for the necessary parameters to execute the ListDomains service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSSimpleDBListDomainsResult. On failed execution, task.error may contain an NSError with AWSSimpleDBErrorDomain domian and the following error code: AWSSimpleDBErrorInvalidParameterValue, AWSSimpleDBErrorInvalidNextToken.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSSimpleDBListDomainsResult`. On failed execution, `task.error` may contain an `NSError` with `AWSSimpleDBErrorDomain` domian and the following error code: `AWSSimpleDBErrorInvalidParameterValue`, `AWSSimpleDBErrorInvalidNextToken`.
  *
  * @see AWSSimpleDBListDomainsRequest
  * @see AWSSimpleDBListDomainsResult
@@ -122,11 +143,11 @@
 - (BFTask *)listDomains:(AWSSimpleDBListDomainsRequest *)request;
 
 /**
- * <p> The PutAttributes operation creates or replaces attributes in an item. The client may specify new attributes using a combination of the <code>Attribute.X.Name</code> and <code>Attribute.X.Value</code> parameters. The client specifies the first attribute by the parameters <code>Attribute.0.Name</code> and <code>Attribute.0.Value</code>, the second attribute by the parameters <code>Attribute.1.Name</code> and <code>Attribute.1.Value</code>, and so on. </p><p> Attributes are uniquely identified in an item by their name/value combination. For example, a single item can have the attributes <code>{ "first_name", "first_value" }</code> and <code>{ "first_name", second_value" }</code>. However, it cannot have two attribute instances where both the <code>Attribute.X.Name</code> and <code>Attribute.X.Value</code> are the same. </p><p> Optionally, the requestor can supply the <code>Replace</code> parameter for each individual attribute. Setting this value to <code>true</code> causes the new attribute value to replace the existing attribute value(s). For example, if an item has the attributes <code>{ 'a', '1' }</code>, <code>{ 'b', '2'}</code> and <code>{ 'b', '3' }</code> and the requestor calls <code>PutAttributes</code> using the attributes <code>{ 'b', '4' }</code> with the <code>Replace</code> parameter set to true, the final attributes of the item are changed to <code>{ 'a', '1' }</code> and <code>{ 'b', '4' }</code>, which replaces the previous values of the 'b' attribute with the new value. </p><p> You cannot specify an empty string as an attribute name. </p><p> Because Amazon SimpleDB makes multiple copies of client data and uses an eventual consistency update model, an immediate <a>GetAttributes</a> or <a>Select</a> operation (read) immediately after a <a>PutAttributes</a> or <a>DeleteAttributes</a> operation (write) might not return the updated data. </p><p> The following limitations are enforced for this operation: <ul><li>256 total attribute name-value pairs per item</li><li>One billion attributes per domain</li><li>10 GB of total user data storage per domain</li></ul></p>
+ * <p> The PutAttributes operation creates or replaces attributes in an item. The client may specify new attributes using a combination of the <code>Attribute.X.Name</code> and <code>Attribute.X.Value</code> parameters. The client specifies the first attribute by the parameters <code>Attribute.0.Name</code> and <code>Attribute.0.Value</code>, the second attribute by the parameters <code>Attribute.1.Name</code> and <code>Attribute.1.Value</code>, and so on. </p><p> Attributes are uniquely identified in an item by their name/value combination. For example, a single item can have the attributes <code>{ "first_name", "first_value" }</code> and <code>{ "first_name", second_value" }</code>. However, it cannot have two attribute instances where both the <code>Attribute.X.Name</code> and <code>Attribute.X.Value</code> are the same. </p><p> Optionally, the requestor can supply the <code>Replace</code> parameter for each individual attribute. Setting this value to <code>true</code> causes the new attribute value to replace the existing attribute value(s). For example, if an item has the attributes <code>{ 'a', '1' }</code>, <code>{ 'b', '2'}</code> and <code>{ 'b', '3' }</code> and the requestor calls <code>PutAttributes</code> using the attributes <code>{ 'b', '4' }</code> with the <code>Replace</code> parameter set to true, the final attributes of the item are changed to <code>{ 'a', '1' }</code> and <code>{ 'b', '4' }</code>, which replaces the previous values of the 'b' attribute with the new value. </p><note> Using <code>PutAttributes</code> to replace attribute values that do not exist will not result in an error response. </note><p> You cannot specify an empty string as an attribute name. </p><p> Because Amazon SimpleDB makes multiple copies of client data and uses an eventual consistency update model, an immediate <a>GetAttributes</a> or <a>Select</a> operation (read) immediately after a <a>PutAttributes</a> or <a>DeleteAttributes</a> operation (write) might not return the updated data. </p><p> The following limitations are enforced for this operation: <ul><li>256 total attribute name-value pairs per item</li><li>One billion attributes per domain</li><li>10 GB of total user data storage per domain</li></ul></p>
  *
  * @param request A container for the necessary parameters to execute the PutAttributes service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil. On failed execution, task.error may contain an NSError with AWSSimpleDBErrorDomain domian and the following error code: AWSSimpleDBErrorInvalidParameterValue, AWSSimpleDBErrorMissingParameter, AWSSimpleDBErrorNoSuchDomain, AWSSimpleDBErrorNumberDomainAttributesExceeded, AWSSimpleDBErrorNumberDomainBytesExceeded, AWSSimpleDBErrorNumberItemAttributesExceeded, AWSSimpleDBErrorAttributeDoesNotExist.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`. On failed execution, `task.error` may contain an `NSError` with `AWSSimpleDBErrorDomain` domian and the following error code: `AWSSimpleDBErrorInvalidParameterValue`, `AWSSimpleDBErrorMissingParameter`, `AWSSimpleDBErrorNoSuchDomain`, `AWSSimpleDBErrorNumberDomainAttributesExceeded`, `AWSSimpleDBErrorNumberDomainBytesExceeded`, `AWSSimpleDBErrorNumberItemAttributesExceeded`, `AWSSimpleDBErrorAttributeDoesNotExist`.
  *
  * @see AWSSimpleDBPutAttributesRequest
  */
@@ -137,7 +158,7 @@
  *
  * @param request A container for the necessary parameters to execute the Select service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSSimpleDBSelectResult. On failed execution, task.error may contain an NSError with AWSSimpleDBErrorDomain domian and the following error code: AWSSimpleDBErrorInvalidParameterValue, AWSSimpleDBErrorInvalidNextToken, AWSSimpleDBErrorInvalidNumberPredicates, AWSSimpleDBErrorInvalidNumberValueTests, AWSSimpleDBErrorInvalidQueryExpression, AWSSimpleDBErrorMissingParameter, AWSSimpleDBErrorNoSuchDomain, AWSSimpleDBErrorRequestTimeout, AWSSimpleDBErrorTooManyRequestedAttributes.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSSimpleDBSelectResult`. On failed execution, `task.error` may contain an `NSError` with `AWSSimpleDBErrorDomain` domian and the following error code: `AWSSimpleDBErrorInvalidParameterValue`, `AWSSimpleDBErrorInvalidNextToken`, `AWSSimpleDBErrorInvalidNumberPredicates`, `AWSSimpleDBErrorInvalidNumberValueTests`, `AWSSimpleDBErrorInvalidQueryExpression`, `AWSSimpleDBErrorMissingParameter`, `AWSSimpleDBErrorNoSuchDomain`, `AWSSimpleDBErrorRequestTimeout`, `AWSSimpleDBErrorTooManyRequestedAttributes`.
  *
  * @see AWSSimpleDBSelectRequest
  * @see AWSSimpleDBSelectResult

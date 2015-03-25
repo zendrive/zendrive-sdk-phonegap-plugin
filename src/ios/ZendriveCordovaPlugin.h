@@ -15,4 +15,6 @@
 - (void)startSession:(CDVInvokedUrlCommand*)command;
 - (void)stopSession:(CDVInvokedUrlCommand*)command;
 
+- (void)setDriveDetectionMode:(CDVInvokedUrlCommand *)command;
+
 @end

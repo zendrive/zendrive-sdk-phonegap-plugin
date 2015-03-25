@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -24,10 +24,31 @@
  */
 @interface AWSEC2 : AWSService
 
+/**
+ *  The service configuration used to instantiate this service client.
+ *
+ *  @warning Once the client is instantiated, do not modify the configuration object. It may cause unspecified behaviors.
+ */
 @property (nonatomic, strong, readonly) AWSServiceConfiguration *configuration;
 
+/**
+ *  Returns the singleton service client. If the singleton object does not exist, the SDK instantiates the default service client with `defaultServiceConfiguration` from `[AWSServiceManager defaultServiceManager]`. The reference to this object is maintained by the SDK, and you do not need to retain it manually.
+ *
+ *  @return The default service client.
+ */
 + (instancetype)defaultEC2;
 
+/**
+ *  Instantiates the service client with the given service configuration.
+ *
+ *  @warning Once the client is instantiated, do not modify the configuration object. It may cause unspecified behaviors.
+ *
+ *  @warning Unlike the singleton method, you are responsible for maintaining a strong reference to this object. If the service client is released before completing a service request, the request may fail with unspecified errors.
+ *
+ *  @param configuration The service configuration object.
+ *
+ *  @return An instance of the service client.
+ */
 - (instancetype)initWithConfiguration:(AWSServiceConfiguration *)configuration;
 
 /**
@@ -35,7 +56,7 @@
  *
  * @param request A container for the necessary parameters to execute the AcceptVpcPeeringConnection service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2AcceptVpcPeeringConnectionResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2AcceptVpcPeeringConnectionResult`.
  *
  * @see AWSEC2AcceptVpcPeeringConnectionRequest
  * @see AWSEC2AcceptVpcPeeringConnectionResult
@@ -47,7 +68,7 @@
  *
  * @param request A container for the necessary parameters to execute the AllocateAddress service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2AllocateAddressResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2AllocateAddressResult`.
  *
  * @see AWSEC2AllocateAddressRequest
  * @see AWSEC2AllocateAddressResult
@@ -59,18 +80,18 @@
  *
  * @param request A container for the necessary parameters to execute the AssignPrivateIpAddresses service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2AssignPrivateIpAddressesRequest
  */
 - (BFTask *)assignPrivateIpAddresses:(AWSEC2AssignPrivateIpAddressesRequest *)request;
 
 /**
- * <p>Associates an Elastic IP address with an instance or a network interface.</p><p>An Elastic IP address is for use in either the EC2-Classic platform or in a VPC. For more information, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html">Elastic IP Addresses</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p><p>[EC2-Classic, default VPC] If the Elastic IP address is already associated with a different instance, it is disassociated from that instance and associated with the specified instance.</p><p>[EC2-VPC] If you don't specify a private IP address, the Elastic IP address is associated with the primary IP address. If the Elastic IP address is already associated with a different instance or a network interface, you get an error unless you allow reassociation.</p><p>This is an idempotent operation. If you perform the operation more than once, Amazon EC2 doesn't return an error.</p>
+ * <p>Associates an Elastic IP address with an instance or a network interface.</p><p>An Elastic IP address is for use in either the EC2-Classic platform or in a VPC. For more information, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html">Elastic IP Addresses</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p><p>[EC2-Classic, VPC in an EC2-VPC-only account] If the Elastic IP address is already associated with a different instance, it is disassociated from that instance and associated with the specified instance.</p><p>[VPC in an EC2-Classic account] If you don't specify a private IP address, the Elastic IP address is associated with the primary IP address. If the Elastic IP address is already associated with a different instance or a network interface, you get an error unless you allow reassociation.</p><p>This is an idempotent operation. If you perform the operation more than once, Amazon EC2 doesn't return an error.</p>
  *
  * @param request A container for the necessary parameters to execute the AssociateAddress service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2AssociateAddressResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2AssociateAddressResult`.
  *
  * @see AWSEC2AssociateAddressRequest
  * @see AWSEC2AssociateAddressResult
@@ -82,7 +103,7 @@
  *
  * @param request A container for the necessary parameters to execute the AssociateDhcpOptions service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2AssociateDhcpOptionsRequest
  */
@@ -93,7 +114,7 @@
  *
  * @param request A container for the necessary parameters to execute the AssociateRouteTable service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2AssociateRouteTableResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2AssociateRouteTableResult`.
  *
  * @see AWSEC2AssociateRouteTableRequest
  * @see AWSEC2AssociateRouteTableResult
@@ -101,11 +122,11 @@
 - (BFTask *)associateRouteTable:(AWSEC2AssociateRouteTableRequest *)request;
 
 /**
- * <p>Attaches an Internet gateway to a VPC, enabling connectivity between the Internet and the VPC. For more information about your VPC and Internet gateway, see the <a href="http://docs.&awsdomain;/AmazonVPC/latest/UserGuide/">Amazon Virtual Private Cloud User Guide</a>.</p>
+ * <p>Attaches an Internet gateway to a VPC, enabling connectivity between the Internet and the VPC. For more information about your VPC and Internet gateway, see the <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/">Amazon Virtual Private Cloud User Guide</a>.</p>
  *
  * @param request A container for the necessary parameters to execute the AttachInternetGateway service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2AttachInternetGatewayRequest
  */
@@ -116,7 +137,7 @@
  *
  * @param request A container for the necessary parameters to execute the AttachNetworkInterface service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2AttachNetworkInterfaceResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2AttachNetworkInterfaceResult`.
  *
  * @see AWSEC2AttachNetworkInterfaceRequest
  * @see AWSEC2AttachNetworkInterfaceResult
@@ -128,7 +149,7 @@
  *
  * @param request A container for the necessary parameters to execute the AttachVolume service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2VolumeAttachment.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2VolumeAttachment`.
  *
  * @see AWSEC2AttachVolumeRequest
  * @see AWSEC2VolumeAttachment
@@ -140,7 +161,7 @@
  *
  * @param request A container for the necessary parameters to execute the AttachVpnGateway service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2AttachVpnGatewayResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2AttachVpnGatewayResult`.
  *
  * @see AWSEC2AttachVpnGatewayRequest
  * @see AWSEC2AttachVpnGatewayResult
@@ -148,11 +169,11 @@
 - (BFTask *)attachVpnGateway:(AWSEC2AttachVpnGatewayRequest *)request;
 
 /**
- * <p>Adds one or more egress rules to a security group for use with a VPC. Specifically, this action permits instances to send traffic to one or more CIDR IP address ranges, or to one or more security groups for the same VPC.</p><important><p>You can have up to 50 rules per security group (covering both ingress and egress rules).</p></important><p>A security group is for use with instances either in the EC2-Classic platform or in a specific VPC. This action doesn't apply to security groups for use in EC2-Classic. For more information, see <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html">Security Groups for Your VPC</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p><p>Each rule consists of the protocol (for example, TCP), plus either a CIDR range or a source group. For the TCP and UDP protocols, you must also specify the destination port or port range. For the ICMP protocol, you must also specify the ICMP type and code. You can use -1 for the type or code to mean all types or all codes.</p><p>Rule changes are propagated to affected instances as quickly as possible. However, a small delay might occur.</p>
+ * <p>Adds one or more egress rules to a security group for use with a VPC. Specifically, this action permits instances to send traffic to one or more destination CIDR IP address ranges, or to one or more destination security groups for the same VPC.</p><important><p>You can have up to 50 rules per security group (covering both ingress and egress rules).</p></important><p>A security group is for use with instances either in the EC2-Classic platform or in a specific VPC. This action doesn't apply to security groups for use in EC2-Classic. For more information, see <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html">Security Groups for Your VPC</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p><p>Each rule consists of the protocol (for example, TCP), plus either a CIDR range or a source group. For the TCP and UDP protocols, you must also specify the destination port or port range. For the ICMP protocol, you must also specify the ICMP type and code. You can use -1 for the type or code to mean all types or all codes.</p><p>Rule changes are propagated to affected instances as quickly as possible. However, a small delay might occur.</p>
  *
  * @param request A container for the necessary parameters to execute the AuthorizeSecurityGroupEgress service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2AuthorizeSecurityGroupEgressRequest
  */
@@ -163,18 +184,18 @@
  *
  * @param request A container for the necessary parameters to execute the AuthorizeSecurityGroupIngress service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2AuthorizeSecurityGroupIngressRequest
  */
 - (BFTask *)authorizeSecurityGroupIngress:(AWSEC2AuthorizeSecurityGroupIngressRequest *)request;
 
 /**
- * <p>Bundles an Amazon instance store-backed Windows instance.</p><p>During bundling, only the root device volume (C:\) is bundled. Data on other instance store volumes is not preserved.</p><p>For more information, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/Creating_InstanceStoreBacked_WinAMI.html">Creating an Instance Store-Backed Windows AMI</a>.</p>
+ * <p>Bundles an Amazon instance store-backed Windows instance.</p><p>During bundling, only the root device volume (C:\) is bundled. Data on other instance store volumes is not preserved.</p><note><p>This procedure is not applicable for Linux/Unix instances or Windows instances that are backed by Amazon EBS.</p></note><p>For more information, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/Creating_InstanceStoreBacked_WinAMI.html">Creating an Instance Store-Backed Windows AMI</a>.</p>
  *
  * @param request A container for the necessary parameters to execute the BundleInstance service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2BundleInstanceResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2BundleInstanceResult`.
  *
  * @see AWSEC2BundleInstanceRequest
  * @see AWSEC2BundleInstanceResult
@@ -186,7 +207,7 @@
  *
  * @param request A container for the necessary parameters to execute the CancelBundleTask service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2CancelBundleTaskResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2CancelBundleTaskResult`.
  *
  * @see AWSEC2CancelBundleTaskRequest
  * @see AWSEC2CancelBundleTaskResult
@@ -198,7 +219,7 @@
  *
  * @param request A container for the necessary parameters to execute the CancelConversionTask service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2CancelConversionRequest
  */
@@ -209,7 +230,7 @@
  *
  * @param request A container for the necessary parameters to execute the CancelExportTask service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2CancelExportTaskRequest
  */
@@ -220,7 +241,7 @@
  *
  * @param request A container for the necessary parameters to execute the CancelReservedInstancesListing service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2CancelReservedInstancesListingResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2CancelReservedInstancesListingResult`.
  *
  * @see AWSEC2CancelReservedInstancesListingRequest
  * @see AWSEC2CancelReservedInstancesListingResult
@@ -232,7 +253,7 @@
  *
  * @param request A container for the necessary parameters to execute the CancelSpotInstanceRequests service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2CancelSpotInstanceRequestsResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2CancelSpotInstanceRequestsResult`.
  *
  * @see AWSEC2CancelSpotInstanceRequestsRequest
  * @see AWSEC2CancelSpotInstanceRequestsResult
@@ -244,7 +265,7 @@
  *
  * @param request A container for the necessary parameters to execute the ConfirmProductInstance service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2ConfirmProductInstanceResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2ConfirmProductInstanceResult`.
  *
  * @see AWSEC2ConfirmProductInstanceRequest
  * @see AWSEC2ConfirmProductInstanceResult
@@ -252,11 +273,11 @@
 - (BFTask *)confirmProductInstance:(AWSEC2ConfirmProductInstanceRequest *)request;
 
 /**
- * <p>Provides information to AWS about your VPN customer gateway device. The customer gateway is the appliance at your end of the VPN connection. (The device on the AWS side of the VPN connection is the virtual private gateway.) You must provide the Internet-routable IP address of the customer gateway's external interface. The IP address must be static and can't be behind a device performing network address translation (NAT).</p><p>For devices that use Border Gateway Protocol (BGP), you can also provide the device's BGP Autonomous System Number (ASN). You can use an existing ASN assigned to your network. If you don't have an ASN already, you can use a private ASN (in the 64512 - 65534 range).</p><p>For more information about VPN customer gateways, see <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_VPN.html">Adding a Hardware Virtual Private Gateway to Your VPC</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>
+ * <p>Provides information to AWS about your VPN customer gateway device. The customer gateway is the appliance at your end of the VPN connection. (The device on the AWS side of the VPN connection is the virtual private gateway.) You must provide the Internet-routable IP address of the customer gateway's external interface. The IP address must be static and can't be behind a device performing network address translation (NAT).</p><p>For devices that use Border Gateway Protocol (BGP), you can also provide the device's BGP Autonomous System Number (ASN). You can use an existing ASN assigned to your network. If you don't have an ASN already, you can use a private ASN (in the 64512 - 65534 range).</p><note><p>Amazon EC2 supports all 2-byte ASN numbers in the range of 1 - 65534, with the exception of 7224, which is reserved in the <code>us-east-1</code> region, and 9059, which is reserved in the <code>eu-west-1</code> region.</p></note><p>For more information about VPN customer gateways, see <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_VPN.html">Adding a Hardware Virtual Private Gateway to Your VPC</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>
  *
  * @param request A container for the necessary parameters to execute the CreateCustomerGateway service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2CreateCustomerGatewayResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2CreateCustomerGatewayResult`.
  *
  * @see AWSEC2CreateCustomerGatewayRequest
  * @see AWSEC2CreateCustomerGatewayResult
@@ -264,11 +285,11 @@
 - (BFTask *)createCustomerGateway:(AWSEC2CreateCustomerGatewayRequest *)request;
 
 /**
- * <p>Creates a set of DHCP options for your VPC. After creating the set, you must associate it with the VPC, causing all existing and new instances that you launch in the VPC to use this set of DHCP options. The following are the individual DHCP options you can specify. For more information about the options, see <a href="http://www.ietf.org/rfc/rfc2132.txt">RFC 2132</a>.</p><ul><li><code>domain-name-servers</code> - The IP addresses of up to four domain name servers, or <code>AmazonProvidedDNS</code>. The default DHCP option set specifies <code>AmazonProvidedDNS</code>. If specifying more than one domain name server, specify the IP addresses in a single parameter, separated by commas.</li><li><code>domain-name</code> - If you're using AmazonProvidedDNS in <code>us-east-1</code>, specify <code>ec2.internal</code>. If you're using AmazonProvidedDNS in another region, specify <code>region.compute.internal</code> (for example, <code>ap-northeast-1.compute.internal</code>). Otherwise, specify a domain name (for example, <code>MyCompany.com</code>). If specifying more than one domain name, separate them with spaces.</li><li><code>ntp-servers</code> - The IP addresses of up to four Network Time Protocol (NTP) servers.</li><li><code>netbios-name-servers</code> - The IP addresses of up to four NetBIOS name servers.</li><li><code>netbios-node-type</code> - The NetBIOS node type (1, 2, 4, or 8). We recommend that you specify 2 (broadcast and multicast are not currently supported). For more information about these node types, see <a href="http://www.ietf.org/rfc/rfc2132.txt">RFC 2132</a>. </li></ul><p>For more information about DHCP options, see <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html">DHCP Options Sets</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>
+ * <p>Creates a set of DHCP options for your VPC. After creating the set, you must associate it with the VPC, causing all existing and new instances that you launch in the VPC to use this set of DHCP options. The following are the individual DHCP options you can specify. For more information about the options, see <a href="http://www.ietf.org/rfc/rfc2132.txt">RFC 2132</a>.</p><ul><li><code>domain-name-servers</code> - The IP addresses of up to four domain name servers, or <code>AmazonProvidedDNS</code>. The default DHCP option set specifies <code>AmazonProvidedDNS</code>. If specifying more than one domain name server, specify the IP addresses in a single parameter, separated by commas.</li><li><code>domain-name</code> - If you're using AmazonProvidedDNS in <code>us-east-1</code>, specify <code>ec2.internal</code>. If you're using AmazonProvidedDNS in another region, specify <code>region.compute.internal</code> (for example, <code>ap-northeast-1.compute.internal</code>). Otherwise, specify a domain name (for example, <code>MyCompany.com</code>). If specifying more than one domain name, separate them with spaces.</li><li><code>ntp-servers</code> - The IP addresses of up to four Network Time Protocol (NTP) servers.</li><li><code>netbios-name-servers</code> - The IP addresses of up to four NetBIOS name servers.</li><li><code>netbios-node-type</code> - The NetBIOS node type (1, 2, 4, or 8). We recommend that you specify 2 (broadcast and multicast are not currently supported). For more information about these node types, see <a href="http://www.ietf.org/rfc/rfc2132.txt">RFC 2132</a>. </li></ul><p>Your VPC automatically starts out with a set of DHCP options that includes only a DNS server that we provide (AmazonProvidedDNS). If you create a set of options, and if your VPC has an Internet gateway, make sure to set the <code>domain-name-servers</code> option either to <code>AmazonProvidedDNS</code> or to a domain name server of your choice. For more information about DHCP options, see <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html">DHCP Options Sets</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>
  *
  * @param request A container for the necessary parameters to execute the CreateDhcpOptions service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2CreateDhcpOptionsResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2CreateDhcpOptionsResult`.
  *
  * @see AWSEC2CreateDhcpOptionsRequest
  * @see AWSEC2CreateDhcpOptionsResult
@@ -280,7 +301,7 @@
  *
  * @param request A container for the necessary parameters to execute the CreateImage service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2CreateImageResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2CreateImageResult`.
  *
  * @see AWSEC2CreateImageRequest
  * @see AWSEC2CreateImageResult
@@ -292,7 +313,7 @@
  *
  * @param request A container for the necessary parameters to execute the CreateInstanceExportTask service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2CreateInstanceExportTaskResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2CreateInstanceExportTaskResult`.
  *
  * @see AWSEC2CreateInstanceExportTaskRequest
  * @see AWSEC2CreateInstanceExportTaskResult
@@ -300,11 +321,11 @@
 - (BFTask *)createInstanceExportTask:(AWSEC2CreateInstanceExportTaskRequest *)request;
 
 /**
- * <p>Creates an Internet gateway for use with a VPC. After creating the Internet gateway, you attach it to a VPC using <a>AttachInternetGateway</a>.</p><p>For more information about your VPC and Internet gateway, see the <a href="http://docs.&awsdomain;/AmazonVPC/latest/UserGuide/">Amazon Virtual Private Cloud User Guide</a>.</p>
+ * <p>Creates an Internet gateway for use with a VPC. After creating the Internet gateway, you attach it to a VPC using <a>AttachInternetGateway</a>.</p><p>For more information about your VPC and Internet gateway, see the <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/">Amazon Virtual Private Cloud User Guide</a>.</p>
  *
  * @param request A container for the necessary parameters to execute the CreateInternetGateway service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2CreateInternetGatewayResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2CreateInternetGatewayResult`.
  *
  * @see AWSEC2CreateInternetGatewayRequest
  * @see AWSEC2CreateInternetGatewayResult
@@ -312,11 +333,11 @@
 - (BFTask *)createInternetGateway:(AWSEC2CreateInternetGatewayRequest *)request;
 
 /**
- * <p>Creates a 2048-bit RSA key pair with the specified name. Amazon EC2 stores the public key and displays the private key for you to save to a file. The private key is returned as an unencrypted PEM encoded PKCS#8 private key. If a key with the specified name already exists, Amazon EC2 returns an error.</p><p>You can have up to five thousand key pairs per region.</p><p>For more information about key pairs, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html">Key Pairs</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
+ * <p>Creates a 2048-bit RSA key pair with the specified name. Amazon EC2 stores the public key and displays the private key for you to save to a file. The private key is returned as an unencrypted PEM encoded PKCS#8 private key. If a key with the specified name already exists, Amazon EC2 returns an error.</p><p>You can have up to five thousand key pairs per region.</p><p>The key pair returned to you is available only in the region in which you create it. To create a key pair that is available in all regions, use <a>ImportKeyPair</a>.</p><p>For more information about key pairs, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html">Key Pairs</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
  *
  * @param request A container for the necessary parameters to execute the CreateKeyPair service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2KeyPair.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2KeyPair`.
  *
  * @see AWSEC2CreateKeyPairRequest
  * @see AWSEC2KeyPair
@@ -328,7 +349,7 @@
  *
  * @param request A container for the necessary parameters to execute the CreateNetworkAcl service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2CreateNetworkAclResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2CreateNetworkAclResult`.
  *
  * @see AWSEC2CreateNetworkAclRequest
  * @see AWSEC2CreateNetworkAclResult
@@ -340,7 +361,7 @@
  *
  * @param request A container for the necessary parameters to execute the CreateNetworkAclEntry service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2CreateNetworkAclEntryRequest
  */
@@ -351,7 +372,7 @@
  *
  * @param request A container for the necessary parameters to execute the CreateNetworkInterface service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2CreateNetworkInterfaceResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2CreateNetworkInterfaceResult`.
  *
  * @see AWSEC2CreateNetworkInterfaceRequest
  * @see AWSEC2CreateNetworkInterfaceResult
@@ -363,18 +384,18 @@
  *
  * @param request A container for the necessary parameters to execute the CreatePlacementGroup service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2CreatePlacementGroupRequest
  */
 - (BFTask *)createPlacementGroup:(AWSEC2CreatePlacementGroupRequest *)request;
 
 /**
- * <p>Creates a listing for Amazon EC2 Reserved Instances to be sold in the Reserved Instance Marketplace. You can submit one Reserved Instance listing at a time.</p><p>For more information, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html">Reserved Instance Marketplace</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
+ * <p>Creates a listing for Amazon EC2 Reserved Instances to be sold in the Reserved Instance Marketplace. You can submit one Reserved Instance listing at a time. To get a list of your Reserved Instances, you can use the <a>DescribeReservedInstances</a> operation.</p><p>The Reserved Instance Marketplace matches sellers who want to resell Reserved Instance capacity that they no longer need with buyers who want to purchase additional capacity. Reserved Instances bought and sold through the Reserved Instance Marketplace work like any other Reserved Instances. </p><p>To sell your Reserved Instances, you must first register as a Seller in the Reserved Instance Marketplace. After completing the registration process, you can create a Reserved Instance Marketplace listing of some or all of your Reserved Instances, and specify the upfront price to receive for them. Your Reserved Instance listings then become available for purchase. To view the details of your Reserved Instance listing, you can use the <a>DescribeReservedInstancesListings</a> operation.</p><p>For more information, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html">Reserved Instance Marketplace</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
  *
  * @param request A container for the necessary parameters to execute the CreateReservedInstancesListing service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2CreateReservedInstancesListingResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2CreateReservedInstancesListingResult`.
  *
  * @see AWSEC2CreateReservedInstancesListingRequest
  * @see AWSEC2CreateReservedInstancesListingResult
@@ -382,11 +403,11 @@
 - (BFTask *)createReservedInstancesListing:(AWSEC2CreateReservedInstancesListingRequest *)request;
 
 /**
- * <p>Creates a route in a route table within a VPC.</p><p>You must specify one of the following targets: Internet gateway, NAT instance, VPC peering connection, or network interface.</p><p>When determining how to route traffic, we use the route with the most specific match. For example, let's say the traffic is destined for <code>192.0.2.3</code>, and the route table includes the following two routes:</p><ul><li><p><code>192.0.2.0/24</code> (goes to some target A)</p></li><li><p><code>192.0.2.0/28</code> (goes to some target B)</p></li></ul><p>Both routes apply to the traffic destined for <code>192.0.2.3</code>. However, the second route in the list covers a smaller number of IP addresses and is therefore more specific, so we use that route to determine where to target the traffic.</p><p>For more information about route tables, see <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Route_Tables.html">Route Tables</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>
+ * <p>Creates a route in a route table within a VPC.</p><p>You must specify one of the following targets: Internet gateway or virtual private gateway, NAT instance, VPC peering connection, or network interface.</p><p>When determining how to route traffic, we use the route with the most specific match. For example, let's say the traffic is destined for <code>192.0.2.3</code>, and the route table includes the following two routes:</p><ul><li><p><code>192.0.2.0/24</code> (goes to some target A)</p></li><li><p><code>192.0.2.0/28</code> (goes to some target B)</p></li></ul><p>Both routes apply to the traffic destined for <code>192.0.2.3</code>. However, the second route in the list covers a smaller number of IP addresses and is therefore more specific, so we use that route to determine where to target the traffic.</p><p>For more information about route tables, see <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Route_Tables.html">Route Tables</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>
  *
  * @param request A container for the necessary parameters to execute the CreateRoute service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2CreateRouteRequest
  */
@@ -397,7 +418,7 @@
  *
  * @param request A container for the necessary parameters to execute the CreateRouteTable service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2CreateRouteTableResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2CreateRouteTableResult`.
  *
  * @see AWSEC2CreateRouteTableRequest
  * @see AWSEC2CreateRouteTableResult
@@ -409,7 +430,7 @@
  *
  * @param request A container for the necessary parameters to execute the CreateSecurityGroup service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2CreateSecurityGroupResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2CreateSecurityGroupResult`.
  *
  * @see AWSEC2CreateSecurityGroupRequest
  * @see AWSEC2CreateSecurityGroupResult
@@ -421,7 +442,7 @@
  *
  * @param request A container for the necessary parameters to execute the CreateSnapshot service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2Snapshot.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2Snapshot`.
  *
  * @see AWSEC2CreateSnapshotRequest
  * @see AWSEC2Snapshot
@@ -433,7 +454,7 @@
  *
  * @param request A container for the necessary parameters to execute the CreateSpotDatafeedSubscription service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2CreateSpotDatafeedSubscriptionResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2CreateSpotDatafeedSubscriptionResult`.
  *
  * @see AWSEC2CreateSpotDatafeedSubscriptionRequest
  * @see AWSEC2CreateSpotDatafeedSubscriptionResult
@@ -441,11 +462,11 @@
 - (BFTask *)createSpotDatafeedSubscription:(AWSEC2CreateSpotDatafeedSubscriptionRequest *)request;
 
 /**
- * <p>Creates a subnet in an existing VPC.</p><p>When you create each subnet, you provide the VPC ID and the CIDR block you want for the subnet. After you create a subnet, you can't change its CIDR block. The subnet's CIDR block can be the same as the VPC's CIDR block (assuming you want only a single subnet in the VPC), or a subset of the VPC's CIDR block. If you create more than one subnet in a VPC, the subnets' CIDR blocks must not overlap. The smallest subnet (and VPC) you can create uses a /28 netmask (16 IP addresses), and the largest uses a /16 netmask (65,536 IP addresses).</p><important><p>AWS reserves both the first four and the last IP address in each subnet's CIDR block. They're not available for use.</p></important><p>If you add more than one subnet to a VPC, they're set up in a star topology with a logical router in the middle.</p><p>For more information about subnets, see <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Subnets.html">Your VPC and Subnets</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>
+ * <p>Creates a subnet in an existing VPC.</p><p>When you create each subnet, you provide the VPC ID and the CIDR block you want for the subnet. After you create a subnet, you can't change its CIDR block. The subnet's CIDR block can be the same as the VPC's CIDR block (assuming you want only a single subnet in the VPC), or a subset of the VPC's CIDR block. If you create more than one subnet in a VPC, the subnets' CIDR blocks must not overlap. The smallest subnet (and VPC) you can create uses a /28 netmask (16 IP addresses), and the largest uses a /16 netmask (65,536 IP addresses).</p><important><p>AWS reserves both the first four and the last IP address in each subnet's CIDR block. They're not available for use.</p></important><p>If you add more than one subnet to a VPC, they're set up in a star topology with a logical router in the middle.</p><p>If you launch an instance in a VPC using an Amazon EBS-backed AMI, the IP address doesn't change if you stop and restart the instance (unlike a similar instance launched outside a VPC, which gets a new IP address when restarted). It's therefore possible to have a subnet with no running instances (they're all stopped), but no remaining IP addresses available.</p><p>For more information about subnets, see <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Subnets.html">Your VPC and Subnets</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>
  *
  * @param request A container for the necessary parameters to execute the CreateSubnet service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2CreateSubnetResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2CreateSubnetResult`.
  *
  * @see AWSEC2CreateSubnetRequest
  * @see AWSEC2CreateSubnetResult
@@ -457,7 +478,7 @@
  *
  * @param request A container for the necessary parameters to execute the CreateTags service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2CreateTagsRequest
  */
@@ -468,7 +489,7 @@
  *
  * @param request A container for the necessary parameters to execute the CreateVolume service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2Volume.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2Volume`.
  *
  * @see AWSEC2CreateVolumeRequest
  * @see AWSEC2Volume
@@ -480,7 +501,7 @@
  *
  * @param request A container for the necessary parameters to execute the CreateVpc service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2CreateVpcResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2CreateVpcResult`.
  *
  * @see AWSEC2CreateVpcRequest
  * @see AWSEC2CreateVpcResult
@@ -492,7 +513,7 @@
  *
  * @param request A container for the necessary parameters to execute the CreateVpcPeeringConnection service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2CreateVpcPeeringConnectionResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2CreateVpcPeeringConnectionResult`.
  *
  * @see AWSEC2CreateVpcPeeringConnectionRequest
  * @see AWSEC2CreateVpcPeeringConnectionResult
@@ -504,7 +525,7 @@
  *
  * @param request A container for the necessary parameters to execute the CreateVpnConnection service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2CreateVpnConnectionResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2CreateVpnConnectionResult`.
  *
  * @see AWSEC2CreateVpnConnectionRequest
  * @see AWSEC2CreateVpnConnectionResult
@@ -516,7 +537,7 @@
  *
  * @param request A container for the necessary parameters to execute the CreateVpnConnectionRoute service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2CreateVpnConnectionRouteRequest
  */
@@ -527,7 +548,7 @@
  *
  * @param request A container for the necessary parameters to execute the CreateVpnGateway service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2CreateVpnGatewayResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2CreateVpnGatewayResult`.
  *
  * @see AWSEC2CreateVpnGatewayRequest
  * @see AWSEC2CreateVpnGatewayResult
@@ -539,7 +560,7 @@
  *
  * @param request A container for the necessary parameters to execute the DeleteCustomerGateway service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2DeleteCustomerGatewayRequest
  */
@@ -550,7 +571,7 @@
  *
  * @param request A container for the necessary parameters to execute the DeleteDhcpOptions service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2DeleteDhcpOptionsRequest
  */
@@ -561,7 +582,7 @@
  *
  * @param request A container for the necessary parameters to execute the DeleteInternetGateway service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2DeleteInternetGatewayRequest
  */
@@ -572,7 +593,7 @@
  *
  * @param request A container for the necessary parameters to execute the DeleteKeyPair service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2DeleteKeyPairRequest
  */
@@ -583,7 +604,7 @@
  *
  * @param request A container for the necessary parameters to execute the DeleteNetworkAcl service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2DeleteNetworkAclRequest
  */
@@ -594,7 +615,7 @@
  *
  * @param request A container for the necessary parameters to execute the DeleteNetworkAclEntry service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2DeleteNetworkAclEntryRequest
  */
@@ -605,7 +626,7 @@
  *
  * @param request A container for the necessary parameters to execute the DeleteNetworkInterface service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2DeleteNetworkInterfaceRequest
  */
@@ -616,7 +637,7 @@
  *
  * @param request A container for the necessary parameters to execute the DeletePlacementGroup service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2DeletePlacementGroupRequest
  */
@@ -627,7 +648,7 @@
  *
  * @param request A container for the necessary parameters to execute the DeleteRoute service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2DeleteRouteRequest
  */
@@ -638,7 +659,7 @@
  *
  * @param request A container for the necessary parameters to execute the DeleteRouteTable service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2DeleteRouteTableRequest
  */
@@ -649,7 +670,7 @@
  *
  * @param request A container for the necessary parameters to execute the DeleteSecurityGroup service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2DeleteSecurityGroupRequest
  */
@@ -660,7 +681,7 @@
  *
  * @param request A container for the necessary parameters to execute the DeleteSnapshot service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2DeleteSnapshotRequest
  */
@@ -671,7 +692,7 @@
  *
  * @param request A container for the necessary parameters to execute the DeleteSpotDatafeedSubscription service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2DeleteSpotDatafeedSubscriptionRequest
  */
@@ -682,7 +703,7 @@
  *
  * @param request A container for the necessary parameters to execute the DeleteSubnet service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2DeleteSubnetRequest
  */
@@ -693,18 +714,18 @@
  *
  * @param request A container for the necessary parameters to execute the DeleteTags service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2DeleteTagsRequest
  */
 - (BFTask *)deleteTags:(AWSEC2DeleteTagsRequest *)request;
 
 /**
- * <p>Deletes the specified Amazon EBS volume. The volume must be in the <code>available</code> state (not attached to an instance).</p><p>For more information, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-deleting-volume.html">Deleting an Amazon EBS Volume</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
+ * <p>Deletes the specified Amazon EBS volume. The volume must be in the <code>available</code> state (not attached to an instance).</p><note><p>The volume may remain in the <code>deleting</code> state for several minutes.</p></note><p>For more information, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-deleting-volume.html">Deleting an Amazon EBS Volume</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
  *
  * @param request A container for the necessary parameters to execute the DeleteVolume service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2DeleteVolumeRequest
  */
@@ -715,18 +736,18 @@
  *
  * @param request A container for the necessary parameters to execute the DeleteVpc service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2DeleteVpcRequest
  */
 - (BFTask *)deleteVpc:(AWSEC2DeleteVpcRequest *)request;
 
 /**
- * <p>Deletes a VPC peering connection. Either the owner of the requester VPC or the owner of the peer VPC can delete the VPC peering connection if it's in the <code>active</code> state. The owner of the requester VPC can delete a VPC peering connection in the <code>pending-acceptance</code> state.</p>
+ * <p>Deletes a VPC peering connection. Either the owner of the requester VPC or the owner of the peer VPC can delete the VPC peering connection if it's in the <code>active</code> state. The owner of the requester VPC can delete a VPC peering connection in the <code>pending-acceptance</code> state. </p>
  *
  * @param request A container for the necessary parameters to execute the DeleteVpcPeeringConnection service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2DeleteVpcPeeringConnectionResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2DeleteVpcPeeringConnectionResult`.
  *
  * @see AWSEC2DeleteVpcPeeringConnectionRequest
  * @see AWSEC2DeleteVpcPeeringConnectionResult
@@ -734,11 +755,11 @@
 - (BFTask *)deleteVpcPeeringConnection:(AWSEC2DeleteVpcPeeringConnectionRequest *)request;
 
 /**
- * <p>Deletes the specified VPN connection.</p><p>If you're deleting the VPC and its associated components, we recommend that you detach the virtual private gateway from the VPC and delete the VPC before deleting the VPN connection.</p>
+ * <p>Deletes the specified VPN connection.</p><p>If you're deleting the VPC and its associated components, we recommend that you detach the virtual private gateway from the VPC and delete the VPC before deleting the VPN connection. If you believe that the tunnel credentials for your VPN connection have been compromised, you can delete the VPN connection and create a new one that has new keys, without needing to delete the VPC or virtual private gateway. If you create a new VPN connection, you must reconfigure the customer gateway using the new configuration information returned with the new VPN connection ID.</p>
  *
  * @param request A container for the necessary parameters to execute the DeleteVpnConnection service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2DeleteVpnConnectionRequest
  */
@@ -749,7 +770,7 @@
  *
  * @param request A container for the necessary parameters to execute the DeleteVpnConnectionRoute service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2DeleteVpnConnectionRouteRequest
  */
@@ -760,7 +781,7 @@
  *
  * @param request A container for the necessary parameters to execute the DeleteVpnGateway service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2DeleteVpnGatewayRequest
  */
@@ -771,7 +792,7 @@
  *
  * @param request A container for the necessary parameters to execute the DeregisterImage service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2DeregisterImageRequest
  */
@@ -782,7 +803,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribeAccountAttributes service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2DescribeAccountAttributesResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2DescribeAccountAttributesResult`.
  *
  * @see AWSEC2DescribeAccountAttributesRequest
  * @see AWSEC2DescribeAccountAttributesResult
@@ -794,7 +815,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribeAddresses service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2DescribeAddressesResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2DescribeAddressesResult`.
  *
  * @see AWSEC2DescribeAddressesRequest
  * @see AWSEC2DescribeAddressesResult
@@ -806,7 +827,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribeAvailabilityZones service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2DescribeAvailabilityZonesResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2DescribeAvailabilityZonesResult`.
  *
  * @see AWSEC2DescribeAvailabilityZonesRequest
  * @see AWSEC2DescribeAvailabilityZonesResult
@@ -814,11 +835,11 @@
 - (BFTask *)describeAvailabilityZones:(AWSEC2DescribeAvailabilityZonesRequest *)request;
 
 /**
- * <p>Describes one or more of your bundling tasks.</p>
+ * <p>Describes one or more of your bundling tasks.</p><note><p>Completed bundle tasks are listed for only a limited time. If your bundle task is no longer in the list, you can still register an AMI from it. Just use <code>RegisterImage</code> with the Amazon S3 bucket name and image manifest name you provided to the bundle task.</p></note>
  *
  * @param request A container for the necessary parameters to execute the DescribeBundleTasks service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2DescribeBundleTasksResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2DescribeBundleTasksResult`.
  *
  * @see AWSEC2DescribeBundleTasksRequest
  * @see AWSEC2DescribeBundleTasksResult
@@ -830,7 +851,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribeConversionTasks service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2DescribeConversionTasksResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2DescribeConversionTasksResult`.
  *
  * @see AWSEC2DescribeConversionTasksRequest
  * @see AWSEC2DescribeConversionTasksResult
@@ -842,7 +863,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribeCustomerGateways service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2DescribeCustomerGatewaysResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2DescribeCustomerGatewaysResult`.
  *
  * @see AWSEC2DescribeCustomerGatewaysRequest
  * @see AWSEC2DescribeCustomerGatewaysResult
@@ -854,7 +875,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribeDhcpOptions service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2DescribeDhcpOptionsResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2DescribeDhcpOptionsResult`.
  *
  * @see AWSEC2DescribeDhcpOptionsRequest
  * @see AWSEC2DescribeDhcpOptionsResult
@@ -866,7 +887,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribeExportTasks service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2DescribeExportTasksResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2DescribeExportTasksResult`.
  *
  * @see AWSEC2DescribeExportTasksRequest
  * @see AWSEC2DescribeExportTasksResult
@@ -878,7 +899,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribeImageAttribute service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2ImageAttribute.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2ImageAttribute`.
  *
  * @see AWSEC2DescribeImageAttributeRequest
  * @see AWSEC2ImageAttribute
@@ -886,11 +907,11 @@
 - (BFTask *)describeImageAttribute:(AWSEC2DescribeImageAttributeRequest *)request;
 
 /**
- * <p>Describes one or more of the images (AMIs, AKIs, and ARIs) available to you. Images available to you include public images, private images that you own, and private images owned by other AWS accounts but for which you have explicit launch permissions.</p>
+ * <p>Describes one or more of the images (AMIs, AKIs, and ARIs) available to you. Images available to you include public images, private images that you own, and private images owned by other AWS accounts but for which you have explicit launch permissions.</p><note><p>Deregistered images are included in the returned results for an unspecified interval after deregistration.</p></note>
  *
  * @param request A container for the necessary parameters to execute the DescribeImages service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2DescribeImagesResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2DescribeImagesResult`.
  *
  * @see AWSEC2DescribeImagesRequest
  * @see AWSEC2DescribeImagesResult
@@ -898,11 +919,11 @@
 - (BFTask *)describeImages:(AWSEC2DescribeImagesRequest *)request;
 
 /**
- * <p>Describes the specified attribute of the specified instance. You can specify only one attribute at a time.</p>
+ * <p>Describes the specified attribute of the specified instance. You can specify only one attribute at a time. Valid attribute values are: <code>instanceType</code> | <code>kernel</code> | <code>ramdisk</code> | <code>userData</code> | <code>disableApiTermination</code> | <code>instanceInitiatedShutdownBehavior</code> | <code>rootDeviceName</code> | <code>blockDeviceMapping</code> | <code>productCodes</code> | <code>sourceDestCheck</code> | <code>groupSet</code> | <code>ebsOptimized</code> | <code>sriovNetSupport</code></p>
  *
  * @param request A container for the necessary parameters to execute the DescribeInstanceAttribute service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2InstanceAttribute.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2InstanceAttribute`.
  *
  * @see AWSEC2DescribeInstanceAttributeRequest
  * @see AWSEC2InstanceAttribute
@@ -914,7 +935,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribeInstanceStatus service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2DescribeInstanceStatusResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2DescribeInstanceStatusResult`.
  *
  * @see AWSEC2DescribeInstanceStatusRequest
  * @see AWSEC2DescribeInstanceStatusResult
@@ -926,7 +947,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribeInstances service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2DescribeInstancesResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2DescribeInstancesResult`.
  *
  * @see AWSEC2DescribeInstancesRequest
  * @see AWSEC2DescribeInstancesResult
@@ -938,7 +959,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribeInternetGateways service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2DescribeInternetGatewaysResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2DescribeInternetGatewaysResult`.
  *
  * @see AWSEC2DescribeInternetGatewaysRequest
  * @see AWSEC2DescribeInternetGatewaysResult
@@ -950,7 +971,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribeKeyPairs service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2DescribeKeyPairsResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2DescribeKeyPairsResult`.
  *
  * @see AWSEC2DescribeKeyPairsRequest
  * @see AWSEC2DescribeKeyPairsResult
@@ -962,7 +983,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribeNetworkAcls service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2DescribeNetworkAclsResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2DescribeNetworkAclsResult`.
  *
  * @see AWSEC2DescribeNetworkAclsRequest
  * @see AWSEC2DescribeNetworkAclsResult
@@ -974,7 +995,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribeNetworkInterfaceAttribute service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2DescribeNetworkInterfaceAttributeResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2DescribeNetworkInterfaceAttributeResult`.
  *
  * @see AWSEC2DescribeNetworkInterfaceAttributeRequest
  * @see AWSEC2DescribeNetworkInterfaceAttributeResult
@@ -986,7 +1007,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribeNetworkInterfaces service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2DescribeNetworkInterfacesResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2DescribeNetworkInterfacesResult`.
  *
  * @see AWSEC2DescribeNetworkInterfacesRequest
  * @see AWSEC2DescribeNetworkInterfacesResult
@@ -998,7 +1019,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribePlacementGroups service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2DescribePlacementGroupsResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2DescribePlacementGroupsResult`.
  *
  * @see AWSEC2DescribePlacementGroupsRequest
  * @see AWSEC2DescribePlacementGroupsResult
@@ -1010,7 +1031,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribeRegions service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2DescribeRegionsResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2DescribeRegionsResult`.
  *
  * @see AWSEC2DescribeRegionsRequest
  * @see AWSEC2DescribeRegionsResult
@@ -1022,7 +1043,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribeReservedInstances service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2DescribeReservedInstancesResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2DescribeReservedInstancesResult`.
  *
  * @see AWSEC2DescribeReservedInstancesRequest
  * @see AWSEC2DescribeReservedInstancesResult
@@ -1030,11 +1051,11 @@
 - (BFTask *)describeReservedInstances:(AWSEC2DescribeReservedInstancesRequest *)request;
 
 /**
- * <p>Describes your account's Reserved Instance listings in the Reserved Instance Marketplace.</p><p>For more information, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html">Reserved Instance Marketplace</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
+ * <p>Describes your account's Reserved Instance listings in the Reserved Instance Marketplace.</p><p>The Reserved Instance Marketplace matches sellers who want to resell Reserved Instance capacity that they no longer need with buyers who want to purchase additional capacity. Reserved Instances bought and sold through the Reserved Instance Marketplace work like any other Reserved Instances. </p><p>As a seller, you choose to list some or all of your Reserved Instances, and you specify the upfront price to receive for them. Your Reserved Instances are then listed in the Reserved Instance Marketplace and are available for purchase. </p><p>As a buyer, you specify the configuration of the Reserved Instance to purchase, and the Marketplace matches what you're searching for with what's available. The Marketplace first sells the lowest priced Reserved Instances to you, and continues to sell available Reserved Instance listings to you until your demand is met. You are charged based on the total price of all of the listings that you purchase.</p><p>For more information, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html">Reserved Instance Marketplace</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
  *
  * @param request A container for the necessary parameters to execute the DescribeReservedInstancesListings service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2DescribeReservedInstancesListingsResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2DescribeReservedInstancesListingsResult`.
  *
  * @see AWSEC2DescribeReservedInstancesListingsRequest
  * @see AWSEC2DescribeReservedInstancesListingsResult
@@ -1042,11 +1063,11 @@
 - (BFTask *)describeReservedInstancesListings:(AWSEC2DescribeReservedInstancesListingsRequest *)request;
 
 /**
- * <p>Describes the modifications made to your Reserved Instances. If no parameter is specified, information about all your Reserved Instances modification requests is returned. If a modification ID is specified, only information about the specific modification is returned.</p>
+ * <p>Describes the modifications made to your Reserved Instances. If no parameter is specified, information about all your Reserved Instances modification requests is returned. If a modification ID is specified, only information about the specific modification is returned.</p><p>For more information, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-modifying.html">Modifying Reserved Instances</a> in the Amazon Elastic Compute Cloud User Guide.</p>
  *
  * @param request A container for the necessary parameters to execute the DescribeReservedInstancesModifications service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2DescribeReservedInstancesModificationsResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2DescribeReservedInstancesModificationsResult`.
  *
  * @see AWSEC2DescribeReservedInstancesModificationsRequest
  * @see AWSEC2DescribeReservedInstancesModificationsResult
@@ -1058,7 +1079,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribeReservedInstancesOfferings service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2DescribeReservedInstancesOfferingsResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2DescribeReservedInstancesOfferingsResult`.
  *
  * @see AWSEC2DescribeReservedInstancesOfferingsRequest
  * @see AWSEC2DescribeReservedInstancesOfferingsResult
@@ -1070,7 +1091,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribeRouteTables service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2DescribeRouteTablesResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2DescribeRouteTablesResult`.
  *
  * @see AWSEC2DescribeRouteTablesRequest
  * @see AWSEC2DescribeRouteTablesResult
@@ -1082,7 +1103,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribeSecurityGroups service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2DescribeSecurityGroupsResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2DescribeSecurityGroupsResult`.
  *
  * @see AWSEC2DescribeSecurityGroupsRequest
  * @see AWSEC2DescribeSecurityGroupsResult
@@ -1090,11 +1111,11 @@
 - (BFTask *)describeSecurityGroups:(AWSEC2DescribeSecurityGroupsRequest *)request;
 
 /**
- * <p>Describes the specified attribute of the specified snapshot. You can specify only one attribute at a time.</p><p>For more information about Amazon EBS snapshots, see <a href='http://docs.&awsdomain;/AWSEC2/latest/UserGuide/EBSSnapshots.html'>Amazon EBS Snapshots</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
+ * <p>Describes the specified attribute of the specified snapshot. You can specify only one attribute at a time.</p><p>For more information about Amazon EBS snapshots, see <a href='http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html'>Amazon EBS Snapshots</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
  *
  * @param request A container for the necessary parameters to execute the DescribeSnapshotAttribute service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2DescribeSnapshotAttributeResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2DescribeSnapshotAttributeResult`.
  *
  * @see AWSEC2DescribeSnapshotAttributeRequest
  * @see AWSEC2DescribeSnapshotAttributeResult
@@ -1102,11 +1123,11 @@
 - (BFTask *)describeSnapshotAttribute:(AWSEC2DescribeSnapshotAttributeRequest *)request;
 
 /**
- * <p>Describes one or more of the Amazon EBS snapshots available to you. Available snapshots include public snapshots available for any AWS account to launch, private snapshots that you own, and private snapshots owned by another AWS account but for which you've been given explicit create volume permissions.</p><p>The create volume permissions fall into the following categories:</p><ul><li><i>public</i>: The owner of the snapshot granted create volume permissions for the snapshot to the <code>all</code> group. All AWS accounts have create volume permissions for these snapshots.</li><li><i>explicit</i>: The owner of the snapshot granted create volume permissions to a specific AWS account.</li><li><i>implicit</i>: An AWS account has implicit create volume permissions for all snapshots it owns.</li></ul><p>The list of snapshots returned can be modified by specifying snapshot IDs, snapshot owners, or AWS accounts with create volume permissions. If no options are specified, Amazon EC2 returns all snapshots for which you have create volume permissions.</p><p>If you specify one or more snapshot IDs, only snapshots that have the specified IDs are returned. If you specify an invalid snapshot ID, an error is returned. If you specify a snapshot ID for which you do not have access, it is not included in the returned results.</p><p>If you specify one or more snapshot owners, only snapshots from the specified owners and for which you have access are returned. The results can include the AWS account IDs of the specified owners, <code>amazon</code> for snapshots owned by Amazon, or <code>self</code> for snapshots that you own.</p><p>If you specify a list of restorable users, only snapshots with create snapshot permissions for those users are returned. You can specify AWS account IDs (if you own the snapshots), <code>self</code> for snapshots for which you own or have explicit permissions, or <code>all</code> for public snapshots.</p><p>For more information about Amazon EBS snapshots, see <a href='http://docs.&awsdomain;/AWSEC2/latest/UserGuide/EBSSnapshots.html'>Amazon EBS Snapshots</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
+ * <p>Describes one or more of the Amazon EBS snapshots available to you. Available snapshots include public snapshots available for any AWS account to launch, private snapshots that you own, and private snapshots owned by another AWS account but for which you've been given explicit create volume permissions.</p><p>The create volume permissions fall into the following categories:</p><ul><li><i>public</i>: The owner of the snapshot granted create volume permissions for the snapshot to the <code>all</code> group. All AWS accounts have create volume permissions for these snapshots.</li><li><i>explicit</i>: The owner of the snapshot granted create volume permissions to a specific AWS account.</li><li><i>implicit</i>: An AWS account has implicit create volume permissions for all snapshots it owns.</li></ul><p>The list of snapshots returned can be modified by specifying snapshot IDs, snapshot owners, or AWS accounts with create volume permissions. If no options are specified, Amazon EC2 returns all snapshots for which you have create volume permissions.</p><p>If you specify one or more snapshot IDs, only snapshots that have the specified IDs are returned. If you specify an invalid snapshot ID, an error is returned. If you specify a snapshot ID for which you do not have access, it is not included in the returned results.</p><p>If you specify one or more snapshot owners, only snapshots from the specified owners and for which you have access are returned. The results can include the AWS account IDs of the specified owners, <code>amazon</code> for snapshots owned by Amazon, or <code>self</code> for snapshots that you own.</p><p>If you specify a list of restorable users, only snapshots with create snapshot permissions for those users are returned. You can specify AWS account IDs (if you own the snapshots), <code>self</code> for snapshots for which you own or have explicit permissions, or <code>all</code> for public snapshots.</p><p>For more information about Amazon EBS snapshots, see <a href='http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html'>Amazon EBS Snapshots</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
  *
  * @param request A container for the necessary parameters to execute the DescribeSnapshots service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2DescribeSnapshotsResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2DescribeSnapshotsResult`.
  *
  * @see AWSEC2DescribeSnapshotsRequest
  * @see AWSEC2DescribeSnapshotsResult
@@ -1118,7 +1139,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribeSpotDatafeedSubscription service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2DescribeSpotDatafeedSubscriptionResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2DescribeSpotDatafeedSubscriptionResult`.
  *
  * @see AWSEC2DescribeSpotDatafeedSubscriptionRequest
  * @see AWSEC2DescribeSpotDatafeedSubscriptionResult
@@ -1130,7 +1151,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribeSpotInstanceRequests service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2DescribeSpotInstanceRequestsResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2DescribeSpotInstanceRequestsResult`.
  *
  * @see AWSEC2DescribeSpotInstanceRequestsRequest
  * @see AWSEC2DescribeSpotInstanceRequestsResult
@@ -1138,11 +1159,11 @@
 - (BFTask *)describeSpotInstanceRequests:(AWSEC2DescribeSpotInstanceRequestsRequest *)request;
 
 /**
- * <p>Describes the Spot Price history. Spot Instances are instances that Amazon EC2 starts on your behalf when the maximum price that you specify exceeds the current Spot Price. Amazon EC2 periodically sets the Spot Price based on available Spot Instance capacity and current Spot Instance requests. For more information about Spot Instances, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html">Spot Instances</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p><p>When you specify an Availability Zone, this operation describes the price history for the specified Availability Zone with the most recent set of prices listed first. If you don't specify an Availability Zone, you get the prices across all Availability Zones, starting with the most recent set. However, if you're using an API version earlier than 2011-05-15, you get the lowest price across the region for the specified time period. The prices returned are listed in chronological order, from the oldest to the most recent.</p>
+ * <p>Describes the Spot Price history. Spot Instances are instances that Amazon EC2 starts on your behalf when the maximum price that you specify exceeds the current Spot Price. Amazon EC2 periodically sets the Spot Price based on available Spot Instance capacity and current Spot Instance requests. For more information about Spot Instances, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html">Spot Instances</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p><p>When you specify an Availability Zone, this operation describes the price history for the specified Availability Zone with the most recent set of prices listed first. If you don't specify an Availability Zone, you get the prices across all Availability Zones, starting with the most recent set. However, if you're using an API version earlier than 2011-05-15, you get the lowest price across the region for the specified time period. The prices returned are listed in chronological order, from the oldest to the most recent.</p><p>When you specify the start and end time options, this operation returns two pieces of data: the prices of the instance types within the time range that you specified and the time when the price changed. The price is valid within the time period that you specified; the response merely indicates the last time that the price changed.</p>
  *
  * @param request A container for the necessary parameters to execute the DescribeSpotPriceHistory service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2DescribeSpotPriceHistoryResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2DescribeSpotPriceHistoryResult`.
  *
  * @see AWSEC2DescribeSpotPriceHistoryRequest
  * @see AWSEC2DescribeSpotPriceHistoryResult
@@ -1154,7 +1175,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribeSubnets service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2DescribeSubnetsResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2DescribeSubnetsResult`.
  *
  * @see AWSEC2DescribeSubnetsRequest
  * @see AWSEC2DescribeSubnetsResult
@@ -1166,7 +1187,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribeTags service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2DescribeTagsResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2DescribeTagsResult`.
  *
  * @see AWSEC2DescribeTagsRequest
  * @see AWSEC2DescribeTagsResult
@@ -1174,11 +1195,11 @@
 - (BFTask *)describeTags:(AWSEC2DescribeTagsRequest *)request;
 
 /**
- * <p>Describes the specified attribute of the specified volume. You can specify only one attribute at a time.</p><p>For more information about Amazon EBS volumes, see <a href='http://docs.&awsdomain;/AWSEC2/latest/UserGuide/EBSVolumes.html'>Amazon EBS Volumes</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
+ * <p>Describes the specified attribute of the specified volume. You can specify only one attribute at a time.</p><p>For more information about Amazon EBS volumes, see <a href='http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumes.html'>Amazon EBS Volumes</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
  *
  * @param request A container for the necessary parameters to execute the DescribeVolumeAttribute service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2DescribeVolumeAttributeResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2DescribeVolumeAttributeResult`.
  *
  * @see AWSEC2DescribeVolumeAttributeRequest
  * @see AWSEC2DescribeVolumeAttributeResult
@@ -1186,11 +1207,11 @@
 - (BFTask *)describeVolumeAttribute:(AWSEC2DescribeVolumeAttributeRequest *)request;
 
 /**
- * <p>Describes the status of the specified volumes. Volume status provides the result of the checks performed on your volumes to determine events that can impair the performance of your volumes. The performance of a volume can be affected if an issue occurs on the volume's underlying host. If the volume's underlying host experiences a power outage or system issue, after the system is restored, there could be data inconsistencies on the volume. Volume events notify you if this occurs. Volume actions notify you if any action needs to be taken in response to the event.</p><p>The <code>DescribeVolumeStatus</code> operation provides the following information about the specified volumes:</p><p><i>Status</i>: Reflects the current status of the volume. The possible values are <code>ok</code>, <code>impaired</code> , <code>warning</code>, or <code>insufficient-data</code>. If all checks pass, the overall status of the volume is <code>ok</code>. If the check fails, the overall status is <code>impaired</code>. If the status is <code>insufficient-data</code>, then the checks may still be taking place on your volume at the time. We recommend that you retry the request. For more information on volume status, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-volume-status.html">Monitoring the Status of Your Volumes</a>.</p><p><i>Events</i>: Reflect the cause of a volume status and may require you to take action. For example, if your volume returns an <code>impaired</code> status, then the volume event might be <code>potential-data-inconsistency</code>. This means that your volume has been affected by an issue with the underlying host, has all I/O operations disabled, and may have inconsistent data.</p><p><i>Actions</i>: Reflect the actions you may have to take in response to an event. For example, if the status of the volume is <code>impaired</code> and the volume event shows <code>potential-data-inconsistency</code>, then the action shows <code>enable-volume-io</code>. This means that you may want to enable the I/O operations for the volume by calling the <a>EnableVolumeIO</a> action and then check the volume for data consistency.</p>
+ * <p>Describes the status of the specified volumes. Volume status provides the result of the checks performed on your volumes to determine events that can impair the performance of your volumes. The performance of a volume can be affected if an issue occurs on the volume's underlying host. If the volume's underlying host experiences a power outage or system issue, after the system is restored, there could be data inconsistencies on the volume. Volume events notify you if this occurs. Volume actions notify you if any action needs to be taken in response to the event.</p><p>The <code>DescribeVolumeStatus</code> operation provides the following information about the specified volumes:</p><p><i>Status</i>: Reflects the current status of the volume. The possible values are <code>ok</code>, <code>impaired</code> , <code>warning</code>, or <code>insufficient-data</code>. If all checks pass, the overall status of the volume is <code>ok</code>. If the check fails, the overall status is <code>impaired</code>. If the status is <code>insufficient-data</code>, then the checks may still be taking place on your volume at the time. We recommend that you retry the request. For more information on volume status, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-volume-status.html">Monitoring the Status of Your Volumes</a>.</p><p><i>Events</i>: Reflect the cause of a volume status and may require you to take action. For example, if your volume returns an <code>impaired</code> status, then the volume event might be <code>potential-data-inconsistency</code>. This means that your volume has been affected by an issue with the underlying host, has all I/O operations disabled, and may have inconsistent data.</p><p><i>Actions</i>: Reflect the actions you may have to take in response to an event. For example, if the status of the volume is <code>impaired</code> and the volume event shows <code>potential-data-inconsistency</code>, then the action shows <code>enable-volume-io</code>. This means that you may want to enable the I/O operations for the volume by calling the <a>EnableVolumeIO</a> action and then check the volume for data consistency.</p><note><p>Volume status is based on the volume status checks, and does not reflect the volume state. Therefore, volume status does not indicate volumes in the <code>error</code> state (for example, when a volume is incapable of accepting I/O.)</p></note>
  *
  * @param request A container for the necessary parameters to execute the DescribeVolumeStatus service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2DescribeVolumeStatusResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2DescribeVolumeStatusResult`.
  *
  * @see AWSEC2DescribeVolumeStatusRequest
  * @see AWSEC2DescribeVolumeStatusResult
@@ -1198,11 +1219,11 @@
 - (BFTask *)describeVolumeStatus:(AWSEC2DescribeVolumeStatusRequest *)request;
 
 /**
- * <p>Describes the specified Amazon EBS volumes.</p><p>For more information about Amazon EBS volumes, see <a href='http://docs.&awsdomain;/AWSEC2/latest/UserGuide/EBSVolumes.html'>Amazon EBS Volumes</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
+ * <p>Describes the specified Amazon EBS volumes.</p><p>If you are describing a long list of volumes, you can paginate the output to make the list more manageable. The <code>MaxResults</code> parameter sets the maximum number of results returned in a single page. If the list of results exceeds your <code>MaxResults</code> value, then that number of results is returned along with a <code>NextToken</code> value that can be passed to a subsequent <code>DescribeVolumes</code> request to retrieve the remaining results.</p><p>For more information about Amazon EBS volumes, see <a href='http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumes.html'>Amazon EBS Volumes</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
  *
  * @param request A container for the necessary parameters to execute the DescribeVolumes service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2DescribeVolumesResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2DescribeVolumesResult`.
  *
  * @see AWSEC2DescribeVolumesRequest
  * @see AWSEC2DescribeVolumesResult
@@ -1214,7 +1235,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribeVpcAttribute service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2DescribeVpcAttributeResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2DescribeVpcAttributeResult`.
  *
  * @see AWSEC2DescribeVpcAttributeRequest
  * @see AWSEC2DescribeVpcAttributeResult
@@ -1226,7 +1247,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribeVpcPeeringConnections service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2DescribeVpcPeeringConnectionsResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2DescribeVpcPeeringConnectionsResult`.
  *
  * @see AWSEC2DescribeVpcPeeringConnectionsRequest
  * @see AWSEC2DescribeVpcPeeringConnectionsResult
@@ -1238,7 +1259,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribeVpcs service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2DescribeVpcsResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2DescribeVpcsResult`.
  *
  * @see AWSEC2DescribeVpcsRequest
  * @see AWSEC2DescribeVpcsResult
@@ -1250,7 +1271,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribeVpnConnections service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2DescribeVpnConnectionsResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2DescribeVpnConnectionsResult`.
  *
  * @see AWSEC2DescribeVpnConnectionsRequest
  * @see AWSEC2DescribeVpnConnectionsResult
@@ -1262,7 +1283,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribeVpnGateways service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2DescribeVpnGatewaysResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2DescribeVpnGatewaysResult`.
  *
  * @see AWSEC2DescribeVpnGatewaysRequest
  * @see AWSEC2DescribeVpnGatewaysResult
@@ -1274,7 +1295,7 @@
  *
  * @param request A container for the necessary parameters to execute the DetachInternetGateway service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2DetachInternetGatewayRequest
  */
@@ -1285,7 +1306,7 @@
  *
  * @param request A container for the necessary parameters to execute the DetachNetworkInterface service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2DetachNetworkInterfaceRequest
  */
@@ -1296,7 +1317,7 @@
  *
  * @param request A container for the necessary parameters to execute the DetachVolume service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2VolumeAttachment.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2VolumeAttachment`.
  *
  * @see AWSEC2DetachVolumeRequest
  * @see AWSEC2VolumeAttachment
@@ -1308,29 +1329,29 @@
  *
  * @param request A container for the necessary parameters to execute the DetachVpnGateway service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2DetachVpnGatewayRequest
  */
 - (BFTask *)detachVpnGateway:(AWSEC2DetachVpnGatewayRequest *)request;
 
 /**
- * <p>Disables a virtual private gateway (VGW) from propagating routes to the routing tables of a VPC.</p>
+ * <p>Disables a virtual private gateway (VGW) from propagating routes to a specified route table of a VPC.</p>
  *
  * @param request A container for the necessary parameters to execute the DisableVgwRoutePropagation service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2DisableVgwRoutePropagationRequest
  */
 - (BFTask *)disableVgwRoutePropagation:(AWSEC2DisableVgwRoutePropagationRequest *)request;
 
 /**
- * <p>Disassociates an Elastic IP address from the instance or network interface it's associated with.</p><p>This is an idempotent operation. If you perform the operation more than once, Amazon EC2 doesn't return an error.</p>
+ * <p>Disassociates an Elastic IP address from the instance or network interface it's associated with.</p><p>An Elastic IP address is for use in either the EC2-Classic platform or in a VPC. For more information, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html">Elastic IP Addresses</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p><p>This is an idempotent operation. If you perform the operation more than once, Amazon EC2 doesn't return an error.</p>
  *
  * @param request A container for the necessary parameters to execute the DisassociateAddress service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2DisassociateAddressRequest
  */
@@ -1341,18 +1362,18 @@
  *
  * @param request A container for the necessary parameters to execute the DisassociateRouteTable service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2DisassociateRouteTableRequest
  */
 - (BFTask *)disassociateRouteTable:(AWSEC2DisassociateRouteTableRequest *)request;
 
 /**
- * <p>Enables a virtual private gateway (VGW) to propagate routes to the routing tables of a VPC.</p>
+ * <p>Enables a virtual private gateway (VGW) to propagate routes to the specified route table of a VPC.</p>
  *
  * @param request A container for the necessary parameters to execute the EnableVgwRoutePropagation service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2EnableVgwRoutePropagationRequest
  */
@@ -1363,7 +1384,7 @@
  *
  * @param request A container for the necessary parameters to execute the EnableVolumeIO service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2EnableVolumeIORequest
  */
@@ -1374,7 +1395,7 @@
  *
  * @param request A container for the necessary parameters to execute the GetConsoleOutput service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2GetConsoleOutputResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2GetConsoleOutputResult`.
  *
  * @see AWSEC2GetConsoleOutputRequest
  * @see AWSEC2GetConsoleOutputResult
@@ -1382,11 +1403,11 @@
 - (BFTask *)getConsoleOutput:(AWSEC2GetConsoleOutputRequest *)request;
 
 /**
- * <p>Retrieves the encrypted administrator password for an instance running Windows.</p><p>The Windows password is only generated the first time an AMI is launched. It is not generated for rebundled AMIs or after the password is changed on an instance.</p><p>The password is encrypted using the key pair that you specified when you launched the instance. You must provide the corresponding key pair file.</p><p>Password generation and encryption takes a few moments. We recommend that you wait up to 15 minutes after launching an instance before trying to retrieve the generated password.</p>
+ * <p>Retrieves the encrypted administrator password for an instance running Windows.</p><p>The Windows password is generated at boot if the <code>EC2Config</code> service plugin, <code>Ec2SetPassword</code>, is enabled. This usually only happens the first time an AMI is launched, and then <code>Ec2SetPassword</code> is automatically disabled. The password is not generated for rebundled AMIs unless <code>Ec2SetPassword</code> is enabled before bundling.</p><p>The password is encrypted using the key pair that you specified when you launched the instance. You must provide the corresponding key pair file.</p><p>Password generation and encryption takes a few moments. We recommend that you wait up to 15 minutes after launching an instance before trying to retrieve the generated password.</p>
  *
  * @param request A container for the necessary parameters to execute the GetPasswordData service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2GetPasswordDataResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2GetPasswordDataResult`.
  *
  * @see AWSEC2GetPasswordDataRequest
  * @see AWSEC2GetPasswordDataResult
@@ -1398,7 +1419,7 @@
  *
  * @param request A container for the necessary parameters to execute the ImportInstance service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2ImportInstanceResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2ImportInstanceResult`.
  *
  * @see AWSEC2ImportInstanceRequest
  * @see AWSEC2ImportInstanceResult
@@ -1410,7 +1431,7 @@
  *
  * @param request A container for the necessary parameters to execute the ImportKeyPair service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2ImportKeyPairResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2ImportKeyPairResult`.
  *
  * @see AWSEC2ImportKeyPairRequest
  * @see AWSEC2ImportKeyPairResult
@@ -1422,7 +1443,7 @@
  *
  * @param request A container for the necessary parameters to execute the ImportVolume service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2ImportVolumeResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2ImportVolumeResult`.
  *
  * @see AWSEC2ImportVolumeRequest
  * @see AWSEC2ImportVolumeResult
@@ -1430,11 +1451,11 @@
 - (BFTask *)importVolume:(AWSEC2ImportVolumeRequest *)request;
 
 /**
- * <p>Modifies the specified attribute of the specified AMI. You can specify only one attribute at a time.</p>
+ * <p>Modifies the specified attribute of the specified AMI. You can specify only one attribute at a time.</p><note><p>AWS Marketplace product codes cannot be modified. Images with an AWS Marketplace product code cannot be made public.</p></note>
  *
  * @param request A container for the necessary parameters to execute the ModifyImageAttribute service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2ModifyImageAttributeRequest
  */
@@ -1445,7 +1466,7 @@
  *
  * @param request A container for the necessary parameters to execute the ModifyInstanceAttribute service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2ModifyInstanceAttributeRequest
  */
@@ -1456,18 +1477,18 @@
  *
  * @param request A container for the necessary parameters to execute the ModifyNetworkInterfaceAttribute service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2ModifyNetworkInterfaceAttributeRequest
  */
 - (BFTask *)modifyNetworkInterfaceAttribute:(AWSEC2ModifyNetworkInterfaceAttributeRequest *)request;
 
 /**
- * <p>Modifies the Availability Zone, instance count, instance type, or network platform (EC2-Classic or EC2-VPC) of your Reserved Instances. The Reserved Instances to be modified must be identical, except for Availability Zone, network platform, and instance type.</p>
+ * <p>Modifies the Availability Zone, instance count, instance type, or network platform (EC2-Classic or EC2-VPC) of your Reserved Instances. The Reserved Instances to be modified must be identical, except for Availability Zone, network platform, and instance type.</p><p>For more information, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-modifying.html">Modifying Reserved Instances</a> in the Amazon Elastic Compute Cloud User Guide.</p>
  *
  * @param request A container for the necessary parameters to execute the ModifyReservedInstances service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2ModifyReservedInstancesResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2ModifyReservedInstancesResult`.
  *
  * @see AWSEC2ModifyReservedInstancesRequest
  * @see AWSEC2ModifyReservedInstancesResult
@@ -1475,11 +1496,11 @@
 - (BFTask *)modifyReservedInstances:(AWSEC2ModifyReservedInstancesRequest *)request;
 
 /**
- * <p>Adds or removes permission settings for the specified snapshot. You may add or remove specified AWS account IDs from a snapshot's list of create volume permissions, but you cannot do both in a single API call. If you need to both add and remove account IDs for a snapshot, you must use multiple API calls.</p><p>For more information on modifying snapshot permissions, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-modifying-snapshot-permissions.html">Sharing Snapshots</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
+ * <p>Adds or removes permission settings for the specified snapshot. You may add or remove specified AWS account IDs from a snapshot's list of create volume permissions, but you cannot do both in a single API call. If you need to both add and remove account IDs for a snapshot, you must use multiple API calls.</p><p>For more information on modifying snapshot permissions, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-modifying-snapshot-permissions.html">Sharing Snapshots</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p><note><p>Snapshots with AWS Marketplace product codes cannot be made public.</p></note>
  *
  * @param request A container for the necessary parameters to execute the ModifySnapshotAttribute service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2ModifySnapshotAttributeRequest
  */
@@ -1490,7 +1511,7 @@
  *
  * @param request A container for the necessary parameters to execute the ModifySubnetAttribute service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2ModifySubnetAttributeRequest
  */
@@ -1501,7 +1522,7 @@
  *
  * @param request A container for the necessary parameters to execute the ModifyVolumeAttribute service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2ModifyVolumeAttributeRequest
  */
@@ -1512,7 +1533,7 @@
  *
  * @param request A container for the necessary parameters to execute the ModifyVpcAttribute service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2ModifyVpcAttributeRequest
  */
@@ -1523,7 +1544,7 @@
  *
  * @param request A container for the necessary parameters to execute the MonitorInstances service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2MonitorInstancesResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2MonitorInstancesResult`.
  *
  * @see AWSEC2MonitorInstancesRequest
  * @see AWSEC2MonitorInstancesResult
@@ -1531,11 +1552,11 @@
 - (BFTask *)monitorInstances:(AWSEC2MonitorInstancesRequest *)request;
 
 /**
- * <p>Purchases a Reserved Instance for use with your account. With Amazon EC2 Reserved Instances, you obtain a capacity reservation for a certain instance configuration over a specified period of time. You pay a lower usage rate than with On-Demand instances for the time that you actually use the capacity reservation.</p><p>For more information, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html">Reserved Instance Marketplace</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
+ * <p>Purchases a Reserved Instance for use with your account. With Amazon EC2 Reserved Instances, you obtain a capacity reservation for a certain instance configuration over a specified period of time. You pay a lower usage rate than with On-Demand instances for the time that you actually use the capacity reservation.</p><p>Use <a>DescribeReservedInstancesOfferings</a> to get a list of Reserved Instance offerings that match your specifications. After you've purchased a Reserved Instance, you can check for your new Reserved Instance with <a>DescribeReservedInstances</a>.</p><p>For more information, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts-on-demand-reserved-instances.html">Reserved Instances</a> and <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html">Reserved Instance Marketplace</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
  *
  * @param request A container for the necessary parameters to execute the PurchaseReservedInstancesOffering service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2PurchaseReservedInstancesOfferingResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2PurchaseReservedInstancesOfferingResult`.
  *
  * @see AWSEC2PurchaseReservedInstancesOfferingRequest
  * @see AWSEC2PurchaseReservedInstancesOfferingResult
@@ -1547,18 +1568,18 @@
  *
  * @param request A container for the necessary parameters to execute the RebootInstances service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2RebootInstancesRequest
  */
 - (BFTask *)rebootInstances:(AWSEC2RebootInstancesRequest *)request;
 
 /**
- * <p>Registers an AMI. When you're creating an AMI, this is the final step you must complete before you can launch an instance from the AMI. For more information about creating AMIs, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami.html">Creating Your Own AMIs</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p><p>You can also use <code>RegisterImage</code> to create an Amazon EBS-backed AMI from a snapshot of a root device volume. For more information, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_LaunchingInstanceFromSnapshot.html">Launching an Instance from a Snapshot</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p><p>If needed, you can deregister an AMI at any time. Any modifications you make to an AMI backed by an instance store volume invalidates its registration. If you make changes to an image, deregister the previous image and register the new image.</p>
+ * <p>Registers an AMI. When you're creating an AMI, this is the final step you must complete before you can launch an instance from the AMI. For more information about creating AMIs, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami.html">Creating Your Own AMIs</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p><note><p>For Amazon EBS-backed instances, <a>CreateImage</a> creates and registers the AMI in a single request, so you don't have to register the AMI yourself.</p></note><p>You can also use <code>RegisterImage</code> to create an Amazon EBS-backed AMI from a snapshot of a root device volume. For more information, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_LaunchingInstanceFromSnapshot.html">Launching an Instance from a Snapshot</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p><p>If needed, you can deregister an AMI at any time. Any modifications you make to an AMI backed by an instance store volume invalidates its registration. If you make changes to an image, deregister the previous image and register the new image.</p><note><p>You can't register an image where a secondary (non-root) snapshot has AWS Marketplace product codes.</p></note>
  *
  * @param request A container for the necessary parameters to execute the RegisterImage service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2RegisterImageResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2RegisterImageResult`.
  *
  * @see AWSEC2RegisterImageRequest
  * @see AWSEC2RegisterImageResult
@@ -1566,11 +1587,11 @@
 - (BFTask *)registerImage:(AWSEC2RegisterImageRequest *)request;
 
 /**
- * <p>Rejects a VPC peering connection request. The VPC peering connection must be in the <code>pending-acceptance</code> state. Use the <code>DescribeVpcPeeringConnections</code> request to view your outstanding VPC peering connection requests.</p>
+ * <p>Rejects a VPC peering connection request. The VPC peering connection must be in the <code>pending-acceptance</code> state. Use the <a>DescribeVpcPeeringConnections</a> request to view your outstanding VPC peering connection requests. To delete an active VPC peering connection, or to delete a VPC peering connection request that you initiated, use <a>DeleteVpcPeeringConnection</a>.</p>
  *
  * @param request A container for the necessary parameters to execute the RejectVpcPeeringConnection service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2RejectVpcPeeringConnectionResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2RejectVpcPeeringConnectionResult`.
  *
  * @see AWSEC2RejectVpcPeeringConnectionRequest
  * @see AWSEC2RejectVpcPeeringConnectionResult
@@ -1578,11 +1599,11 @@
 - (BFTask *)rejectVpcPeeringConnection:(AWSEC2RejectVpcPeeringConnectionRequest *)request;
 
 /**
- * <p>Releases the specified Elastic IP address.</p><p>After releasing an Elastic IP address, it is released to the IP address pool and might be unavailable to you. Be sure to update your DNS records and any servers or devices that communicate with the address. If you attempt to release an Elastic IP address that you already released, you'll get an <code>AuthFailure</code> error if the address is already allocated to another AWS account.</p><p>[EC2-Classic, default VPC] Releasing an Elastic IP address automatically disassociates it from any instance that it's associated with. To disassociate an Elastic IP address without releasing it, use <a>DisassociateAddress</a>.</p><p>[Nondefault VPC] You must use the <a>DisassociateAddress</a> to disassociate the Elastic IP address before you try to release it. Otherwise, Amazon EC2 returns an error (<code>InvalidIPAddress.InUse</code>).</p>
+ * <p>Releases the specified Elastic IP address.</p><p>After releasing an Elastic IP address, it is released to the IP address pool and might be unavailable to you. Be sure to update your DNS records and any servers or devices that communicate with the address. If you attempt to release an Elastic IP address that you already released, you'll get an <code>AuthFailure</code> error if the address is already allocated to another AWS account.</p><p>[EC2-Classic, default VPC] Releasing an Elastic IP address automatically disassociates it from any instance that it's associated with. To disassociate an Elastic IP address without releasing it, use <a>DisassociateAddress</a>.</p><p>[Nondefault VPC] You must use <a>DisassociateAddress</a> to disassociate the Elastic IP address before you try to release it. Otherwise, Amazon EC2 returns an error (<code>InvalidIPAddress.InUse</code>).</p>
  *
  * @param request A container for the necessary parameters to execute the ReleaseAddress service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2ReleaseAddressRequest
  */
@@ -1593,7 +1614,7 @@
  *
  * @param request A container for the necessary parameters to execute the ReplaceNetworkAclAssociation service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2ReplaceNetworkAclAssociationResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2ReplaceNetworkAclAssociationResult`.
  *
  * @see AWSEC2ReplaceNetworkAclAssociationRequest
  * @see AWSEC2ReplaceNetworkAclAssociationResult
@@ -1605,18 +1626,18 @@
  *
  * @param request A container for the necessary parameters to execute the ReplaceNetworkAclEntry service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2ReplaceNetworkAclEntryRequest
  */
 - (BFTask *)replaceNetworkAclEntry:(AWSEC2ReplaceNetworkAclEntryRequest *)request;
 
 /**
- * <p>Replaces an existing route within a route table in a VPC. You must provide only one of the following: Internet gateway, NAT instance, VPC peering connection, or network interface.</p><p>For more information about route tables, see <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Route_Tables.html">Route Tables</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>
+ * <p>Replaces an existing route within a route table in a VPC. You must provide only one of the following: Internet gateway or virtual private gateway, NAT instance, VPC peering connection, or network interface.</p><p>For more information about route tables, see <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Route_Tables.html">Route Tables</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>
  *
  * @param request A container for the necessary parameters to execute the ReplaceRoute service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2ReplaceRouteRequest
  */
@@ -1627,7 +1648,7 @@
  *
  * @param request A container for the necessary parameters to execute the ReplaceRouteTableAssociation service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2ReplaceRouteTableAssociationResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2ReplaceRouteTableAssociationResult`.
  *
  * @see AWSEC2ReplaceRouteTableAssociationRequest
  * @see AWSEC2ReplaceRouteTableAssociationResult
@@ -1639,7 +1660,7 @@
  *
  * @param request A container for the necessary parameters to execute the ReplicateImage service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2ReplicateImageResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2ReplicateImageResult`.
  *
  * @see AWSEC2ReplicateImageRequest
  * @see AWSEC2ReplicateImageResult
@@ -1647,11 +1668,11 @@
 - (BFTask *)replicateImage:(AWSEC2ReplicateImageRequest *)request;
 
 /**
- * <p>Copies a point-in-time snapshot of an Amazon EBS volume and stores it in Amazon S3. You can copy the snapshot within the same region or from one region to another. You can use the snapshot to create Amazon EBS volumes or Amazon Machine Images (AMIs). The snapshot is copied to the regional endpoint that you send the HTTP request to.</p><p>Copies of encrypted Amazon EBS snapshots remain encrypted. Copies of unencrypted snapshots remain unencrypted.</p><p>For more information, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-copy-snapshot.html">Copying an Amazon EBS Snapshot</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
+ * <p>Copies a point-in-time snapshot of an Amazon EBS volume and stores it in Amazon S3. You can copy the snapshot within the same region or from one region to another. You can use the snapshot to create Amazon EBS volumes or Amazon Machine Images (AMIs). The snapshot is copied to the regional endpoint that you send the HTTP request to.</p><p>Copies of encrypted Amazon EBS snapshots remain encrypted. Copies of unencrypted snapshots remain unencrypted.</p><note><p>Copying snapshots that were encrypted with non-default AWS Key Management Service (KMS) master keys is not supported at this time. </p></note><p>For more information, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-copy-snapshot.html">Copying an Amazon EBS Snapshot</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
  *
  * @param request A container for the necessary parameters to execute the ReplicateSnapshot service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2ReplicateSnapshotResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2ReplicateSnapshotResult`.
  *
  * @see AWSEC2ReplicateSnapshotRequest
  * @see AWSEC2ReplicateSnapshotResult
@@ -1659,22 +1680,22 @@
 - (BFTask *)replicateSnapshot:(AWSEC2ReplicateSnapshotRequest *)request;
 
 /**
- * <p>Submits feedback about the status of an instance. The instance must be in the <code>running</code> state. If your experience with the instance differs from the instance status returned by <a>DescribeInstanceStatus</a>, use <a>ReportInstanceStatus</a> to report your experience with the instance. Amazon EC2 collects this information to improve the accuracy of status checks.</p>
+ * <p>Submits feedback about the status of an instance. The instance must be in the <code>running</code> state. If your experience with the instance differs from the instance status returned by <a>DescribeInstanceStatus</a>, use <a>ReportInstanceStatus</a> to report your experience with the instance. Amazon EC2 collects this information to improve the accuracy of status checks.</p><p>Use of this action does not change the value returned by <a>DescribeInstanceStatus</a>.</p>
  *
  * @param request A container for the necessary parameters to execute the ReportInstanceStatus service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2ReportInstanceStatusRequest
  */
 - (BFTask *)reportInstanceStatus:(AWSEC2ReportInstanceStatusRequest *)request;
 
 /**
- * <p>Creates a Spot Instance request. Spot Instances are instances that Amazon EC2 starts on your behalf when the maximum price that you specify exceeds the current Spot Price. Amazon EC2 periodically sets the Spot Price based on available Spot Instance capacity and current Spot Instance requests. For more information about Spot Instances, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html">Spot Instances</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
+ * <p>Creates a Spot Instance request. Spot Instances are instances that Amazon EC2 starts on your behalf when the maximum price that you specify exceeds the current Spot Price. Amazon EC2 periodically sets the Spot Price based on available Spot Instance capacity and current Spot Instance requests. For more information about Spot Instances, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html">Spot Instances</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p><p>Users must be subscribed to the required product to run an instance with AWS Marketplace product codes.</p>
  *
  * @param request A container for the necessary parameters to execute the RequestSpotInstances service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2RequestSpotInstancesResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2RequestSpotInstancesResult`.
  *
  * @see AWSEC2RequestSpotInstancesRequest
  * @see AWSEC2RequestSpotInstancesResult
@@ -1686,18 +1707,18 @@
  *
  * @param request A container for the necessary parameters to execute the ResetImageAttribute service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2ResetImageAttributeRequest
  */
 - (BFTask *)resetImageAttribute:(AWSEC2ResetImageAttributeRequest *)request;
 
 /**
- * <p>Resets an attribute of an instance to its default value. To reset the kernel or RAM disk, the instance must be in a stopped state. To reset the <code>SourceDestCheck</code>, the instance can be either running or stopped.</p><p>The <code>SourceDestCheck</code> attribute controls whether source/destination checking is enabled. The default value is <code>true</code>, which means checking is enabled. This value must be <code>false</code> for a NAT instance to perform NAT. For more information, see <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_NAT_Instance.html">NAT Instances</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>
+ * <p>Resets an attribute of an instance to its default value. To reset the <code>kernel</code> or <code>ramdisk</code>, the instance must be in a stopped state. To reset the <code>SourceDestCheck</code>, the instance can be either running or stopped.</p><p>The <code>SourceDestCheck</code> attribute controls whether source/destination checking is enabled. The default value is <code>true</code>, which means checking is enabled. This value must be <code>false</code> for a NAT instance to perform NAT. For more information, see <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_NAT_Instance.html">NAT Instances</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>
  *
  * @param request A container for the necessary parameters to execute the ResetInstanceAttribute service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2ResetInstanceAttributeRequest
  */
@@ -1708,7 +1729,7 @@
  *
  * @param request A container for the necessary parameters to execute the ResetNetworkInterfaceAttribute service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2ResetNetworkInterfaceAttributeRequest
  */
@@ -1719,7 +1740,7 @@
  *
  * @param request A container for the necessary parameters to execute the ResetSnapshotAttribute service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2ResetSnapshotAttributeRequest
  */
@@ -1730,7 +1751,7 @@
  *
  * @param request A container for the necessary parameters to execute the RevokeSecurityGroupEgress service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2RevokeSecurityGroupEgressRequest
  */
@@ -1741,7 +1762,7 @@
  *
  * @param request A container for the necessary parameters to execute the RevokeSecurityGroupIngress service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2RevokeSecurityGroupIngressRequest
  */
@@ -1752,7 +1773,7 @@
  *
  * @param request A container for the necessary parameters to execute the RunInstances service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2Reservation.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2Reservation`.
  *
  * @see AWSEC2RunInstancesRequest
  * @see AWSEC2Reservation
@@ -1764,7 +1785,7 @@
  *
  * @param request A container for the necessary parameters to execute the StartInstances service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2StartInstancesResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2StartInstancesResult`.
  *
  * @see AWSEC2StartInstancesRequest
  * @see AWSEC2StartInstancesResult
@@ -1776,7 +1797,7 @@
  *
  * @param request A container for the necessary parameters to execute the StopInstances service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2StopInstancesResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2StopInstancesResult`.
  *
  * @see AWSEC2StopInstancesRequest
  * @see AWSEC2StopInstancesResult
@@ -1788,7 +1809,7 @@
  *
  * @param request A container for the necessary parameters to execute the TerminateInstances service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2TerminateInstancesResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2TerminateInstancesResult`.
  *
  * @see AWSEC2TerminateInstancesRequest
  * @see AWSEC2TerminateInstancesResult
@@ -1800,7 +1821,7 @@
  *
  * @param request A container for the necessary parameters to execute the UnassignPrivateIpAddresses service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSEC2UnassignPrivateIpAddressesRequest
  */
@@ -1811,7 +1832,7 @@
  *
  * @param request A container for the necessary parameters to execute the UnmonitorInstances service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSEC2UnmonitorInstancesResult.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSEC2UnmonitorInstancesResult`.
  *
  * @see AWSEC2UnmonitorInstancesRequest
  * @see AWSEC2UnmonitorInstancesResult

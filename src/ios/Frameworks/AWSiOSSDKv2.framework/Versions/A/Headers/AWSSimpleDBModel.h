@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -47,6 +47,7 @@ typedef NS_ENUM(NSInteger, AWSSimpleDBErrorType) {
 @class AWSSimpleDBBatchDeleteAttributesRequest;
 @class AWSSimpleDBBatchPutAttributesRequest;
 @class AWSSimpleDBCreateDomainRequest;
+@class AWSSimpleDBDeletableAttribute;
 @class AWSSimpleDBDeletableItem;
 @class AWSSimpleDBDeleteAttributesRequest;
 @class AWSSimpleDBDeleteDomainRequest;
@@ -93,6 +94,9 @@ typedef NS_ENUM(NSInteger, AWSSimpleDBErrorType) {
 
 @end
 
+/**
+ *
+ */
 @interface AWSSimpleDBBatchDeleteAttributesRequest : AWSRequest
 
 
@@ -108,6 +112,9 @@ typedef NS_ENUM(NSInteger, AWSSimpleDBErrorType) {
 
 @end
 
+/**
+ *
+ */
 @interface AWSSimpleDBBatchPutAttributesRequest : AWSRequest
 
 
@@ -123,6 +130,9 @@ typedef NS_ENUM(NSInteger, AWSSimpleDBErrorType) {
 
 @end
 
+/**
+ *
+ */
 @interface AWSSimpleDBCreateDomainRequest : AWSRequest
 
 
@@ -133,13 +143,46 @@ typedef NS_ENUM(NSInteger, AWSSimpleDBErrorType) {
 
 @end
 
+/**
+ * <p></p>
+ * Required parameters: [Name]
+ */
+@interface AWSSimpleDBDeletableAttribute : AWSModel
+
+
+/**
+ * The name of the attribute.
+ */
+@property (nonatomic, strong) NSString *name;
+
+/**
+ * The value of the attribute.
+ */
+@property (nonatomic, strong) NSString *value;
+
+@end
+
+/**
+ *
+ */
 @interface AWSSimpleDBDeletableItem : AWSModel
 
+
+/**
+ * 
+ */
 @property (nonatomic, strong) NSArray *attributes;
+
+/**
+ * 
+ */
 @property (nonatomic, strong) NSString *name;
 
 @end
 
+/**
+ *
+ */
 @interface AWSSimpleDBDeleteAttributesRequest : AWSRequest
 
 
@@ -165,6 +208,9 @@ typedef NS_ENUM(NSInteger, AWSSimpleDBErrorType) {
 
 @end
 
+/**
+ *
+ */
 @interface AWSSimpleDBDeleteDomainRequest : AWSRequest
 
 
@@ -175,6 +221,9 @@ typedef NS_ENUM(NSInteger, AWSSimpleDBErrorType) {
 
 @end
 
+/**
+ *
+ */
 @interface AWSSimpleDBDomainMetadataRequest : AWSRequest
 
 
@@ -185,6 +234,9 @@ typedef NS_ENUM(NSInteger, AWSSimpleDBErrorType) {
 
 @end
 
+/**
+ *
+ */
 @interface AWSSimpleDBDomainMetadataResult : AWSModel
 
 
@@ -225,6 +277,9 @@ typedef NS_ENUM(NSInteger, AWSSimpleDBErrorType) {
 
 @end
 
+/**
+ *
+ */
 @interface AWSSimpleDBGetAttributesRequest : AWSRequest
 
 
@@ -250,6 +305,9 @@ typedef NS_ENUM(NSInteger, AWSSimpleDBErrorType) {
 
 @end
 
+/**
+ *
+ */
 @interface AWSSimpleDBGetAttributesResult : AWSModel
 
 
@@ -284,6 +342,9 @@ typedef NS_ENUM(NSInteger, AWSSimpleDBErrorType) {
 
 @end
 
+/**
+ *
+ */
 @interface AWSSimpleDBListDomainsRequest : AWSRequest
 
 
@@ -299,6 +360,9 @@ typedef NS_ENUM(NSInteger, AWSSimpleDBErrorType) {
 
 @end
 
+/**
+ *
+ */
 @interface AWSSimpleDBListDomainsResult : AWSModel
 
 
@@ -314,6 +378,9 @@ typedef NS_ENUM(NSInteger, AWSSimpleDBErrorType) {
 
 @end
 
+/**
+ *
+ */
 @interface AWSSimpleDBPutAttributesRequest : AWSRequest
 
 
@@ -382,6 +449,9 @@ typedef NS_ENUM(NSInteger, AWSSimpleDBErrorType) {
 
 @end
 
+/**
+ *
+ */
 @interface AWSSimpleDBSelectRequest : AWSRequest
 
 
@@ -402,6 +472,9 @@ typedef NS_ENUM(NSInteger, AWSSimpleDBErrorType) {
 
 @end
 
+/**
+ *
+ */
 @interface AWSSimpleDBSelectResult : AWSModel
 
 

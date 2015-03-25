@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -24,10 +24,31 @@
  */
 @interface AWSCloudWatch : AWSService
 
+/**
+ *  The service configuration used to instantiate this service client.
+ *
+ *  @warning Once the client is instantiated, do not modify the configuration object. It may cause unspecified behaviors.
+ */
 @property (nonatomic, strong, readonly) AWSServiceConfiguration *configuration;
 
+/**
+ *  Returns the singleton service client. If the singleton object does not exist, the SDK instantiates the default service client with `defaultServiceConfiguration` from `[AWSServiceManager defaultServiceManager]`. The reference to this object is maintained by the SDK, and you do not need to retain it manually.
+ *
+ *  @return The default service client.
+ */
 + (instancetype)defaultCloudWatch;
 
+/**
+ *  Instantiates the service client with the given service configuration.
+ *
+ *  @warning Once the client is instantiated, do not modify the configuration object. It may cause unspecified behaviors.
+ *
+ *  @warning Unlike the singleton method, you are responsible for maintaining a strong reference to this object. If the service client is released before completing a service request, the request may fail with unspecified errors.
+ *
+ *  @param configuration The service configuration object.
+ *
+ *  @return An instance of the service client.
+ */
 - (instancetype)initWithConfiguration:(AWSServiceConfiguration *)configuration;
 
 /**
@@ -35,18 +56,18 @@
  *
  * @param request A container for the necessary parameters to execute the DeleteAlarms service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil. On failed execution, task.error may contain an NSError with AWSCloudWatchErrorDomain domian and the following error code: AWSCloudWatchErrorResourceNotFound.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`. On failed execution, `task.error` may contain an `NSError` with `AWSCloudWatchErrorDomain` domian and the following error code: `AWSCloudWatchErrorResourceNotFound`.
  *
  * @see AWSCloudWatchDeleteAlarmsInput
  */
 - (BFTask *)deleteAlarms:(AWSCloudWatchDeleteAlarmsInput *)request;
 
 /**
- * <p> Retrieves history for the specified alarm. Filter alarms by date range or item type. If an alarm name is not specified, Amazon CloudWatch returns histories for all of the owner's alarms. </p>
+ * <p> Retrieves history for the specified alarm. Filter alarms by date range or item type. If an alarm name is not specified, Amazon CloudWatch returns histories for all of the owner's alarms. </p><note> Amazon CloudWatch retains the history of an alarm for two weeks, whether or not you delete the alarm. </note>
  *
  * @param request A container for the necessary parameters to execute the DescribeAlarmHistory service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSCloudWatchDescribeAlarmHistoryOutput. On failed execution, task.error may contain an NSError with AWSCloudWatchErrorDomain domian and the following error code: AWSCloudWatchErrorInvalidNextToken.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSCloudWatchDescribeAlarmHistoryOutput`. On failed execution, `task.error` may contain an `NSError` with `AWSCloudWatchErrorDomain` domian and the following error code: `AWSCloudWatchErrorInvalidNextToken`.
  *
  * @see AWSCloudWatchDescribeAlarmHistoryInput
  * @see AWSCloudWatchDescribeAlarmHistoryOutput
@@ -58,7 +79,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribeAlarms service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSCloudWatchDescribeAlarmsOutput. On failed execution, task.error may contain an NSError with AWSCloudWatchErrorDomain domian and the following error code: AWSCloudWatchErrorInvalidNextToken.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSCloudWatchDescribeAlarmsOutput`. On failed execution, `task.error` may contain an `NSError` with `AWSCloudWatchErrorDomain` domian and the following error code: `AWSCloudWatchErrorInvalidNextToken`.
  *
  * @see AWSCloudWatchDescribeAlarmsInput
  * @see AWSCloudWatchDescribeAlarmsOutput
@@ -70,7 +91,7 @@
  *
  * @param request A container for the necessary parameters to execute the DescribeAlarmsForMetric service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSCloudWatchDescribeAlarmsForMetricOutput.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSCloudWatchDescribeAlarmsForMetricOutput`.
  *
  * @see AWSCloudWatchDescribeAlarmsForMetricInput
  * @see AWSCloudWatchDescribeAlarmsForMetricOutput
@@ -82,7 +103,7 @@
  *
  * @param request A container for the necessary parameters to execute the DisableAlarmActions service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSCloudWatchDisableAlarmActionsInput
  */
@@ -93,7 +114,7 @@
  *
  * @param request A container for the necessary parameters to execute the EnableAlarmActions service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
  *
  * @see AWSCloudWatchEnableAlarmActionsInput
  */
@@ -104,7 +125,7 @@
  *
  * @param request A container for the necessary parameters to execute the GetMetricStatistics service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSCloudWatchGetMetricStatisticsOutput. On failed execution, task.error may contain an NSError with AWSCloudWatchErrorDomain domian and the following error code: AWSCloudWatchErrorInvalidParameterValue, AWSCloudWatchErrorMissingRequiredParameter, AWSCloudWatchErrorInvalidParameterCombination, AWSCloudWatchErrorInternalService.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSCloudWatchGetMetricStatisticsOutput`. On failed execution, `task.error` may contain an `NSError` with `AWSCloudWatchErrorDomain` domian and the following error code: `AWSCloudWatchErrorInvalidParameterValue`, `AWSCloudWatchErrorMissingRequiredParameter`, `AWSCloudWatchErrorInvalidParameterCombination`, `AWSCloudWatchErrorInternalService`.
  *
  * @see AWSCloudWatchGetMetricStatisticsInput
  * @see AWSCloudWatchGetMetricStatisticsOutput
@@ -112,11 +133,11 @@
 - (BFTask *)getMetricStatistics:(AWSCloudWatchGetMetricStatisticsInput *)request;
 
 /**
- * <p> Returns a list of valid metrics stored for the AWS account owner. Returned metrics can be used with <a>GetMetricStatistics</a> to obtain statistical data for a given metric. </p>
+ * <p> Returns a list of valid metrics stored for the AWS account owner. Returned metrics can be used with <a>GetMetricStatistics</a> to obtain statistical data for a given metric. </p><note> Up to 500 results are returned for any one call. To retrieve further results, use returned <code>NextToken</code> values with subsequent <code>ListMetrics</code> operations. </note><note> If you create a metric with the <a>PutMetricData</a> action, allow up to fifteen minutes for the metric to appear in calls to the <code>ListMetrics</code> action. Statistics about the metric, however, are available sooner using <a>GetMetricStatistics</a>. </note>
  *
  * @param request A container for the necessary parameters to execute the ListMetrics service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSCloudWatchListMetricsOutput. On failed execution, task.error may contain an NSError with AWSCloudWatchErrorDomain domian and the following error code: AWSCloudWatchErrorInternalService, AWSCloudWatchErrorInvalidParameterValue.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSCloudWatchListMetricsOutput`. On failed execution, `task.error` may contain an `NSError` with `AWSCloudWatchErrorDomain` domian and the following error code: `AWSCloudWatchErrorInternalService`, `AWSCloudWatchErrorInvalidParameterValue`.
  *
  * @see AWSCloudWatchListMetricsInput
  * @see AWSCloudWatchListMetricsOutput
@@ -124,11 +145,11 @@
 - (BFTask *)listMetrics:(AWSCloudWatchListMetricsInput *)request;
 
 /**
- * <p> Creates or updates an alarm and associates it with the specified Amazon CloudWatch metric. Optionally, this operation can associate one or more Amazon Simple Notification Service resources with the alarm. </p><p> When this operation creates an alarm, the alarm state is immediately set to <code>INSUFFICIENT_DATA</code>. The alarm is evaluated and its <code>StateValue</code> is set appropriately. Any actions associated with the <code>StateValue</code> is then executed. </p>
+ * <p> Creates or updates an alarm and associates it with the specified Amazon CloudWatch metric. Optionally, this operation can associate one or more Amazon Simple Notification Service resources with the alarm. </p><p> When this operation creates an alarm, the alarm state is immediately set to <code>INSUFFICIENT_DATA</code>. The alarm is evaluated and its <code>StateValue</code> is set appropriately. Any actions associated with the <code>StateValue</code> is then executed. </p><note> When updating an existing alarm, its <code>StateValue</code> is left unchanged. </note>
  *
  * @param request A container for the necessary parameters to execute the PutMetricAlarm service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil. On failed execution, task.error may contain an NSError with AWSCloudWatchErrorDomain domian and the following error code: AWSCloudWatchErrorLimitExceeded.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`. On failed execution, `task.error` may contain an `NSError` with `AWSCloudWatchErrorDomain` domian and the following error code: `AWSCloudWatchErrorLimitExceeded`.
  *
  * @see AWSCloudWatchPutMetricAlarmInput
  */
@@ -139,7 +160,7 @@
  *
  * @param request A container for the necessary parameters to execute the PutMetricData service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil. On failed execution, task.error may contain an NSError with AWSCloudWatchErrorDomain domian and the following error code: AWSCloudWatchErrorInvalidParameterValue, AWSCloudWatchErrorMissingRequiredParameter, AWSCloudWatchErrorInvalidParameterCombination, AWSCloudWatchErrorInternalService.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`. On failed execution, `task.error` may contain an `NSError` with `AWSCloudWatchErrorDomain` domian and the following error code: `AWSCloudWatchErrorInvalidParameterValue`, `AWSCloudWatchErrorMissingRequiredParameter`, `AWSCloudWatchErrorInvalidParameterCombination`, `AWSCloudWatchErrorInternalService`.
  *
  * @see AWSCloudWatchPutMetricDataInput
  */
@@ -150,7 +171,7 @@
  *
  * @param request A container for the necessary parameters to execute the SetAlarmState service method.
  *
- * @return An instance of BFTask. On successful execution, task.result will be nil. On failed execution, task.error may contain an NSError with AWSCloudWatchErrorDomain domian and the following error code: AWSCloudWatchErrorResourceNotFound, AWSCloudWatchErrorInvalidFormat.
+ * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`. On failed execution, `task.error` may contain an `NSError` with `AWSCloudWatchErrorDomain` domian and the following error code: `AWSCloudWatchErrorResourceNotFound`, `AWSCloudWatchErrorInvalidFormat`.
  *
  * @see AWSCloudWatchSetAlarmStateInput
  */

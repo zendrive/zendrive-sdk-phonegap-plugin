@@ -2,7 +2,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="com.zendrive.phonegap.sdk"
-    version="1.2.4">
+    version="1.3.0">
 
     <name>Zendrive</name>
     <description>Phonegap plugin for the Zendrive SDK.</description>
@@ -38,15 +38,15 @@
         <source-file src="src/android/com/zendrive/phonegap/ZendriveCordovaPlugin.java" target-dir="src/com/zendrive/phonegap" />
 
         <!-- External Libraries -->
-        <source-file src="src/android/libs/aws-android-sdk-core-2.1.3.jar" target-dir="libs" framework="true" />
-        <source-file src="src/android/libs/aws-android-sdk-sqs-2.1.3.jar" target-dir="libs" framework="true" />
+        <source-file src="src/android/libs/aws-android-sdk-core-2.1.9.jar" target-dir="libs" framework="true" />
+        <source-file src="src/android/libs/aws-android-sdk-sqs-2.1.9.jar" target-dir="libs" framework="true" />
         <source-file src="src/android/libs/ebson-0.4-20140612.044330-1.jar" target-dir="libs" framework="true" />
         <source-file src="src/android/libs/gson-2.2.4.jar" target-dir="libs" framework="true" />
         <source-file src="src/android/libs/guava-13.0.1.jar" target-dir="libs" framework="true" />
         <source-file src="src/android/libs/libthrift-0.9.1.jar" target-dir="libs" framework="true" />
         <source-file src="src/android/libs/slf4j-api-1.5.8.jar" target-dir="libs" framework="true" />
         <source-file src="src/android/libs/slf4j-log4j12-1.5.8.jar" target-dir="libs" framework="true" />
-        <source-file src="src/android/libs/ZendriveSDK-1.0.2.jar" target-dir="libs" framework="true" />
+        <source-file src="src/android/libs/ZendriveSDK-1.1.0.jar" target-dir="libs" framework="true" />
 
     </platform>
     <platform name="ios">
@@ -84,9 +84,7 @@
         <framework src="src/ios/Frameworks/Bolts.framework" custom="true" />
         <framework src="src/ios/Frameworks/FMDB.framework" custom="true" />
         <framework src="src/ios/Frameworks/GZIP.framework" custom="true" />
-        <framework src="src/ios/Frameworks/LumberjackSDK.framework" custom="true" />
         <framework src="src/ios/Frameworks/Mantle.framework" custom="true" />
-        <framework src="src/ios/Frameworks/OCMock.framework" custom="true" />
         <framework src="src/ios/Frameworks/Reachability.framework" custom="true" />
         <framework src="src/ios/Frameworks/TMCache.framework" custom="true" />
         <framework src="src/ios/Frameworks/UICKeyChainStore.framework" custom="true" />
