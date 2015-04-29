@@ -30,7 +30,7 @@ You can integrate zendrive-sdk-phonegap-plugin in your application to get Zendri
 
 
 <h4>Alternatively if you are using phonegap build then add the following in your config.xml ( plugin only supported for android )</h4>
-<code>&lt;gap:plugin name="com.zendrive.phonegap.sdk" version="1.2.1" /&gt;</code>
+<code>&lt;gap:plugin name="com.zendrive.phonegap.sdk" version="2.0.0" /&gt;</code>
 
 
 <h3>Enable Zendrive in the app</h3>
