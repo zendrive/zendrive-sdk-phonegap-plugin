@@ -34,10 +34,47 @@ You can integrate zendrive-sdk-phonegap-plugin in your application to get Zendri
 
 
 <h3>Enable Zendrive in the app</h3>
+<p>Refer <a href="http://zendrive-root.bitbucket.org/phonegap/docs/Zendrive.html">Full Documentation</a> for details.</p>
 <h4>Initialize the SDK</h4>
 <p>Typically this is done after the driver logs into the application and you know the identity of the driver.
 After this call, Zendrive SDK will start automatic trip detection and collect driver data. You can also record trips manually from your application.</p>
-```cordova.exec(callback, function(err){alert(err)},"Zendrive","setup", [ ZENDRIVE_APPLICATION_KEY, <DRIVER_ID>]);```
+```
+var applicationKey = ZENDRIVE_APPLICATION_KEY;
+var driverId = <DRIVER_ID>;
+var config = new Zendrive.ZendriveConfiguration(applicationKey, driverId);
+var driverAttributes = new Zendrive.ZendriveDriverAttributes();
+driverAttributes.firstName = "first_name";
+driverAttributes.lastName = "last_name";
+driverAttributes.email = "e@mail.com";
+driverAttributes.group = "group1";
+driverAttributes.phoneNumber = "11234567890"
+driverAttributes.driverStartDate = 1428953991;
+driverAttributes.setCustomAttribute("custom_key", "custom_value");
+config.driverAttributes = driverAttributes;
+config.driveDetectionMode = Zendrive.ZendriveDriveDetectionMode.ZendriveDriveDetectionModeAutoON;
+
+var processStartOfDrive = function(zendriveDriveStartInfo) {
+    alert("processStartOfDrive: " + JSON.stringify(zendriveDriveStartInfo));
+};
+var processEndOfDrive = function(zendriveDriveInfo) {
+    alert("processEndOfDrive: " + JSON.stringify(zendriveDriveInfo));
+};
+var processLocationDenied = function() {
+    alert("Location denied, please enable location services to keep Zendrive working");
+};
+
+var zendriveCallback = new Zendrive.ZendriveCallback(processStartOfDrive,
+    processEndOfDrive, processLocationDenied);
+
+Zendrive.setup(config, zendriveCallback,
+    function() {
+        alert("Setup done!");
+    },
+    function (error) {
+        alert("Setup failed: " + error);
+    }
+);
+```
 
 <ul style="list-style-position: inside">
 <li>If you don't have the ZENDRIVE_APPLICATION_KEY, sign up on the Zendrive Developer Portal and get the key.</li>
@@ -46,30 +83,45 @@ After this call, Zendrive SDK will start automatic trip detection and collect dr
 
 <h4>Manual Trip Tagging</h4>
 <p>The Zendrive SDK works in the background and automatically detects trips and tracks driving behaviour. However, some applications already have knowledge of point-to-point trips made by the driver using the application. For example - a taxi metering app. If your application has this knowledge, it can indicate that to the Zendrive SDK explicitly.</p>
-```cordova.exec(callback, function(err){alert(err)},"Zendrive","startDrive", [<TRACKING_ID>]);```
+```
+Zendrive.startDrive(<TRACKING_ID>);  // A non empty <TRACKING_ID> must be specified
+Zendrive.stopDrive(<TRACKING_ID>);  // The <TRACKING_ID> should be same as passed in startDrive
+```
 <p>The <strong>&lt;TRACKING_ID&gt;</strong> can be used to find Zendrive trips with this ID in the Zendrive Analytics API. See the SDK Reference for more details about these calls.</p>
 
 <h4>Driving Sessions</h4>
 <p>Some applications want to track multiple point-to-point trips together as a single entity. For example, a car rental app may want to track all trips made by a user between a rental car pickup and dropoff as a single entity. This can be done using sessions in the Zendrive SDK.
 Sessions can be used in the Zendrive SDK by making the following calls.</p>
-```cordova.exec(callback, function(err){alert(err)},"Zendrive","startSession", [<SESSION_ID>]);```
+```
+Zendrive.startSession(<SESSION_ID>);  // A non empty <SESSION ID> must be specified
+Zendrive.stopSession();
+```
 <p>All trips within a session are tagged with the <strong>&lt;SESSION_ID&gt;</strong>. The session id can then be used to lookup Zendrive trips belonging to this session using the Zendrive REST API.</p>
 
 <h4>Controlling Automatic Drive Detection</h4>
 <p>The Zendrive SDK works in the background and automatically detects trips and tracks driving behaviour. If needed, an application can change this behaviour. For example, a rideshare app may want to automatically track all drives made by a driver only when the driver is on-duty and not collect any data for off-duty drives.</p>
-<p>The application can specify the required behaviour via an additional argument during setup of the Zendrive SDK. "AUTO_OFF" disables automatic drive detection in the SDK.</p>
-```cordova.exec(callback, function(err){alert(err)}, "Zendrive", "setup", [ "ZD_DEVELOPER_PORTAL_APPLICATION_KEY", &<DRIVER_ID>, "AUTO_OFF"]);```
-
-</p>The application can also temporarily enable Zendrive's auto drive-detection.
+<p>The application can specify the required behaviour via an additional argument during setup of the Zendrive SDK. ZendriveDriveDetectionModeAutoOFF disables automatic drive detection in the SDK.</p>
+```
+// ZendriveDriveDetectionMode.ZendriveDriveDetectionModeAutoOFF disables automatic drive detection in the SDK.
+config.driveDetectionMode = Zendrive.ZendriveDriveDetectionMode.ZendriveDriveDetectionModeAutoOFF;
+```
+</p></br>
+<p>The application can also temporarily enable Zendrive's auto drive-detection.  This can be done by setting the ZendriveDriveDetectionMode.</p>
 <p> To Turn on automatic drive detection in the SDK.</p>
-```cordova.exec(callback, function(err){alert(err)}, "Zendrive", "setDriveDetectionMode", ["AUTO_ON"]);```
+```
+Zendrive.setDriveDetectionMode(Zendrive.ZendriveDriveDetectionMode.ZendriveDriveDetectionModeAutoON);
+```
 <p> To Turn off automatic drive detection in the SDK.</p>
-```cordova.exec(callback, function(err){alert(err)}, "Zendrive", "setDriveDetectionMode", ["AUTO_OFF"]);```
+```
+Zendrive.setDriveDetectionMode(Zendrive.ZendriveDriveDetectionMode.ZendriveDriveDetectionModeAutoOFF);
+```
 
 
 <h4>Disable the SDK</h4>
 <p>To disable the SDK at any point in the application, you can invoke this method. The Zendrive SDK goes completely silent after this call and does not track any driving behaviour again.</p>
-```cordova.exec(callback, function(err){alert(err)},"Zendrive","teardown", []);```
+```
+Zendrive.teardown();
+```
 <p>The application needs to re-initalize the SDK to start tracking driving behaviour.</p>
 
 <br/>
