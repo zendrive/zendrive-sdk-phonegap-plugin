@@ -8,7 +8,7 @@
  *
  */
 
-#import <Bolts/BFAppLink.h>
+#import "BFAppLink.h"
 
 @interface BFAppLink (Internal)
 

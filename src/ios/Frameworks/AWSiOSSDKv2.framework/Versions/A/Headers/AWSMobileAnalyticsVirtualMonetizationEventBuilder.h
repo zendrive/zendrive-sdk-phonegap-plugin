@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@
 #import <AWSiOSSDKv2/AWSMobileAnalyticsMonetizationEventBuilder.h>
 
 /**
- * AWSMobileAnalyticsVirtualMonetizationEventBuilder builds monetization events to track virtual purchases from your In-Game store. 
+ * AWSMobileAnalyticsVirtualMonetizationEventBuilder builds monetization events to track virtual purchases from your In-Game store.
  * In order to build a Virtual monetization event, you must call all of the setters on this builder.
  *
  * The example below shows how to record a monetization event for the purchase of 1 sword that costs 500 Gold.
@@ -73,7 +73,7 @@
 
 /**
  * Sets the currency of the item price
- * @param theCurrency The currency of the item price 
+ * @param theCurrency The currency of the item price
  */
 -(void)withCurrency:(NSString *)theCurrency;
 

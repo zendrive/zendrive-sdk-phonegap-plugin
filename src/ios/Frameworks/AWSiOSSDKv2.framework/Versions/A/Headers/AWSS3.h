@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,35 +20,14 @@
 @class BFTask;
 
 /**
- * 
+ *
  */
 @interface AWSS3 : AWSService
 
-/**
- *  The service configuration used to instantiate this service client.
- *
- *  @warning Once the client is instantiated, do not modify the configuration object. It may cause unspecified behaviors.
- */
 @property (nonatomic, strong, readonly) AWSServiceConfiguration *configuration;
 
-/**
- *  Returns the singleton service client. If the singleton object does not exist, the SDK instantiates the default service client with `defaultServiceConfiguration` from `[AWSServiceManager defaultServiceManager]`. The reference to this object is maintained by the SDK, and you do not need to retain it manually.
- *
- *  @return The default service client.
- */
 + (instancetype)defaultS3;
 
-/**
- *  Instantiates the service client with the given service configuration.
- *
- *  @warning Once the client is instantiated, do not modify the configuration object. It may cause unspecified behaviors.
- *
- *  @warning Unlike the singleton method, you are responsible for maintaining a strong reference to this object. If the service client is released before completing a service request, the request may fail with unspecified errors.
- *
- *  @param configuration The service configuration object.
- *
- *  @return An instance of the service client.
- */
 - (instancetype)initWithConfiguration:(AWSServiceConfiguration *)configuration;
 
 /**
@@ -56,7 +35,7 @@
  *
  * @param request A container for the necessary parameters to execute the AbortMultipartUpload service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`. On failed execution, `task.error` may contain an `NSError` with `AWSS3ErrorDomain` domian and the following error code: `AWSS3ErrorNoSuchUpload`.
+ * @return An instance of BFTask. On successful execution, task.result will be nil. On failed execution, task.error may contain an NSError with AWSS3ErrorDomain domian and the following error code: AWSS3ErrorNoSuchUpload.
  *
  * @see AWSS3AbortMultipartUploadRequest
  */
@@ -67,7 +46,7 @@
  *
  * @param request A container for the necessary parameters to execute the CompleteMultipartUpload service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSS3CompleteMultipartUploadOutput`.
+ * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSS3CompleteMultipartUploadOutput.
  *
  * @see AWSS3CompleteMultipartUploadRequest
  * @see AWSS3CompleteMultipartUploadOutput
@@ -79,7 +58,7 @@
  *
  * @param request A container for the necessary parameters to execute the CreateBucket service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSS3CreateBucketOutput`. On failed execution, `task.error` may contain an `NSError` with `AWSS3ErrorDomain` domian and the following error code: `AWSS3ErrorBucketAlreadyExists`.
+ * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSS3CreateBucketOutput. On failed execution, task.error may contain an NSError with AWSS3ErrorDomain domian and the following error code: AWSS3ErrorBucketAlreadyExists.
  *
  * @see AWSS3CreateBucketRequest
  * @see AWSS3CreateBucketOutput
@@ -91,7 +70,7 @@
  *
  * @param request A container for the necessary parameters to execute the CreateMultipartUpload service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSS3CreateMultipartUploadOutput`.
+ * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSS3CreateMultipartUploadOutput.
  *
  * @see AWSS3CreateMultipartUploadRequest
  * @see AWSS3CreateMultipartUploadOutput
@@ -103,7 +82,7 @@
  *
  * @param request A container for the necessary parameters to execute the DeleteBucket service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
+ * @return An instance of BFTask. On successful execution, task.result will be nil.
  *
  * @see AWSS3DeleteBucketRequest
  */
@@ -114,7 +93,7 @@
  *
  * @param request A container for the necessary parameters to execute the DeleteBucketCors service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
+ * @return An instance of BFTask. On successful execution, task.result will be nil.
  *
  * @see AWSS3DeleteBucketCorsRequest
  */
@@ -125,7 +104,7 @@
  *
  * @param request A container for the necessary parameters to execute the DeleteBucketLifecycle service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
+ * @return An instance of BFTask. On successful execution, task.result will be nil.
  *
  * @see AWSS3DeleteBucketLifecycleRequest
  */
@@ -136,7 +115,7 @@
  *
  * @param request A container for the necessary parameters to execute the DeleteBucketPolicy service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
+ * @return An instance of BFTask. On successful execution, task.result will be nil.
  *
  * @see AWSS3DeleteBucketPolicyRequest
  */
@@ -147,7 +126,7 @@
  *
  * @param request A container for the necessary parameters to execute the DeleteBucketTagging service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
+ * @return An instance of BFTask. On successful execution, task.result will be nil.
  *
  * @see AWSS3DeleteBucketTaggingRequest
  */
@@ -158,7 +137,7 @@
  *
  * @param request A container for the necessary parameters to execute the DeleteBucketWebsite service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
+ * @return An instance of BFTask. On successful execution, task.result will be nil.
  *
  * @see AWSS3DeleteBucketWebsiteRequest
  */
@@ -169,7 +148,7 @@
  *
  * @param request A container for the necessary parameters to execute the DeleteObject service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSS3DeleteObjectOutput`.
+ * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSS3DeleteObjectOutput.
  *
  * @see AWSS3DeleteObjectRequest
  * @see AWSS3DeleteObjectOutput
@@ -181,7 +160,7 @@
  *
  * @param request A container for the necessary parameters to execute the DeleteObjects service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSS3DeleteObjectsOutput`.
+ * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSS3DeleteObjectsOutput.
  *
  * @see AWSS3DeleteObjectsRequest
  * @see AWSS3DeleteObjectsOutput
@@ -193,7 +172,7 @@
  *
  * @param request A container for the necessary parameters to execute the GetBucketAcl service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSS3GetBucketAclOutput`.
+ * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSS3GetBucketAclOutput.
  *
  * @see AWSS3GetBucketAclRequest
  * @see AWSS3GetBucketAclOutput
@@ -205,7 +184,7 @@
  *
  * @param request A container for the necessary parameters to execute the GetBucketCors service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSS3GetBucketCorsOutput`.
+ * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSS3GetBucketCorsOutput.
  *
  * @see AWSS3GetBucketCorsRequest
  * @see AWSS3GetBucketCorsOutput
@@ -217,7 +196,7 @@
  *
  * @param request A container for the necessary parameters to execute the GetBucketLifecycle service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSS3GetBucketLifecycleOutput`.
+ * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSS3GetBucketLifecycleOutput.
  *
  * @see AWSS3GetBucketLifecycleRequest
  * @see AWSS3GetBucketLifecycleOutput
@@ -229,7 +208,7 @@
  *
  * @param request A container for the necessary parameters to execute the GetBucketLocation service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSS3GetBucketLocationOutput`.
+ * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSS3GetBucketLocationOutput.
  *
  * @see AWSS3GetBucketLocationRequest
  * @see AWSS3GetBucketLocationOutput
@@ -241,7 +220,7 @@
  *
  * @param request A container for the necessary parameters to execute the GetBucketLogging service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSS3GetBucketLoggingOutput`.
+ * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSS3GetBucketLoggingOutput.
  *
  * @see AWSS3GetBucketLoggingRequest
  * @see AWSS3GetBucketLoggingOutput
@@ -253,7 +232,7 @@
  *
  * @param request A container for the necessary parameters to execute the GetBucketNotification service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSS3GetBucketNotificationOutput`.
+ * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSS3GetBucketNotificationOutput.
  *
  * @see AWSS3GetBucketNotificationRequest
  * @see AWSS3GetBucketNotificationOutput
@@ -265,7 +244,7 @@
  *
  * @param request A container for the necessary parameters to execute the GetBucketPolicy service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSS3GetBucketPolicyOutput`.
+ * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSS3GetBucketPolicyOutput.
  *
  * @see AWSS3GetBucketPolicyRequest
  * @see AWSS3GetBucketPolicyOutput
@@ -277,7 +256,7 @@
  *
  * @param request A container for the necessary parameters to execute the GetBucketRequestPayment service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSS3GetBucketRequestPaymentOutput`.
+ * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSS3GetBucketRequestPaymentOutput.
  *
  * @see AWSS3GetBucketRequestPaymentRequest
  * @see AWSS3GetBucketRequestPaymentOutput
@@ -289,7 +268,7 @@
  *
  * @param request A container for the necessary parameters to execute the GetBucketTagging service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSS3GetBucketTaggingOutput`.
+ * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSS3GetBucketTaggingOutput.
  *
  * @see AWSS3GetBucketTaggingRequest
  * @see AWSS3GetBucketTaggingOutput
@@ -301,7 +280,7 @@
  *
  * @param request A container for the necessary parameters to execute the GetBucketVersioning service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSS3GetBucketVersioningOutput`.
+ * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSS3GetBucketVersioningOutput.
  *
  * @see AWSS3GetBucketVersioningRequest
  * @see AWSS3GetBucketVersioningOutput
@@ -313,7 +292,7 @@
  *
  * @param request A container for the necessary parameters to execute the GetBucketWebsite service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSS3GetBucketWebsiteOutput`.
+ * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSS3GetBucketWebsiteOutput.
  *
  * @see AWSS3GetBucketWebsiteRequest
  * @see AWSS3GetBucketWebsiteOutput
@@ -325,7 +304,7 @@
  *
  * @param request A container for the necessary parameters to execute the GetObject service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSS3GetObjectOutput`. On failed execution, `task.error` may contain an `NSError` with `AWSS3ErrorDomain` domian and the following error code: `AWSS3ErrorNoSuchKey`.
+ * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSS3GetObjectOutput. On failed execution, task.error may contain an NSError with AWSS3ErrorDomain domian and the following error code: AWSS3ErrorNoSuchKey.
  *
  * @see AWSS3GetObjectRequest
  * @see AWSS3GetObjectOutput
@@ -337,7 +316,7 @@
  *
  * @param request A container for the necessary parameters to execute the GetObjectAcl service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSS3GetObjectAclOutput`. On failed execution, `task.error` may contain an `NSError` with `AWSS3ErrorDomain` domian and the following error code: `AWSS3ErrorNoSuchKey`.
+ * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSS3GetObjectAclOutput. On failed execution, task.error may contain an NSError with AWSS3ErrorDomain domian and the following error code: AWSS3ErrorNoSuchKey.
  *
  * @see AWSS3GetObjectAclRequest
  * @see AWSS3GetObjectAclOutput
@@ -349,7 +328,7 @@
  *
  * @param request A container for the necessary parameters to execute the GetObjectTorrent service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSS3GetObjectTorrentOutput`.
+ * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSS3GetObjectTorrentOutput.
  *
  * @see AWSS3GetObjectTorrentRequest
  * @see AWSS3GetObjectTorrentOutput
@@ -361,7 +340,7 @@
  *
  * @param request A container for the necessary parameters to execute the HeadBucket service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`. On failed execution, `task.error` may contain an `NSError` with `AWSS3ErrorDomain` domian and the following error code: `AWSS3ErrorNoSuchBucket`.
+ * @return An instance of BFTask. On successful execution, task.result will be nil. On failed execution, task.error may contain an NSError with AWSS3ErrorDomain domian and the following error code: AWSS3ErrorNoSuchBucket.
  *
  * @see AWSS3HeadBucketRequest
  */
@@ -372,7 +351,7 @@
  *
  * @param request A container for the necessary parameters to execute the HeadObject service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSS3HeadObjectOutput`. On failed execution, `task.error` may contain an `NSError` with `AWSS3ErrorDomain` domian and the following error code: `AWSS3ErrorNoSuchKey`.
+ * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSS3HeadObjectOutput. On failed execution, task.error may contain an NSError with AWSS3ErrorDomain domian and the following error code: AWSS3ErrorNoSuchKey.
  *
  * @see AWSS3HeadObjectRequest
  * @see AWSS3HeadObjectOutput
@@ -384,7 +363,7 @@
  *
  * @param request A container for the necessary parameters to execute the ListBuckets service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSS3ListBucketsOutput`.
+ * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSS3ListBucketsOutput.
  *
  * @see AWSRequest
  * @see AWSS3ListBucketsOutput
@@ -396,7 +375,7 @@
  *
  * @param request A container for the necessary parameters to execute the ListMultipartUploads service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSS3ListMultipartUploadsOutput`.
+ * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSS3ListMultipartUploadsOutput.
  *
  * @see AWSS3ListMultipartUploadsRequest
  * @see AWSS3ListMultipartUploadsOutput
@@ -408,7 +387,7 @@
  *
  * @param request A container for the necessary parameters to execute the ListObjectVersions service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSS3ListObjectVersionsOutput`.
+ * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSS3ListObjectVersionsOutput.
  *
  * @see AWSS3ListObjectVersionsRequest
  * @see AWSS3ListObjectVersionsOutput
@@ -420,7 +399,7 @@
  *
  * @param request A container for the necessary parameters to execute the ListObjects service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSS3ListObjectsOutput`. On failed execution, `task.error` may contain an `NSError` with `AWSS3ErrorDomain` domian and the following error code: `AWSS3ErrorNoSuchBucket`.
+ * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSS3ListObjectsOutput. On failed execution, task.error may contain an NSError with AWSS3ErrorDomain domian and the following error code: AWSS3ErrorNoSuchBucket.
  *
  * @see AWSS3ListObjectsRequest
  * @see AWSS3ListObjectsOutput
@@ -432,7 +411,7 @@
  *
  * @param request A container for the necessary parameters to execute the ListParts service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSS3ListPartsOutput`.
+ * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSS3ListPartsOutput.
  *
  * @see AWSS3ListPartsRequest
  * @see AWSS3ListPartsOutput
@@ -444,7 +423,7 @@
  *
  * @param request A container for the necessary parameters to execute the PutBucketAcl service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
+ * @return An instance of BFTask. On successful execution, task.result will be nil.
  *
  * @see AWSS3PutBucketAclRequest
  */
@@ -455,7 +434,7 @@
  *
  * @param request A container for the necessary parameters to execute the PutBucketCors service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
+ * @return An instance of BFTask. On successful execution, task.result will be nil.
  *
  * @see AWSS3PutBucketCorsRequest
  */
@@ -466,7 +445,7 @@
  *
  * @param request A container for the necessary parameters to execute the PutBucketLifecycle service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
+ * @return An instance of BFTask. On successful execution, task.result will be nil.
  *
  * @see AWSS3PutBucketLifecycleRequest
  */
@@ -477,7 +456,7 @@
  *
  * @param request A container for the necessary parameters to execute the PutBucketLogging service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
+ * @return An instance of BFTask. On successful execution, task.result will be nil.
  *
  * @see AWSS3PutBucketLoggingRequest
  */
@@ -488,7 +467,7 @@
  *
  * @param request A container for the necessary parameters to execute the PutBucketNotification service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
+ * @return An instance of BFTask. On successful execution, task.result will be nil.
  *
  * @see AWSS3PutBucketNotificationRequest
  */
@@ -499,7 +478,7 @@
  *
  * @param request A container for the necessary parameters to execute the PutBucketPolicy service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
+ * @return An instance of BFTask. On successful execution, task.result will be nil.
  *
  * @see AWSS3PutBucketPolicyRequest
  */
@@ -510,7 +489,7 @@
  *
  * @param request A container for the necessary parameters to execute the PutBucketRequestPayment service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
+ * @return An instance of BFTask. On successful execution, task.result will be nil.
  *
  * @see AWSS3PutBucketRequestPaymentRequest
  */
@@ -521,7 +500,7 @@
  *
  * @param request A container for the necessary parameters to execute the PutBucketTagging service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
+ * @return An instance of BFTask. On successful execution, task.result will be nil.
  *
  * @see AWSS3PutBucketTaggingRequest
  */
@@ -532,7 +511,7 @@
  *
  * @param request A container for the necessary parameters to execute the PutBucketVersioning service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
+ * @return An instance of BFTask. On successful execution, task.result will be nil.
  *
  * @see AWSS3PutBucketVersioningRequest
  */
@@ -543,7 +522,7 @@
  *
  * @param request A container for the necessary parameters to execute the PutBucketWebsite service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`.
+ * @return An instance of BFTask. On successful execution, task.result will be nil.
  *
  * @see AWSS3PutBucketWebsiteRequest
  */
@@ -554,7 +533,7 @@
  *
  * @param request A container for the necessary parameters to execute the PutObject service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSS3PutObjectOutput`.
+ * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSS3PutObjectOutput.
  *
  * @see AWSS3PutObjectRequest
  * @see AWSS3PutObjectOutput
@@ -566,7 +545,7 @@
  *
  * @param request A container for the necessary parameters to execute the PutObjectAcl service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`. On failed execution, `task.error` may contain an `NSError` with `AWSS3ErrorDomain` domian and the following error code: `AWSS3ErrorNoSuchKey`.
+ * @return An instance of BFTask. On successful execution, task.result will be nil. On failed execution, task.error may contain an NSError with AWSS3ErrorDomain domian and the following error code: AWSS3ErrorNoSuchKey.
  *
  * @see AWSS3PutObjectAclRequest
  */
@@ -577,7 +556,7 @@
  *
  * @param request A container for the necessary parameters to execute the ReplicateObject service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSS3ReplicateObjectOutput`. On failed execution, `task.error` may contain an `NSError` with `AWSS3ErrorDomain` domian and the following error code: `AWSS3ErrorObjectNotInActiveTier`.
+ * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSS3ReplicateObjectOutput. On failed execution, task.error may contain an NSError with AWSS3ErrorDomain domian and the following error code: AWSS3ErrorObjectNotInActiveTier.
  *
  * @see AWSS3ReplicateObjectRequest
  * @see AWSS3ReplicateObjectOutput
@@ -589,7 +568,7 @@
  *
  * @param request A container for the necessary parameters to execute the RestoreObject service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will be `nil`. On failed execution, `task.error` may contain an `NSError` with `AWSS3ErrorDomain` domian and the following error code: `AWSS3ErrorObjectAlreadyInActiveTier`.
+ * @return An instance of BFTask. On successful execution, task.result will be nil. On failed execution, task.error may contain an NSError with AWSS3ErrorDomain domian and the following error code: AWSS3ErrorObjectAlreadyInActiveTier.
  *
  * @see AWSS3RestoreObjectRequest
  */
@@ -600,7 +579,7 @@
  *
  * @param request A container for the necessary parameters to execute the UploadPart service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSS3UploadPartOutput`.
+ * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSS3UploadPartOutput.
  *
  * @see AWSS3UploadPartRequest
  * @see AWSS3UploadPartOutput
@@ -612,7 +591,7 @@
  *
  * @param request A container for the necessary parameters to execute the UploadPartCopy service method.
  *
- * @return An instance of `BFTask`. On successful execution, `task.result` will contain an instance of `AWSS3UploadPartCopyOutput`.
+ * @return An instance of BFTask. On successful execution, task.result will contain an instance of AWSS3UploadPartCopyOutput.
  *
  * @see AWSS3UploadPartCopyRequest
  * @see AWSS3UploadPartCopyOutput

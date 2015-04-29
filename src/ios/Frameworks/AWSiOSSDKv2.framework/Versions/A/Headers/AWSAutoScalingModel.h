@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -187,10 +187,6 @@ typedef NS_ENUM(NSInteger, AWSAutoScalingScalingActivityStatusCode) {
  * <p> Contains the reason the activity was begun. </p>
  */
 @property (nonatomic, strong) NSString *cause;
-
-/**
- * <p> Contains a friendly, more verbose description of the scaling activity. </p>
- */
 @property (nonatomic, strong) NSString *detail;
 
 /**
@@ -269,9 +265,6 @@ typedef NS_ENUM(NSInteger, AWSAutoScalingScalingActivityStatusCode) {
 
 @end
 
-/**
- *
- */
 @interface AWSAutoScalingAttachInstancesQuery : AWSRequest
 
 
@@ -513,7 +506,7 @@ typedef NS_ENUM(NSInteger, AWSAutoScalingScalingActivityStatusCode) {
 @property (nonatomic, strong) AWSAutoScalingEbs *ebs;
 
 /**
- * <p> Suppresses the device mapping. </p><note>If <code>NoDevice</code> is set to <code>true</code> for the root device, the instance might fail the EC2 health check. Auto Scaling launches a replacement instance if the instance fails the health check.</note>
+ * <p> Suppresses the device mapping. </p>
  */
 @property (nonatomic, strong) NSNumber *noDevice;
 
@@ -532,9 +525,6 @@ typedef NS_ENUM(NSInteger, AWSAutoScalingScalingActivityStatusCode) {
 
 @end
 
-/**
- *
- */
 @interface AWSAutoScalingCompleteLifecycleActionType : AWSRequest
 
 
@@ -652,7 +642,7 @@ typedef NS_ENUM(NSInteger, AWSAutoScalingScalingActivityStatusCode) {
 
 
 /**
- * <p>Used for Auto Scaling groups that launch instances into an Amazon Virtual Private Cloud (Amazon VPC). Specifies whether to assign a public IP address to each instance launched in a Amazon VPC. For more information, see <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/autoscalingsubnets.html">Auto Scaling in Amazon Virtual Private Cloud</a>.</p><note><p>If you specify a value for this parameter, be sure to specify at least one VPC subnet using the <i>VPCZoneIdentifier</i> parameter when you create your Auto Scaling group. </p></note><p>Default: If the instance is launched into a default subnet in a default VPC, the default is <code>true</code>. If the instance is launched into a nondefault subnet in a VPC, the default is <code>false</code>. For information about default VPC and VPC platforms, see <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide//as-supported-platforms.html">Supported Platforms</a>.</p>
+ * <p>Used for Auto Scaling groups that launch instances into an Amazon Virtual Private Cloud (Amazon VPC). Specifies whether to assign a public IP address to each instance launched in a Amazon VPC. For more information, see <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/autoscalingsubnets.html">Auto Scaling in Amazon Virtual Private Cloud</a>.</p><p>Default: If the instance is launched into a default subnet in a default VPC, the default is <code>true</code>. If the instance is launched into a nondefault subnet in a VPC, the default is <code>false</code>. For information about default VPC and VPC platforms, see <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide//as-supported-platforms.html">Supported Platforms</a>.</p>
  */
 @property (nonatomic, strong) NSNumber *associatePublicIpAddress;
 
@@ -727,7 +717,7 @@ typedef NS_ENUM(NSInteger, AWSAutoScalingScalingActivityStatusCode) {
 @property (nonatomic, strong) NSString *spotPrice;
 
 /**
- * <p> The user data to make available to the launched Amazon EC2 instances. For more information about Amazon EC2 user data, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AESDG-chapter-instancedata.html#instancedata-user-data-retrieval">User Data Retrieval</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>. </p><note> At this time, Auto Scaling launch configurations don't support compressed (e.g. zipped) user data files. </note>
+ * <p> The user data to make available to the launched Amazon EC2 instances. For more information about Amazon EC2 user data, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AESDG-chapter-instancedata.html#instancedata-user-data-retrieval">User Data Retrieval</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>. </p>
  */
 @property (nonatomic, strong) NSString *userData;
 
@@ -774,9 +764,6 @@ typedef NS_ENUM(NSInteger, AWSAutoScalingScalingActivityStatusCode) {
 
 @end
 
-/**
- *
- */
 @interface AWSAutoScalingDeleteLifecycleHookType : AWSRequest
 
 
@@ -894,9 +881,6 @@ typedef NS_ENUM(NSInteger, AWSAutoScalingScalingActivityStatusCode) {
 
 @end
 
-/**
- *
- */
 @interface AWSAutoScalingDescribeAutoScalingInstancesType : AWSRequest
 
 
@@ -930,9 +914,6 @@ typedef NS_ENUM(NSInteger, AWSAutoScalingScalingActivityStatusCode) {
 
 @end
 
-/**
- *
- */
 @interface AWSAutoScalingDescribeLifecycleHookTypesAnswer : AWSModel
 
 
@@ -956,9 +937,6 @@ typedef NS_ENUM(NSInteger, AWSAutoScalingScalingActivityStatusCode) {
 
 @end
 
-/**
- *
- */
 @interface AWSAutoScalingDescribeLifecycleHooksType : AWSRequest
 
 
@@ -986,7 +964,7 @@ typedef NS_ENUM(NSInteger, AWSAutoScalingScalingActivityStatusCode) {
 @property (nonatomic, strong) NSArray *granularities;
 
 /**
- * <p>The list of Metrics collected. The following metrics are supported: </p><ul><li><p>GroupMinSize</p></li><li><p>GroupMaxSize</p></li><li><p>GroupDesiredCapacity</p></li><li><p>GroupInServiceInstances</p></li><li><p>GroupPendingInstances</p></li><li><p>GroupStandbyInstances</p></li><li><p>GroupTerminatingInstances</p></li><li><p>GroupTotalInstances</p></li></ul><note><p>The <code>GroupStandbyInstances</code> metric is not returned by default. You must explicitly request it when calling <a>EnableMetricsCollection</a>.</p></note>
+ * <p>The list of Metrics collected. The following metrics are supported: </p><ul><li><p>GroupMinSize</p></li><li><p>GroupMaxSize</p></li><li><p>GroupDesiredCapacity</p></li><li><p>GroupInServiceInstances</p></li><li><p>GroupPendingInstances</p></li><li><p>GroupStandbyInstances</p></li><li><p>GroupTerminatingInstances</p></li><li><p>GroupTotalInstances</p></li></ul>
  */
 @property (nonatomic, strong) NSArray *metrics;
 
@@ -1011,9 +989,6 @@ typedef NS_ENUM(NSInteger, AWSAutoScalingScalingActivityStatusCode) {
 
 @end
 
-/**
- *
- */
 @interface AWSAutoScalingDescribeNotificationConfigurationsType : AWSRequest
 
 
@@ -1034,9 +1009,6 @@ typedef NS_ENUM(NSInteger, AWSAutoScalingScalingActivityStatusCode) {
 
 @end
 
-/**
- *
- */
 @interface AWSAutoScalingDescribePoliciesType : AWSRequest
 
 
@@ -1090,9 +1062,6 @@ typedef NS_ENUM(NSInteger, AWSAutoScalingScalingActivityStatusCode) {
 
 @end
 
-/**
- *
- */
 @interface AWSAutoScalingDescribeScheduledActionsType : AWSRequest
 
 
@@ -1177,9 +1146,6 @@ typedef NS_ENUM(NSInteger, AWSAutoScalingScalingActivityStatusCode) {
 
 @end
 
-/**
- *
- */
 @interface AWSAutoScalingDetachInstancesQuery : AWSRequest
 
 
@@ -1200,9 +1166,6 @@ typedef NS_ENUM(NSInteger, AWSAutoScalingScalingActivityStatusCode) {
 
 @end
 
-/**
- *
- */
 @interface AWSAutoScalingDisableMetricsCollectionQuery : AWSRequest
 
 
@@ -1251,9 +1214,6 @@ typedef NS_ENUM(NSInteger, AWSAutoScalingScalingActivityStatusCode) {
 
 @end
 
-/**
- *
- */
 @interface AWSAutoScalingEnableMetricsCollectionQuery : AWSRequest
 
 
@@ -1268,7 +1228,7 @@ typedef NS_ENUM(NSInteger, AWSAutoScalingScalingActivityStatusCode) {
 @property (nonatomic, strong) NSString *granularity;
 
 /**
- * <p> The list of metrics to collect. If no metrics are specified, all metrics are enabled. The following metrics are supported: </p><ul><li><p>GroupMinSize</p></li><li><p>GroupMaxSize</p></li><li><p>GroupDesiredCapacity</p></li><li><p>GroupInServiceInstances</p></li><li><p>GroupPendingInstances</p></li><li><p>GroupStandbyInstances</p></li><li><p>GroupTerminatingInstances</p></li><li><p>GroupTotalInstances</p></li></ul><note><p>The <code>GroupStandbyInstances</code> metric is not returned by default. You must explicitly request it when calling <a>EnableMetricsCollection</a>.</p></note>
+ * <p> The list of metrics to collect. If no metrics are specified, all metrics are enabled. The following metrics are supported: </p><ul><li><p>GroupMinSize</p></li><li><p>GroupMaxSize</p></li><li><p>GroupDesiredCapacity</p></li><li><p>GroupInServiceInstances</p></li><li><p>GroupPendingInstances</p></li><li><p>GroupStandbyInstances</p></li><li><p>GroupTerminatingInstances</p></li><li><p>GroupTotalInstances</p></li></ul>
  */
 @property (nonatomic, strong) NSArray *metrics;
 
@@ -1305,9 +1265,6 @@ typedef NS_ENUM(NSInteger, AWSAutoScalingScalingActivityStatusCode) {
 
 @end
 
-/**
- *
- */
 @interface AWSAutoScalingEnterStandbyQuery : AWSRequest
 
 
@@ -1328,9 +1285,6 @@ typedef NS_ENUM(NSInteger, AWSAutoScalingScalingActivityStatusCode) {
 
 @end
 
-/**
- *
- */
 @interface AWSAutoScalingExecutePolicyType : AWSRequest
 
 
@@ -1364,9 +1318,6 @@ typedef NS_ENUM(NSInteger, AWSAutoScalingScalingActivityStatusCode) {
 
 @end
 
-/**
- *
- */
 @interface AWSAutoScalingExitStandbyQuery : AWSRequest
 
 
@@ -1428,7 +1379,7 @@ typedef NS_ENUM(NSInteger, AWSAutoScalingScalingActivityStatusCode) {
 @property (nonatomic, strong) NSString *launchConfigurationName;
 
 /**
- * <p> Contains a description of the current <i>lifecycle</i> state. </p><note><p>The <code>Quarantined</code> lifecycle state is currently not used.</p></note>
+ * <p> Contains a description of the current <i>lifecycle</i> state. </p>
  */
 @property (nonatomic, assign) AWSAutoScalingLifecycleState lifecycleState;
 
@@ -1655,10 +1606,6 @@ typedef NS_ENUM(NSInteger, AWSAutoScalingScalingActivityStatusCode) {
  */
 @interface AWSAutoScalingMetricCollectionType : AWSModel
 
-
-/**
- * 
- */
 @property (nonatomic, strong) NSString *metric;
 
 @end
@@ -1765,9 +1712,6 @@ typedef NS_ENUM(NSInteger, AWSAutoScalingScalingActivityStatusCode) {
 
 @end
 
-/**
- *
- */
 @interface AWSAutoScalingPutLifecycleHookType : AWSRequest
 
 
@@ -1792,7 +1736,7 @@ typedef NS_ENUM(NSInteger, AWSAutoScalingScalingActivityStatusCode) {
 @property (nonatomic, strong) NSString *lifecycleHookName;
 
 /**
- * <p>The Amazon EC2 instance state to which you want to attach the lifecycle hook. See <a>DescribeLifecycleHookTypes</a> for a list of available lifecycle hook types.</p><note><p>This parameter is required for new lifecycle hooks, but optional when updating existing hooks.</p></note>
+ * <p>The Amazon EC2 instance state to which you want to attach the lifecycle hook. See <a>DescribeLifecycleHookTypes</a> for a list of available lifecycle hook types.</p>
  */
 @property (nonatomic, strong) NSString *lifecycleTransition;
 
@@ -1802,20 +1746,17 @@ typedef NS_ENUM(NSInteger, AWSAutoScalingScalingActivityStatusCode) {
 @property (nonatomic, strong) NSString *notificationMetadata;
 
 /**
- * <p>The ARN of the notification target that Auto Scaling will use to notify you when an instance is in the transition state for the lifecycle hook. This ARN target can be either an SQS queue or an SNS topic. </p><note><p>This parameter is required for new lifecycle hooks, but optional when updating existing hooks.</p></note><p>The notification message sent to the target will include:</p><ul><li><b>LifecycleActionToken</b>. The Lifecycle action token.</li><li><b>AccountId</b>. The user account ID.</li><li><b>AutoScalingGroupName</b>. The name of the Auto Scaling group.</li><li><b>LifecycleHookName</b>. The lifecycle hook name.</li><li><b>EC2InstanceId</b>. The EC2 instance ID.</li><li><b>LifecycleTransition</b>. The lifecycle transition.</li><li><b>NotificationMetadata</b>. The notification metadata.</li></ul><p>This operation uses the JSON format when sending notifications to an Amazon SQS queue, and an email key/value pair format when sending notifications to an Amazon SNS topic.</p><p>When you call this operation, a test message is sent to the notification target. This test message contains an additional key/value pair: <code>Event:autoscaling:TEST_NOTIFICATION</code>.</p>
+ * <p>The ARN of the notification target that Auto Scaling will use to notify you when an instance is in the transition state for the lifecycle hook. This ARN target can be either an SQS queue or an SNS topic. </p><p>The notification message sent to the target will include:</p><ul><li><b>LifecycleActionToken</b>. The Lifecycle action token.</li><li><b>AccountId</b>. The user account ID.</li><li><b>AutoScalingGroupName</b>. The name of the Auto Scaling group.</li><li><b>LifecycleHookName</b>. The lifecycle hook name.</li><li><b>EC2InstanceId</b>. The EC2 instance ID.</li><li><b>LifecycleTransition</b>. The lifecycle transition.</li><li><b>NotificationMetadata</b>. The notification metadata.</li></ul><p>This operation uses the JSON format when sending notifications to an Amazon SQS queue, and an email key/value pair format when sending notifications to an Amazon SNS topic.</p><p>When you call this operation, a test message is sent to the notification target. This test message contains an additional key/value pair: <code>Event:autoscaling:TEST_NOTIFICATION</code>.</p>
  */
 @property (nonatomic, strong) NSString *notificationTargetARN;
 
 /**
- * <p>The ARN of the Amazon IAM role that allows the Auto Scaling group to publish to the specified notification target.</p><note><p>This parameter is required for new lifecycle hooks, but optional when updating existing hooks.</p></note>
+ * <p>The ARN of the Amazon IAM role that allows the Auto Scaling group to publish to the specified notification target.</p>
  */
 @property (nonatomic, strong) NSString *roleARN;
 
 @end
 
-/**
- *
- */
 @interface AWSAutoScalingPutNotificationConfigurationType : AWSRequest
 
 
@@ -1836,9 +1777,6 @@ typedef NS_ENUM(NSInteger, AWSAutoScalingScalingActivityStatusCode) {
 
 @end
 
-/**
- *
- */
 @interface AWSAutoScalingPutScalingPolicyType : AWSRequest
 
 
@@ -1874,9 +1812,6 @@ typedef NS_ENUM(NSInteger, AWSAutoScalingScalingActivityStatusCode) {
 
 @end
 
-/**
- *
- */
 @interface AWSAutoScalingPutScheduledUpdateGroupActionType : AWSRequest
 
 
@@ -1935,9 +1870,6 @@ typedef NS_ENUM(NSInteger, AWSAutoScalingScalingActivityStatusCode) {
 
 @end
 
-/**
- *
- */
 @interface AWSAutoScalingRecordLifecycleActionHeartbeatType : AWSRequest
 
 
@@ -2006,9 +1938,6 @@ typedef NS_ENUM(NSInteger, AWSAutoScalingScalingActivityStatusCode) {
 
 @end
 
-/**
- *
- */
 @interface AWSAutoScalingScalingProcessQuery : AWSRequest
 
 
@@ -2124,9 +2053,6 @@ typedef NS_ENUM(NSInteger, AWSAutoScalingScalingActivityStatusCode) {
 
 @end
 
-/**
- *
- */
 @interface AWSAutoScalingSetInstanceHealthQuery : AWSRequest
 
 

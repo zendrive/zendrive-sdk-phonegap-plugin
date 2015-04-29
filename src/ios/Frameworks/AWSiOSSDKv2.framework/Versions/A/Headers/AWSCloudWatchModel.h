@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -197,9 +197,6 @@ typedef NS_ENUM(NSInteger, AWSCloudWatchStatistic) {
 
 @end
 
-/**
- *
- */
 @interface AWSCloudWatchDeleteAlarmsInput : AWSRequest
 
 
@@ -210,9 +207,6 @@ typedef NS_ENUM(NSInteger, AWSCloudWatchStatistic) {
 
 @end
 
-/**
- *
- */
 @interface AWSCloudWatchDescribeAlarmHistoryInput : AWSRequest
 
 
@@ -266,9 +260,6 @@ typedef NS_ENUM(NSInteger, AWSCloudWatchStatistic) {
 
 @end
 
-/**
- *
- */
 @interface AWSCloudWatchDescribeAlarmsForMetricInput : AWSRequest
 
 
@@ -317,9 +308,6 @@ typedef NS_ENUM(NSInteger, AWSCloudWatchStatistic) {
 
 @end
 
-/**
- *
- */
 @interface AWSCloudWatchDescribeAlarmsInput : AWSRequest
 
 
@@ -405,7 +393,7 @@ typedef NS_ENUM(NSInteger, AWSCloudWatchStatistic) {
 @property (nonatomic, strong) NSString *name;
 
 /**
- * <p> The value of the dimension to be matched. </p><note> Specifying a <code>Name</code> without specifying a <code>Value</code> returns all values associated with that <code>Name</code>. </note>
+ * <p> The value of the dimension to be matched. </p>
  */
 @property (nonatomic, strong) NSString *value;
 
@@ -425,9 +413,6 @@ typedef NS_ENUM(NSInteger, AWSCloudWatchStatistic) {
 
 @end
 
-/**
- *
- */
 @interface AWSCloudWatchEnableAlarmActionsInput : AWSRequest
 
 
@@ -438,9 +423,6 @@ typedef NS_ENUM(NSInteger, AWSCloudWatchStatistic) {
 
 @end
 
-/**
- *
- */
 @interface AWSCloudWatchGetMetricStatisticsInput : AWSRequest
 
 
@@ -470,7 +452,7 @@ typedef NS_ENUM(NSInteger, AWSCloudWatchStatistic) {
 @property (nonatomic, strong) NSNumber *period;
 
 /**
- * <p> The time stamp to use for determining the first datapoint to return. The value specified is inclusive; results include datapoints with the time stamp specified. </p><note> The specified start time is rounded down to the nearest value. Datapoints are returned for start times up to two weeks in the past. Specified start times that are more than two weeks in the past will not return datapoints for metrics that are older than two weeks. <p>Data that is timestamped 24 hours or more in the past may take in excess of 48 hours to become available from submission time using <code>GetMetricStatistics</code>.</p></note>
+ * <p> The time stamp to use for determining the first datapoint to return. The value specified is inclusive; results include datapoints with the time stamp specified. </p>
  */
 @property (nonatomic, strong) NSDate *startTime;
 
@@ -504,9 +486,6 @@ typedef NS_ENUM(NSInteger, AWSCloudWatchStatistic) {
 
 @end
 
-/**
- *
- */
 @interface AWSCloudWatchListMetricsInput : AWSRequest
 
 
@@ -725,9 +704,6 @@ typedef NS_ENUM(NSInteger, AWSCloudWatchStatistic) {
 
 @end
 
-/**
- *
- */
 @interface AWSCloudWatchPutMetricAlarmInput : AWSRequest
 
 
@@ -808,9 +784,6 @@ typedef NS_ENUM(NSInteger, AWSCloudWatchStatistic) {
 
 @end
 
-/**
- *
- */
 @interface AWSCloudWatchPutMetricDataInput : AWSRequest
 
 
@@ -820,15 +793,12 @@ typedef NS_ENUM(NSInteger, AWSCloudWatchStatistic) {
 @property (nonatomic, strong) NSArray *metricData;
 
 /**
- * <p> The namespace for the metric data. </p><note> You cannot specify a namespace that begins with "AWS/". Namespaces that begin with "AWS/" are reserved for other Amazon Web Services products that send metrics to Amazon CloudWatch. </note>
+ * <p> The namespace for the metric data. </p>
  */
 @property (nonatomic, strong) NSString *namespace;
 
 @end
 
-/**
- *
- */
 @interface AWSCloudWatchSetAlarmStateInput : AWSRequest
 
 

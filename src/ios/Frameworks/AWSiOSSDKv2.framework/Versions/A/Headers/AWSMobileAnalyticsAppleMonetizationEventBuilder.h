@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@
  *    for (SKPaymentTransaction* transaction in transactions) {
  *       switch (transaction.transactionState) {
  *          case SKPaymentTransactionStatePurchased:
- *          
+ *
  *          // when an item is purchased, give the user access to the content, and
  *          // record a monetization purchase event.
  *          [self completeTransaction:transaction];
@@ -66,7 +66,7 @@
  *    [builder withProductId:transaction.payment.productIdentifier];
  *
  *    // set the item price and price locale (obtained from the SKProduct object)
- *    [builder withItemPrice:[product.price doubleValue] 
+ *    [builder withItemPrice:[product.price doubleValue]
  *            andPriceLocale:product.priceLocale];
  *
  *    // set the quantity of item(s) purchased (obtained from the SKPurchaseTransaction object)
