@@ -1,6 +1,6 @@
 zendrive-sdk-phonegap-plugin
 ============================
-This is the official plugin for <a href="http://www.zendrive.com">zendrive</a> in Apache Cordova/PhoneGap!
+This is the official plugin for <a href="http://www.zendrive.com">Zendrive</a> in Apache Cordova/PhoneGap!
 
 <a href="http://www.zendrive.com">Zendrive</a> is commited to improving driving and transportation for everyone through better data and analytics.
 <br/>
@@ -34,7 +34,7 @@ You can integrate zendrive-sdk-phonegap-plugin in your application to get Zendri
 
 
 <h3>Enable Zendrive in the app</h3>
-<p>Refer <a href="http://zendrive-root.bitbucket.org/phonegap/docs/Zendrive.html">Full Documentation</a> for details.</p>
+<p>Refer <a href="http://zendrive-root.bitbucket.org/phonegap/docs/jsdoc-2.0.0/Zendrive.html">Full Documentation</a> for details.</p>
 <h4>Initialize the SDK</h4>
 <p>Typically this is done after the driver logs into the application and you know the identity of the driver.
 After this call, Zendrive SDK will start automatic trip detection and collect driver data. You can also record trips manually from your application.</p>
@@ -80,6 +80,7 @@ Zendrive.setup(config, zendriveCallback,
 <li>If you don't have the ZENDRIVE_APPLICATION_KEY, sign up on the Zendrive Developer Portal and get the key.</li>
 <li>The <DRIVER_ID> is an ID for the driver currently using the application. Each driver using the application needs a unique ID</li>
 </ul>
+<p>See the <a target="_blank" href="http://zendrive-root.bitbucket.org/phonegap/docs/jsdoc-2.0.0/Zendrive.html#.setup">SDK Reference</a> for more details about setup.</p>
 
 <h4>Manual Trip Tagging</h4>
 <p>The Zendrive SDK works in the background and automatically detects trips and tracks driving behaviour. However, some applications already have knowledge of point-to-point trips made by the driver using the application. For example - a taxi metering app. If your application has this knowledge, it can indicate that to the Zendrive SDK explicitly.</p>
@@ -87,7 +88,7 @@ Zendrive.setup(config, zendriveCallback,
 Zendrive.startDrive(<TRACKING_ID>);  // A non empty <TRACKING_ID> must be specified
 Zendrive.stopDrive(<TRACKING_ID>);  // The <TRACKING_ID> should be same as passed in startDrive
 ```
-<p>The <strong>&lt;TRACKING_ID&gt;</strong> can be used to find Zendrive trips with this ID in the Zendrive Analytics API. See the SDK Reference for more details about these calls.</p>
+<p>The &lt;TRACKING_ID&gt; can be used to find Zendrive trips with this ID in the <a href="https://developers.zendrive.com/docs/api/" target="_blank">Zendrive Analytics API</a>. See the <a href="http://zendrive-root.bitbucket.org/phonegap/docs/jsdoc-2.0.0/Zendrive.html#.startDrive" target="_blank">SDK Reference</a> for more details about these calls.</p>
 
 <h4>Driving Sessions</h4>
 <p>Some applications want to track multiple point-to-point trips together as a single entity. For example, a car rental app may want to track all trips made by a user between a rental car pickup and dropoff as a single entity. This can be done using sessions in the Zendrive SDK.
@@ -96,7 +97,7 @@ Sessions can be used in the Zendrive SDK by making the following calls.</p>
 Zendrive.startSession(<SESSION_ID>);  // A non empty <SESSION ID> must be specified
 Zendrive.stopSession();
 ```
-<p>All trips within a session are tagged with the <strong>&lt;SESSION_ID&gt;</strong>. The session id can then be used to lookup Zendrive trips belonging to this session using the Zendrive REST API.</p>
+<p>All trips within a session are tagged with the session id. The session id can then be used to lookup Zendrive trips belonging to this session using the <a href="https://developers.zendrive.com/docs/api/" target="_blank">Zendrive Analytics API</a>. See the <a href="http://zendrive-root.bitbucket.org/phonegap/docs/jsdoc-2.0.0/Zendrive.html#.startSession" target="_blank">SDK Reference</a> for more details about these calls.</p>
 
 <h4>Controlling Automatic Drive Detection</h4>
 <p>The Zendrive SDK works in the background and automatically detects trips and tracks driving behaviour. If needed, an application can change this behaviour. For example, a rideshare app may want to automatically track all drives made by a driver only when the driver is on-duty and not collect any data for off-duty drives.</p>
@@ -105,8 +106,7 @@ Zendrive.stopSession();
 // ZendriveDriveDetectionMode.ZendriveDriveDetectionModeAutoOFF disables automatic drive detection in the SDK.
 config.driveDetectionMode = Zendrive.ZendriveDriveDetectionMode.ZendriveDriveDetectionModeAutoOFF;
 ```
-</p></br>
-<p>The application can also temporarily enable Zendrive's auto drive-detection.  This can be done by setting the ZendriveDriveDetectionMode.</p>
+<p>The application can also temporarily enable Zendrive's auto drive-detection. This can be done by setting the ZendriveDriveDetectionMode.</p>
 <p> To Turn on automatic drive detection in the SDK.</p>
 ```
 Zendrive.setDriveDetectionMode(Zendrive.ZendriveDriveDetectionMode.ZendriveDriveDetectionModeAutoON);
@@ -115,8 +115,6 @@ Zendrive.setDriveDetectionMode(Zendrive.ZendriveDriveDetectionMode.ZendriveDrive
 ```
 Zendrive.setDriveDetectionMode(Zendrive.ZendriveDriveDetectionMode.ZendriveDriveDetectionModeAutoOFF);
 ```
-
-
 <h4>Disable the SDK</h4>
 <p>To disable the SDK at any point in the application, you can invoke this method. The Zendrive SDK goes completely silent after this call and does not track any driving behaviour again.</p>
 ```
