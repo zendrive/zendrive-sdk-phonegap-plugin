@@ -2,7 +2,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="com.zendrive.phonegap.sdk"
-    version="2.0.1">
+    version="2.0.2">
 
     <name>Zendrive</name>
     <description>Phonegap plugin for the Zendrive SDK.</description>
@@ -94,15 +94,10 @@
         <framework src="libz.1.1.3.dylib" />
 
         <!-- External Frameworks -->
-        <framework src="src/ios/Frameworks/AWSiOSSDKv2.framework" custom="true" />
-        <framework src="src/ios/Frameworks/Bolts.framework" custom="true" />
+        <framework src="src/ios/Frameworks/AWSCore.framework" custom="true" />
+        <framework src="src/ios/Frameworks/AWSSQS.framework" custom="true" />
         <framework src="src/ios/Frameworks/FMDB.framework" custom="true" />
-        <framework src="src/ios/Frameworks/GZIP.framework" custom="true" />
-        <framework src="src/ios/Frameworks/Mantle.framework" custom="true" />
         <framework src="src/ios/Frameworks/Reachability.framework" custom="true" />
-        <framework src="src/ios/Frameworks/TMCache.framework" custom="true" />
-        <framework src="src/ios/Frameworks/UICKeyChainStore.framework" custom="true" />
-        <framework src="src/ios/Frameworks/XMLDictionary.framework" custom="true" />
         <framework src="src/ios/Frameworks/ZendriveSDK.framework" custom="true" />
 
     </platform>

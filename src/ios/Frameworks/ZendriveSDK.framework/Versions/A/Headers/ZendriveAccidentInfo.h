@@ -13,11 +13,6 @@
  */
 typedef NS_ENUM(int, ZendriveAccidentConfidence) {
     /**
-     * Default value.
-     */
-    ZendriveAccidentConfidenceDefault = 0,
-
-    /**
      * Accident was detected with a high confidence. The application might inform
      * emergency services directly after waiting for some time for user feedback.
      */

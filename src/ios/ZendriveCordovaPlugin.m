@@ -320,7 +320,7 @@ static NSString * const kDriverAttributesKey = @"driverAttributes";
 }
 
 - (BOOL)isNULL:(NSObject *)object {
-    if (!object || [object isEqual:[NSNull null]]) {
+    if (!object || (object == [NSNull null])) {
         return YES;
     }
     return NO;
