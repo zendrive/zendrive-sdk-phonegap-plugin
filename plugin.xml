@@ -40,8 +40,7 @@
             <service android:name="com.zendrive.sdk.services.ZendriveService" />
         </config-file>
 
-        <dependency id="com.google.playservices" />
-        <dependency id="android.support.v4" />
+        <framework src="src/android/build.gradle" custom="true" type="gradleReference" />
 
         <source-file src="src/android/com/zendrive/phonegap/ZendriveCordovaPlugin.java" target-dir="src/com/zendrive/phonegap" />
 

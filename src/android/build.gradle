@@ -1,0 +1,14 @@
+repositories{    
+  jcenter()
+}
+
+android {
+	packagingOptions {
+		exclude 'META-INF/LICENSE.txt'
+	}
+}
+
+dependencies {
+    compile 'com.google.android.gms:play-services-location:+'
+    compile 'com.android.support:support-v4:+'
+}
