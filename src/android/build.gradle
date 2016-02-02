@@ -1,0 +1,21 @@
+repositories{
+  jcenter()
+}
+
+android {
+	lintOptions {
+		// This is needed to avoid spurious lint errors from libthrift and log4j.
+		disable 'InvalidPackage'
+	}
+	packagingOptions {
+		exclude 'META-INF/LICENSE.txt'
+		exclude 'META-INF/NOTICE.txt'
+	}
+}
+
+dependencies {
+	compile 'com.google.android.gms:play-services-location:+'
+	compile('com.zendrive.sdk.android:ZendriveSDK:2.0.2@aar') {
+		transitive = true
+	}
+}

@@ -40,21 +40,8 @@
             <service android:name="com.zendrive.sdk.services.ZendriveService" />
         </config-file>
 
-        <dependency id="com.google.playservices" />
-        <dependency id="android.support.v4" />
-
+        <framework src="src/android/build.gradle" custom="true" type="gradleReference" />
         <source-file src="src/android/com/zendrive/phonegap/ZendriveCordovaPlugin.java" target-dir="src/com/zendrive/phonegap" />
-
-        <!-- External Libraries -->
-        <source-file src="src/android/libs/aws-android-sdk-core-2.1.9.jar" target-dir="libs" framework="true" />
-        <source-file src="src/android/libs/aws-android-sdk-sqs-2.1.9.jar" target-dir="libs" framework="true" />
-        <source-file src="src/android/libs/ebson-0.4-20140612.044330-1.jar" target-dir="libs" framework="true" />
-        <source-file src="src/android/libs/gson-2.2.4.jar" target-dir="libs" framework="true" />
-        <source-file src="src/android/libs/guava-13.0.1.jar" target-dir="libs" framework="true" />
-        <source-file src="src/android/libs/libthrift-0.9.1.jar" target-dir="libs" framework="true" />
-        <source-file src="src/android/libs/slf4j-api-1.5.8.jar" target-dir="libs" framework="true" />
-        <source-file src="src/android/libs/slf4j-log4j12-1.5.8.jar" target-dir="libs" framework="true" />
-        <source-file src="src/android/libs/ZendriveSDK-1.1.0.jar" target-dir="libs" framework="true" />
 
     </platform>
     <platform name="ios">
