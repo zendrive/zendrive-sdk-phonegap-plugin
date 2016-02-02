@@ -15,6 +15,8 @@ import com.zendrive.sdk.ZendriveConfiguration;
 import com.zendrive.sdk.ZendriveDriveDetectionMode;
 import com.zendrive.sdk.ZendriveDriverAttributes;
 import com.zendrive.sdk.ZendriveListener;
+import com.zendrive.sdk.AccidentInfo;
+import com.zendrive.sdk.ZendriveOperationResult;
 
 import java.util.Date;
 import java.util.Iterator;
@@ -92,11 +94,11 @@ public class ZendriveCordovaPlugin extends CordovaPlugin implements ZendriveList
                 configuration, this,
                 new Zendrive.SetupCallback() {
                     @Override
-                    public void onSetup(boolean success) {
-                        if (success) {
+                    public void onSetup(ZendriveOperationResult result) {
+                        if (result.isSuccess()) {
                             callbackContext.success();
                         } else {
-                            callbackContext.error("Zendrive setup failed");
+                            callbackContext.error(result.getErrorMessage());
                         }
                     }
                 });
@@ -247,6 +249,14 @@ public class ZendriveCordovaPlugin extends CordovaPlugin implements ZendriveList
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    public void onLocationDisabled() {
+
+    }
+
+    public void onAccident(AccidentInfo accidentInfo) {
+
     }
 
     private ZendriveDriveDetectionMode getDriveDetectionModeFromInt(Integer driveDetectionModeInt) {
