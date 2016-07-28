@@ -70,8 +70,8 @@ function registerForDelegateCallbacks(zendriveCallback) {
  * @param  {Zendrive.ZendriveConfiguration} zendriveConfiguration - The configuration object used to setup
  * the SDK. This object contains your credentials along with additional setup parameters that you
  * can use to provide meta-information about the user or to tune the sdk functionality.
- * @param  {Zendrive.ZendriveCallback} zendriveCallback - Callback for Zendrive
- * @param  {Zendrive.setupSuccessCallback} callback - This is called when Zendrive SDK setup succeeds
+ * @param  {Zendrive.ZendriveCallback} zendriveCallback - Callback for Zendrive events
+ * @param  {Zendrive.setupSuccessCallback} successCallback - This is called when Zendrive SDK setup succeeds
  * @param  {Zendrive.failureCallback} errorCallback - This is called if Zendrive SDK setup fails for some reason
  */
 Zendrive.setup = function(zendriveConfiguration, zendriveCallback, successCallback, errorCallback) {
@@ -113,7 +113,22 @@ Zendrive.teardown = function() {
  *  empty string as tracking id is a no-op.
  */
 Zendrive.startDrive = function(driveTrackingId) {
-    exec(null, null,"Zendrive","startDrive", [driveTrackingId]);
+    exec(null, null, "Zendrive", "startDrive", [driveTrackingId]);
+};
+
+/**
+ * This method provides information about current active drive.
+ * @param  {Zendrive.activeDriveCallback} callback - Callback containing active drive information.
+ */
+Zendrive.getActiveDriveInfo = function(callback) {
+    /**
+     * active drive callback
+     * @callback activeDriveCallback
+     * @param {Zendrive.ZendriveActiveDriveInfo} information about the currently active drive.
+     * @memberOf Zendrive
+     */
+    var activeDriveCallback = callback;
+    exec(activeDriveCallback, null, "Zendrive", "getActiveDriveInfo", []);
 };
 
 /**
@@ -332,6 +347,31 @@ Zendrive.ZendriveDriveInfo = function () {
      * @type {Array}
      */
     this.waypoints = [];
+}
+
+/**
+ * @class Wrapper for meta-information related to a active drive.
+ * @constructor
+ */
+Zendrive.ZendriveActiveDriveInfo = function () {
+
+    /**
+     * The start timestamp of trip in milliseconds since epoch.
+     * @type {Number}
+     */
+    this.startTimestamp = 0;
+
+    /**
+     * tracking Id correlates apps internal data with the drive data.
+     * @type {String}
+    */
+    this.trackingId;
+
+    /**
+     * Identifier that identifies this session uniquely.
+     * @type {String}
+     */
+    this.sessionId;
 }
 
 /**

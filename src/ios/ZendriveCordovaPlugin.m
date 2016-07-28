@@ -4,6 +4,11 @@
 
 #import "ZendriveCordovaPlugin.h"
 #import <ZendriveSDK/Zendrive.h>
+#import <ZendriveSDK/ZendriveActiveDriveInfo.h>
+
+#pragma mark - Common dictionary keys
+static NSString * const kTrackingIdKey = @"trackingId";
+static NSString * const kSessionIdKey = @"sessionId";
 
 #pragma mark - ZendriveDriveStartInfo dictionary keys
 static NSString * const kStartTimestampKey = @"startTimestamp";
@@ -45,77 +50,117 @@ static NSString * const kDriverAttributesKey = @"driverAttributes";
 
 - (void)setup:(CDVInvokedUrlCommand*)command
 {
-    NSDictionary *configDictionary = [command argumentAtIndex:0];
-    ZendriveConfiguration *configuration = [self configurationFromDictionary:configDictionary];
+    [self.commandDelegate runInBackground:^{
+        @synchronized(self) {
+            NSDictionary *configDictionary = [command argumentAtIndex:0];
+            ZendriveConfiguration *configuration = [self configurationFromDictionary:configDictionary];
 
-    [Zendrive
-     setupWithConfiguration:configuration
-     delegate:self
-     completionHandler:^(BOOL success, NSError *error) {
-         CDVPluginResult* pluginResult = nil;
-         if(error == nil){
-             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-         }
-         else {
-             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR
-                                              messageAsString:error.localizedFailureReason];
-         }
-         [self.commandDelegate sendPluginResult:pluginResult
-                                     callbackId:command.callbackId];
-     }];
+            [Zendrive
+             setupWithConfiguration:configuration
+             delegate:self
+             completionHandler:^(BOOL success, NSError *error) {
+                 CDVPluginResult* pluginResult = nil;
+                 if(error == nil){
+                     pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+                 }
+                 else {
+                     pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR
+                                                      messageAsString:error.localizedFailureReason];
+                 }
+                 [self.commandDelegate sendPluginResult:pluginResult
+                                             callbackId:command.callbackId];
+             }];
+        }
+    }];
 }
 
 -(void)teardown:(CDVInvokedUrlCommand *)command{
     [self.commandDelegate runInBackground:^{
-        [Zendrive teardown];
-        CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+        @synchronized(self) {
+            [Zendrive teardown];
+            CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+            [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+        }
     }];
 }
 
 - (void)startDrive:(CDVInvokedUrlCommand*)command{
     [self.commandDelegate runInBackground:^{
-        NSString *trackingId = [command argumentAtIndex:0];
-        [Zendrive startDrive:trackingId];
-        CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+        @synchronized(self) {
+            NSString *trackingId = [command argumentAtIndex:0];
+            [Zendrive startDrive:trackingId];
+            CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+            [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+        }
+    }];
+}
+
+- (void)getActiveDriveInfo:(CDVInvokedUrlCommand*)command{
+    [self.commandDelegate runInBackground:^{
+        @synchronized(self) {
+            ZendriveActiveDriveInfo *activeDriveInfo = [Zendrive activeDriveInfo];
+            NSMutableDictionary *activeDriveInfoDictionary;
+            if (activeDriveInfo) {
+                activeDriveInfoDictionary = [[NSMutableDictionary alloc] init];
+                activeDriveInfoDictionary[kStartTimestampKey] = @(activeDriveInfo.startTimestamp);
+                activeDriveInfoDictionary[kTrackingIdKey] = [NSNull null];
+                if (activeDriveInfo.trackingId) {
+                    activeDriveInfoDictionary[kTrackingIdKey] = activeDriveInfo.trackingId;
+                }
+                activeDriveInfoDictionary[kSessionIdKey] = [NSNull null];
+                if (activeDriveInfo.sessionId) {
+                    activeDriveInfoDictionary[kSessionIdKey] = activeDriveInfo.sessionId;
+                }
+            }
+            CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
+                                                          messageAsDictionary:activeDriveInfoDictionary];
+            [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+        }
     }];
 }
 
 - (void)stopDrive:(CDVInvokedUrlCommand*)command{
     [self.commandDelegate runInBackground:^{
-        NSString *trackingId = [command argumentAtIndex:0];
-        [Zendrive stopDrive:trackingId];
-        CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+        @synchronized(self) {
+            NSString *trackingId = [command argumentAtIndex:0];
+            [Zendrive stopDrive:trackingId];
+            CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+            [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+        }
     }];
 }
 
 - (void)startSession:(CDVInvokedUrlCommand*)command{
     [self.commandDelegate runInBackground:^{
-        [Zendrive startSession:[command argumentAtIndex:0]];
-        CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+        @synchronized(self) {
+            [Zendrive startSession:[command argumentAtIndex:0]];
+            CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+            [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+        }
     }];
 }
 
 - (void)stopSession:(CDVInvokedUrlCommand*)command{
     [self.commandDelegate runInBackground:^{
-        [Zendrive stopSession];
-        CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+        @synchronized(self) {
+            [Zendrive stopSession];
+            CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+            [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+        }
     }];
 }
 
 - (void)setDriveDetectionMode:(CDVInvokedUrlCommand *)command{
     [self.commandDelegate runInBackground:^{
-        CDVPluginResult *pluginResult;
-        NSNumber *modeNsNum = [command argumentAtIndex:0];
-        ZendriveDriveDetectionMode mode = modeNsNum.intValue;
-        [Zendrive setDriveDetectionMode:mode];
+        @synchronized(self) {
+            CDVPluginResult *pluginResult;
+            NSNumber *modeNsNum = [command argumentAtIndex:0];
+            ZendriveDriveDetectionMode mode = modeNsNum.intValue;
+            [Zendrive setDriveDetectionMode:mode];
 
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+            [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+        }
     }];
 }
 

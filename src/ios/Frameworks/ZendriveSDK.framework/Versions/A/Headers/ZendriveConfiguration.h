@@ -12,6 +12,8 @@
  *  Specifies the operation category for Zendrive SDK.
  *  Each category varies in the type and frequency of data collected, accuracy of
  *  drive-related attributes and battery consumption.
+ *
+ *  @warning This is deprecated and has no affect on ZendriveSDK functionality.
  */
 typedef NS_ENUM(int, ZendriveOperationMode) {
     /**
@@ -63,6 +65,8 @@ typedef NS_ENUM(int, ZendriveDriveDetectionMode) {
  *  Specifies the accident detection mode of the Zendrive SDK.
  *  The application should be running in ZendriveOperationModeDriverAnalytics
  *  ZendriveOperationMode for accident detection to work reliably.
+ *
+ *  @warning This is deprecated and has no affect on ZendriveSDK functionality.
  */
 typedef NS_ENUM(int, ZendriveAccidentDetectionMode) {
     /**
@@ -97,7 +101,7 @@ typedef NS_ENUM(int, ZendriveAccidentDetectionMode) {
  * allowed.
  * Passing invalid string would cause SDK setup to fail.
  */
-@property (nonatomic) NSString *applicationKey;
+@property (nonatomic, strong, nonnull) NSString *applicationKey;
 
 /**
  * @abstract Unique ID for the current user. This can be any ID used by your app to
@@ -109,7 +113,7 @@ typedef NS_ENUM(int, ZendriveAccidentDetectionMode) {
  * allowed.
  * Passing invalid string would cause SDK setup to fail.
  */
-@property (nonatomic) NSString *driverId;
+@property (nonatomic, strong, nonnull) NSString *driverId;
 
 /**
  * @abstract Attributes for the current user. These attributes are stored on the server
@@ -120,7 +124,7 @@ typedef NS_ENUM(int, ZendriveAccidentDetectionMode) {
  * email, groupId or any custom attributes you wish to provide.
  * Default value is nil.
  */
-@property (nonatomic) ZendriveDriverAttributes *driverAttributes;
+@property (nonatomic, strong, nullable) ZendriveDriverAttributes *driverAttributes;
 
 /**
  * @abstract You should assign a value to this property that is appropriate for your usage
@@ -132,10 +136,10 @@ typedef NS_ENUM(int, ZendriveAccidentDetectionMode) {
  * Once setup, all drives detected by the SDK would be in the specified operationMode. If
  * you wish to change the operation mode at any point, you need to call
  * [Zendrive teardown] and setup the SDK again.
- * @warning This field is REQUIRED. If this field is not explicitly set,
- * SDK setup would fail.
+ *
+ * @warning Property ignored. It is always set to ZendriveOperationModeDriverAnalytics.
  */
-@property (nonatomic) ZendriveOperationMode operationMode;
+@property (nonatomic, assign) ZendriveOperationMode operationMode __deprecated_msg("Property ignored. It is always set to ZendriveOperationModeDriverAnalytics");
 
 /**
  * @abstract Use this mode to control the SDK's behaviour for detecting drives
@@ -151,14 +155,19 @@ typedef NS_ENUM(int, ZendriveAccidentDetectionMode) {
  * back to ZendriveDriveDetectionModeAutoOFF (once the driver goes off-duty).
  *
  */
-@property (nonatomic) ZendriveDriveDetectionMode driveDetectionMode;
+@property (nonatomic, assign) ZendriveDriveDetectionMode driveDetectionMode;
 
 /**
  * Specify ZendriveAccidentDetectionModeEnabled to enable detection of accidents by the
  * Zendrive SDK and receive realtime callbacks for the same. This feature is available
  * only to premium account holders. Please refer to https://developers.zedrive.com for
  * further details.
+ *
+ * Please refer to [Zendrive isAccidentDetectionSupportedByDevice] to check whether accident
+ * detection would work on the device or not.
+ *
+ * @warning Property ignored. It is always set to ZendriveAccidentDetectionModeEnabled.
  */
-@property (nonatomic) ZendriveAccidentDetectionMode accidentDetectionMode;
+@property (nonatomic, assign) ZendriveAccidentDetectionMode accidentDetectionMode __deprecated_msg("Property ignored. It is always set to ZendriveAccidentDetectionModeEnabled");
 
 @end

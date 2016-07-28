@@ -11,33 +11,66 @@
 /**
  *  Key for first name as returned by toJson method.
  */
-extern NSString * const kDriverAttributesKeyFirstName;
+extern NSString * __nonnull const kDriverAttributesKeyFirstName;
 
 /**
  *  Key for last name as returned by toJson method.
  */
-extern NSString * const kDriverAttributesKeyLastName;
+extern NSString * __nonnull const kDriverAttributesKeyLastName;
 
 /**
  *  Key for email as returned by toJson method.
  */
-extern NSString * const kDriverAttributesKeyEmail;
+extern NSString * __nonnull const kDriverAttributesKeyEmail;
 
 /**
  *  Key for groupId returned by toJson method.
  */
-extern NSString * const kDriverAttributesKeyGroup;
+extern NSString * __nonnull const kDriverAttributesKeyGroup;
 
 /**
  *  Key for phoneNumber returned by toJson method.
  */
-extern NSString * const kDriverAttributesKeyPhoneNumber;
+extern NSString * __nonnull const kDriverAttributesKeyPhoneNumber;
 
 /**
  *  Key for driverStartDate returned by toJson method.
  */
-extern NSString * const kDriverAttributesKeyDriverStartDate;
+extern NSString * __nonnull const kDriverAttributesKeyDriverStartDate;
 
+/**
+ * Key for ServiceLevel returned by toJson method.
+ */
+extern NSString * __nonnull const kDriverAttributesKeyPriority;
+
+/**
+ * @typedef
+ * @abstract Enumeration for different service levels supported by Zendrive for a driver.
+ * By default, drivers will be assigned to the default service level - ZendriveServiceLevelDefault.
+ *
+ * @discussion This is useful for applications which need special modes in the Zendrive SDK for different
+ * drivers - e.g default mode for free users and a advanced mode for paid users.
+ *
+ * By default, multiple service levels are not enabled for an application.
+ * To be able to use different modes for your application, you should contact
+ * <a href="mailto:support@zendrive.com">support@zendrive.com</a>
+ * with your requirements and get that enabled for your application.
+ * Otherwise, if this is not enabled for your application, all drivers get mapped to
+ * ZendriveServiceLevelDefault irrespective of the service level specified.
+ */
+typedef NS_ENUM(int, ZendriveServiceLevel) {
+    /**
+     * Default service level. This is most common level required by most of the applications
+     * that use Zendrive SDK.
+     */
+    ZendriveServiceLevelDefault,
+    /**
+     * Special service level 1 that is enabled for a particular application.
+     * Contact <a href="mailto:support@zendrive.com">support@zendrive.com</a> with your
+     * requirements to get this enabled for your application.
+     */
+    ZendriveServiceLevel1
+};
 
 /**
  * Additional attributes of a Zendrive driver.
@@ -58,7 +91,7 @@ extern NSString * const kDriverAttributesKeyDriverStartDate;
  *
  *  @return YES, if the value was set, NO otherwise.
  */
-- (BOOL)setFirstName:(NSString *)firstName;
+- (BOOL)setFirstName:(nonnull NSString *)firstName;
 
 /**
  *  @abstract Last name of the user.
@@ -67,7 +100,7 @@ extern NSString * const kDriverAttributesKeyDriverStartDate;
  *
  *  @return YES, if the value was set, NO otherwise.
  */
-- (BOOL)setLastName:(NSString *)lastName;
+- (BOOL)setLastName:(nonnull NSString *)lastName;
 
 /**
  *  @abstract Email of the user.
@@ -76,7 +109,7 @@ extern NSString * const kDriverAttributesKeyDriverStartDate;
  *
  *  @return YES, if the value was set, NO otherwise.
  */
-- (BOOL)setEmail:(NSString *)email;
+- (BOOL)setEmail:(nonnull NSString *)email;
 
 /**
  * @abstract A unique id that associates the current user to a group. This groupId will
@@ -93,7 +126,7 @@ extern NSString * const kDriverAttributesKeyDriverStartDate;
  * @return YES, if the value was set, NO otherwise.
  *
  */
-- (BOOL)setGroup:(NSString *)groupId;
+- (BOOL)setGroup:(nonnull NSString *)groupId;
 
 /**
  * @abstract Phone number of the user.
@@ -107,7 +140,7 @@ extern NSString * const kDriverAttributesKeyDriverStartDate;
  * @return NO if the phone number string contains any characters other than digits, YES
  *         otherwise.
  */
-- (BOOL)setPhoneNumber:(NSString *)phoneNumber;
+- (BOOL)setPhoneNumber:(nonnull NSString *)phoneNumber;
 
 /**
  * @abstract The date which the driver signed up/started using your application.
@@ -118,7 +151,16 @@ extern NSString * const kDriverAttributesKeyDriverStartDate;
  *
  * @return YES, if the value was set, NO otherwise.
  */
-- (BOOL)setDriverStartDate:(NSDate *)startDate;
+- (BOOL)setDriverStartDate:(nonnull NSDate *)startDate;
+
+/**
+ * The service level of a driver. This is useful for applications where Zendrive supports
+ * different service levels for different drivers. See ServiceLevel
+ * for more information about this attribute.
+ *
+ * @param serviceLevel service tier of the user.
+ */
+- (BOOL)setServiceLevel:(ZendriveServiceLevel)serviceLevel;
 
 /**
  * @abstract Set the custom attribute of the user.
@@ -133,7 +175,7 @@ extern NSString * const kDriverAttributesKeyDriverStartDate;
  * @return YES, if the value was set, NO otherwise.
  *
  */
-- (BOOL)setCustomAttribute:(NSString *)value forKey:(NSString *)key;
+- (BOOL)setCustomAttribute:(nonnull NSString *)value forKey:(nonnull NSString *)key;
 
 /**
  * @abstract Returns the attributes as a json string.
@@ -141,13 +183,13 @@ extern NSString * const kDriverAttributesKeyDriverStartDate;
  * @return Driver attributes as a json string. nil if json serialization
  *         fails.
  */
-- (NSString *)asJson;
+- (nonnull NSString *)asJson;
 
 /**
  * @abstract Returns the driver attributes as a dictionary.
  *
  * @return Driver attributes as a dictionary.
  */
-- (NSDictionary *)asDictionary;
+- (nonnull NSDictionary *)asDictionary;
 
 @end
