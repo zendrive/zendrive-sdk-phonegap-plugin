@@ -45,7 +45,7 @@ Zendrive.ZendriveCallback = function(processStartOfDrive, processEndOfDrive, pro
     this.processLocationDenied = processLocationDenied;
 };
 
-function registerForDelegateCallbacks(zendriveCallback) {
+Zendrive.registerForDelegateCallbacks = function(zendriveCallback) {
     var callbackNotNull = (null != zendriveCallback);
 
     // We are allowing to clear out existing individual callbacks by sending null
@@ -76,7 +76,7 @@ function registerForDelegateCallbacks(zendriveCallback) {
  */
 Zendrive.setup = function(zendriveConfiguration, zendriveCallback, successCallback, errorCallback) {
     Zendrive.callback = zendriveCallback;
-    registerForDelegateCallbacks(zendriveCallback);
+    Zendrive.registerForDelegateCallbacks(zendriveCallback);
 
     /**
      * Setup success callback
